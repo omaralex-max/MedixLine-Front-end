@@ -1,12 +1,16 @@
 import React from "react";
 import "./sign.css";
+import { Link } from "react-router-dom";
 
-const PatientForm = ({ onSwitchForm }) => {
+const DocForm = ({ onSwitchForm }) => {
   return (
     <div className="wrapper">
-      <div className="title">Sign Up (Patient)</div>
+      <div className="title">Sign Up</div>
+      <button onClick={() => onSwitchForm("patient")} className="switch">
+        Patient
+      </button>
       <button onClick={() => onSwitchForm("doctor")} className="switch">
-        Switch to Doctor
+        Doctor
       </button>
       <div className="form">
         <div className="inputfield">
@@ -60,14 +64,31 @@ const PatientForm = ({ onSwitchForm }) => {
             <input type="checkbox" />
             <span className="checkmark" />
           </label>
-          <p>Agreed to terms and conditions</p>
+          <span>Agreed to terms and conditions</span>
         </div>
         <div className="inputfield">
           <input type="submit" defaultValue="Register" className="btn" />
+        </div>
+        <div className="or">
+          <p>Or</p>
+        </div>
+        <div className="out-social">
+          <a href="#">
+            <button className="social fac">Facebook</button>
+          </a>
+          <a href="#">
+            <button className="social goo">Google</button>
+          </a>
+        </div>
+        <div>
+          <label>Already have an account ?</label>{" "}
+          <Link to="#" className="signin">
+            Sign in
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default PatientForm;
+export default DocForm;
