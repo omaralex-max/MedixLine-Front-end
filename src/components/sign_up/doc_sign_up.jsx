@@ -64,7 +64,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
           </div>
           <div className="inputfield">
             <label>Address</label>
-            <textarea className="textarea" defaultValue={""} />
+            <input type="text" className="input" />
           </div>
           <div className="inputfield">
             <label>National ID</label>

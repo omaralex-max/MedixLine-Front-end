@@ -64,7 +64,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
           <div className="inputfield">
             <label>Address</label>
-            <textarea className="textarea" defaultValue={""} />
+            <input type="text" className="input" />
           </div>
           <div className="inputfield terms">
             <label className="check">
@@ -91,6 +91,9 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
             <label>Already have an account ?</label>{" "}
             <Link to="#" className="signin">
               Sign in
+            </Link>
+            <Link to="#" className="signin">
+              Back Home
             </Link>
           </div>
         </div>
