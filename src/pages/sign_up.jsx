@@ -2,26 +2,22 @@ import React, { useState } from 'react';
 import DocForm from '../components/sign_up/doc_sign_up';
 import PatientForm from '../components/sign_up/patient_sign_up';
 
-const Sign_up = () => {
-  const [isDoctorForm, setIsDoctorForm] = useState(false);
+const SignUp = () => {
+  const [activeForm, setActiveForm] = useState("patient");
 
-  const handleSwitchForm = (formType) => {
-    if (formType === 'doctor') {
-      setIsDoctorForm(true);
-    } else {
-      setIsDoctorForm(false);
-    }
+  const handleSwitchForm = (form) => {
+    setActiveForm(form);
   };
 
   return (
     <div>
-      {isDoctorForm ? (
-        <DocForm onSwitchForm={handleSwitchForm} />
+      {activeForm === "doctor" ? (
+        <DocForm activeForm={activeForm} onSwitchForm={handleSwitchForm} />
       ) : (
-        <PatientForm onSwitchForm={handleSwitchForm} />
+        <PatientForm activeForm={activeForm} onSwitchForm={handleSwitchForm} />
       )}
     </div>
   );
 };
 
-export default Sign_up;
+export default SignUp;

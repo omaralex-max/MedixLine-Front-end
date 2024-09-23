@@ -245,3 +245,7 @@ body {
   color: #ebf0fd;
   box-shadow: 0 4px 3px #bbbbbb;
 }
+.switch.active {
+  background: #007bff6b;
+  box-shadow: 0 4px 3px #009efa;
+}
