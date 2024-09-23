@@ -1,4 +1,3 @@
-import React from "react";
 import "./sign.css";
 import { Link } from "react-router-dom";
 
@@ -82,7 +81,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             <span>Agreed to terms and conditions</span>
           </div>
           <div className="inputfield">
-            <input type="submit" defaultValue="Register" className="btn" />
+            <input type="submit" value="Register" className="btn" />
           </div>
           <div className="or">
             <p>Or</p>
@@ -97,7 +96,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
           </div>
           <div>
             <label>Already have an account ?</label>{" "}
-            <Link to="#" className="signin">
+            <Link to="/signin" className="signin">
               Sign in
             </Link>
           </div>

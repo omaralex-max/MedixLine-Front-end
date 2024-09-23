@@ -19,6 +19,14 @@ body {
   box-shadow: 2px 2px 4px #757575;
   border-radius: 10px;
 }
+.push {
+  margin-top: 170px;
+}
+.forgot {
+  margin-left: 130px;
+  text-decoration: none;
+  color: black;
+}
 
 .wrapper .title {
   font-size: 24px;
@@ -44,7 +52,7 @@ body {
   font-size: 14px;
 }
 
-.wrapper .form .inputfield .input{
+.wrapper .form .inputfield .input {
   width: 100%;
   outline: none;
   border: 1px solid #d5dbd9;
@@ -60,7 +68,7 @@ body {
   height: 37px;
 }
 
-.wrapper .form .inputfield .check .checkmark:before{
+.wrapper .form .inputfield .check .checkmark:before {
   content: "";
   position: absolute;
   top: 1px;
@@ -71,7 +79,7 @@ body {
   border-color: transparent transparent #fff #fff;
   transform: rotate(-45deg);
   display: none;
-} 
+}
 
 .wrapper .form .inputfield .custom_select select {
   -webkit-appearance: none;
@@ -87,7 +95,7 @@ body {
   border-radius: 5px;
 }
 
-.wrapper .form .inputfield .input:focus{
+.wrapper .form .inputfield .input:focus {
   border: 5px solid rgba(0, 158, 250, 0.5);
 }
 
@@ -115,7 +123,7 @@ body {
   display: block;
   position: relative;
 }
-.wrapper .form .inputfield .check .checkmark:before{
+.wrapper .form .inputfield .check .checkmark:before {
   content: "";
   position: absolute;
   top: 1px;
@@ -218,23 +226,22 @@ body {
   font-size: large;
   font-weight: 600;
 }
-.social:active{
+.social:active {
   transform: translateY(4px);
-  
 }
-.or{
+.or {
   text-align: center;
   margin-top: 30px;
   font-weight: 600;
   color: #757575;
 }
-.fac:hover{
+.fac:hover {
   background: #007bff;
   box-shadow: 0 4px 3px #bbbbbb;
   transition: 0.1s;
   color: #ebf0fd;
 }
-.goo:hover{
+.goo:hover {
   background-color: rgba(250, 5, 5, 0.747);
   transition: 0.1s;
   color: #ebf0fd;

@@ -21,7 +21,7 @@ const SignUp = () => {
       )}
       <div className='home'>
         <Link to="#">
-          <img src={HomeIcon} alt='Home' style={{ width: '50px', height: '50px' }}></img>
+          <img src={HomeIcon} alt='Home' style={{ width: '30px', height: '30px' }}></img>
         </Link>
       </div>
     </div>
