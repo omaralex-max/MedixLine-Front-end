@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import HomeIcon from '../static/icons/house-solid.svg';
+import HomeIcon from '../assets/icons/house-solid.svg';
 import './signup.css';
 import Signin from '../components/sign_in/signin.';
 

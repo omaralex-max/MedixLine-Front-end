@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DocForm from '../components/sign_up/doc_sign_up';
 import PatientForm from '../components/sign_up/patient_sign_up';
-import HomeIcon from '../static/icons/house-solid.svg';
+import HomeIcon from '../assets/icons/house-solid.svg';
 import { Link } from "react-router-dom";
 import './signup.css';
 

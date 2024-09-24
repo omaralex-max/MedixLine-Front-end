@@ -2,12 +2,14 @@ import React from "react"
 import "./header.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyIcon from "../static/images/icon.png"
+import Navbar from "../../Navbar/Navbar"
 
 function Header ()
 {
     return(
         <>
         <div className="background-container d-flex flex-column justify-content-center align-items-center">
+            <Navbar/>
             <img src={MyIcon} className="icon"></img>
             <h1 id="title">Book Your Appointments Now</h1>
             <p id="description">Welcome to MedixLine, the ultimate healthcare app designed to connect 
