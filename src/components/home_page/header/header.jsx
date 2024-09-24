@@ -16,7 +16,7 @@ function Header ()
                     <form className="w-100">
                         <div className="form-group row w-100">
                             <div className="col-5">
-                                <input type="text" className="form-control searchInput mx-3 w-100" placeholder="Department"/>
+                                <input type="text" className="form-control searchInput mx-3 w-100" placeholder="Department Name"/>
                             </div>
 
                             <div className="col-5">

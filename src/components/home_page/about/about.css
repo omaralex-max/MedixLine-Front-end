@@ -1,0 +1,14 @@
+
+.parentDivAbout{
+    background-color: rgb(248, 249, 250) !important;
+
+}
+.aboutContainer{
+    height: 30vh;
+    width: 80%;
+
+}
+
+.aboutTitles{
+    font-family:'Times New Roman', Times, serif;
+}
