@@ -1,0 +1,18 @@
+.gynecologyCategoryCard:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    transition: all 0.5s ease;
+    cursor: pointer;
+  }
+
+.gynecologyCategoryCard{
+  transition: all 0.3s ease;
+}
+  
+.departmentIcon{
+    width: 60px;
+}
+
+.categoryTitle{
+    font-family: 'Times New Roman', Times, serif;
+}
