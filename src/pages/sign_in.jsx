@@ -9,7 +9,7 @@ const SignIn = () => {
     <div>
       <Signin />
       <div className='home'>
-        <Link to="#">
+        <Link to="/">
           <img src={HomeIcon} alt='Home' style={{ width: '30px', height: '30px' }}></img>
         </Link>
       </div>

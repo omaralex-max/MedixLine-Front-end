@@ -6,9 +6,7 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-body {
-  padding: 0 10px;
-}
+
 .wrapper {
   max-width: 500px;
   width: 100%;
@@ -20,7 +18,7 @@ body {
   border-radius: 10px;
 }
 .push {
-  margin-top: 170px;
+  margin: 0 0 150px 0;
 }
 .forgot {
   margin-left: 130px;

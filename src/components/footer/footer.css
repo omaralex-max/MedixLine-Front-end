@@ -9,8 +9,6 @@ body{
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
 }
 .footer{
    background-color: #202942;
@@ -128,29 +126,6 @@ body{
 .col .contact-details i{
   margin-right:15px;
   display: inline-block;
-}
-.row .form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding:2rem 0;
-}
-.row .form input{
-  background-color: #1a1c20ff;
-  border:0;
-  outline:none;
-  padding:14px 20px;
-  border-radius: 6px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.form button{
-  padding:14px 20px;
-  border:0;
-  border-radius: 6px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  background-color: #0a66c2;
 }
 
 /********** Responsive Design ********/
