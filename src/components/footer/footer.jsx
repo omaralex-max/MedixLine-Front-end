@@ -1,10 +1,12 @@
 import React from "react";
 import "./footer.css";
 import Logo from "../../static/icons/house-solid.svg"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer mt-5">
       <div className="container">
         <div className="row">
           <div className="col">
@@ -13,7 +15,7 @@ const Footer = () => {
               Great doctor if you need your family member to get effective
               immediate assistance, emergency treatment or a simple consultation.
             </p>
-            <div className="media">
+            <div className="media d-flex " style={{ gap: '20px' }}>
               <a href="#">
                 <i className="fab fa-facebook" />
               </a>
@@ -32,26 +34,27 @@ const Footer = () => {
             </div>
           </div>
           <div className="col">
-            <h3>Company</h3>
+            <h3>MedixLine</h3>
             <div className="links">
               <a href="#">About us</a>
               <a href="#">Services</a>
               <a href="#">Team</a>
               <a href="#">Project</a>
               <a href="#">Blog</a>
-              <a href="#">Login</a>
+              <Link to="/signin">Login</Link>       
             </div>
           </div>
           <div className="col">
             <h3>Departments</h3>
             <div className="links">
               <a href="#">Eye Care</a>
-              <a href="#">Psychotherapy</a>
-              <a href="#">Dental Care</a>
-              <a href="#">Orthopedic</a>
+              <a href="#">Dentistry</a>
               <a href="#">Cardiology</a>
+              <a href="#">Pediatrics</a>
               <a href="#">Gynecology</a>
+              <a href="#">Pulmonology</a>
               <a href="#">Neurology</a>
+              <a href="#">Gastroenterology</a>
             </div>
           </div>
           <div className="col">
