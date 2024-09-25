@@ -10,27 +10,25 @@ import Footer from '../components/footer/footer';
 const DoctorPage = () => {
   return (
     <>
-      {/* Navbar */}
+
       <Navbar />
 
-      {/* Main container using CSS Grid */}
       <div
         className="doctor-page-container"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr', // Two equal columns
-          gap: '20px', // Space between the columns
+          //gap: '20px', // Space between the columns
           padding: '30px',
           paddingTop: '100px', // Adds space to push content below the navbar
           minHeight: '80vh', // Ensures page content takes up most of the screen
         }}
       >
-        {/* Doctor description on the left */}
+
         <div className="doctor-description-box">
           <DoctorDescription />
         </div>
 
-        {/* Right column for DoctorSchadule or AppointmentsTable */}
         <div
           className="doctor-details-box"
           style={{
@@ -42,15 +40,15 @@ const DoctorPage = () => {
           }}
         >
           <Routes>
-            {/* Route for DoctorSchadule - default */}
+
             <Route path="/" element={<DoctorSchadule />} />
-            {/* Route for AppointmentsTable */}
+
             <Route path="appointments" element={<AppointmentsTable />} />
           </Routes>
         </div>
       </div>
 
-      {/* Footer */}
+
       <Footer />
     </>
   );

@@ -4,21 +4,17 @@
   
   .doctor-sidebar {
     width: 550px; /* Fixed width for sidebar */
-   
-    top: 0; /* Align to the top */
-    left: 0; /* Align to the left */
     height: 100vh; /* Full height */
-    overflow-y: auto; /* Scroll if content overflows */
     border: 1px solid #ccc; /* Optional: Add border */
-    border-radius: 4px; /* Optional: Add border radius */
-    padding: 15px; /* Add padding */
-    background-color: white; /* Optional: Background color */
+    border-radius: 4px; 
+    padding: 15px;
+    background-color: white; 
   }
   
   .main-content {
-    margin-left: 320px; /* Space for sidebar */
-    flex: 1; /* Take up remaining space */
-    padding: 15px; /* Add padding for main content */
+    margin-left: 320px; 
+    flex: 1; 
+    padding: 15px; 
   }
   
   

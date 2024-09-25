@@ -27,6 +27,15 @@ const DoctorSchadule = () => {
   }
 
   const onDateClick = (event) => {
+
+    const selectedDate = new Date(event.date);
+    const today = new Date();
+
+    if (selectedDate < today.setHours(0, 0, 0, 0)) {
+      window.alert("You cannot schedule appointments in the past.");
+      return;
+    }
+
     const title = window.prompt("Enter Appointment Title:");
     if (title){
       const selectedDate = new Date(event.date);
@@ -60,7 +69,7 @@ const DoctorSchadule = () => {
         }}
         height={"90vh"}
         dateClick={onDateClick} // Handle date clicks to open specific day
-        events={events} // Pass events data to FullCalendar
+        events={events} 
       />
     </div>
   );
