@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./sign.css";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 const DocForm = ({ activeForm, onSwitchForm }) => {
   const [formData, setFormData] = useState({
@@ -14,13 +16,25 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
     email: "",
     phone_number: "",
     address: "",
-    specialization: "",
+    specialization: null,
     national_id: null,
     syndicate_id: null,
+    profile_picture: null,
   });
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [specializations, setspecializations] = useState([])
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
+    .then(response => {
+      setspecializations(response.data)
+      })
+      .catch(error => {
+        console.error(error);
+        });
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.type === 'file') {
@@ -44,34 +58,36 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
       return;
     }
 
-    const payload = {
-      user: {
-        username: formData.username,
-        password: formData.password,
-        role: 'patient'
-      },
-      email: formData.email,
-      first_name: formData.first_name,
-      last_name: formData.last_name,
-      date_of_birth: formData.date_of_birth,
-      gender: formData.gender,
-      phone_number: formData.phone_number,
-      address: formData.address,
-      specialization: formData.specialization,
-      national_id: formData.national_id,
-      syndicate_id: formData.syndicate_id,
-    };
+    let payload = new FormData()
 
-    if (formData.national_id && formData.national_id !== 'null') {
+    payload.append("user.username", formData.username);
+    payload.append("user.password", formData.password);
+    payload.append("user.email", formData.email);
+    payload.append("user.first_name", formData.first_name);
+    payload.append("user.last_name", formData.last_name);
+    payload.append("user.role", 'doctor');
+
+    payload.append("date_of_birth", formData.date_of_birth);
+    payload.append("gender", formData.gender);
+    payload.append("phone_number", formData.phone_number);
+    payload.append("address", formData.address);
+    payload.append("specialization", formData.specialization);
+
+    console.log(formData)
+
+    if (formData.national_id) {
       payload.append("national_id", formData.national_id);
     }
-    if (formData.syndicate_id && formData.syndicate_id !== 'null') {
+    if (formData.syndicate_id) {
       payload.append("syndicate_id", formData.syndicate_id);
+    }
+    if (formData.profile_picture) {
+      payload.append("profile_picture", formData.profile_picture);
     }
     
     fetch("http://localhost:8000/api/doctor/register/", {
       method: "POST",
-      body: JSON.stringify(payload),  //wrong
+      body: payload
     })
       .then((response) => response.json())
       .then((data) => {
@@ -128,6 +144,18 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               onChange={handleChange}
             />
           </div>
+
+          <div className="inputfield">
+          <label>User Name</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="input"
+            required
+          />
+        </div>
 
           <div className="inputfield">
             <label>Date of Birth</label>
@@ -207,13 +235,21 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
 
           <div className="inputfield">
             <label>Specialization</label>
-            <input
-              type="text"
-              name="specialization"
-              className="input"
-              value={formData.specialization}
-              onChange={handleChange}
-            />
+            <div className="custom_select">
+              <select
+                name="specialization"
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select</option>
+                {
+                  specializations.map(specialization => (
+                    <option key={specialization.specialization} value={specialization.id}>
+                      {specialization.specialization}</option>
+                  ))
+                }
+              </select>
+            </div>
           </div>
 
           <div className="inputfield">
@@ -229,12 +265,21 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
           </div>
 
           <div className="inputfield">
+            <label>Personal Image</label>
+            <input
+              type="file"
+              name="profile_picture"
+              className="img-btn"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="inputfield">
             <label>National ID</label>
             <input
               type="file"
               name="national_id"
               className="img-btn"
-              value={formData.national_id}
               onChange={handleChange}
             />
           </div>
@@ -245,7 +290,6 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               type="file"
               name="syndicate_id"
               className="img-btn"
-              value={formData.syndicate_id}
               onChange={handleChange}
             />
           </div>
@@ -281,7 +325,8 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               Sign in
             </Link>
           </div>
-          
+          {successMessage && <p>{successMessage}</p>}
+          {errorMessage && <p>{errorMessage}</p>}
         </form>
       )}
     </div>
