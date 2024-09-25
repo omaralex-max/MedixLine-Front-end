@@ -244,8 +244,8 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
                 <option value="">Select</option>
                 {
                   specializations.map(specialization => (
-                    <option key={specialization.specialization} value={specialization.id}>
-                      {specialization.specialization}</option>
+                    <option key={specialization.title} value={specialization.id}>
+                      {specialization.title}</option>
                   ))
                 }
               </select>
