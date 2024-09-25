@@ -1,18 +1,106 @@
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signin = () => {
+
+  const [formData, setFormData] = useState({
+
+    username: "",
+    password: "",
+
+  });
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+  
+
+
+    const payload = {
+
+        username: formData.username,
+        password: formData.password,
+    }
+      
+
+    console.log("Payload: ", payload);
+
+    fetch("http://localhost:8000/api/auth/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.id) {
+          setSuccessMessage("Patient registered successfully!");
+          setErrorMessage("");
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('username', data.username);
+          localStorage.setItem('role', data.role);
+
+          if (data.role === "doctor") {
+            navigate("http://localhost:8000/api/doctor/");  
+          } else if (data.role === "patient") {
+            navigate("http://localhost:8000/api/patient/");  
+          }
+
+        } else {
+          setErrorMessage("Error: " + JSON.stringify(data));
+        }
+      })
+      .catch((error) => {
+        setErrorMessage("Error: " + error.message);
+      });
+  };
+
+
   return (
     <div className="wrapper push">
+
       <div className="title">Sign In</div>
-        <div className="form">
-          <div className="inputfield">
-            <label>Your Email</label>
-            <input type="text" className="input" />
-          </div>
-          <div className="inputfield">
-            <label>Password</label>
-            <input type="password" className="input" />
-          </div>
+
+        <form className="form" onSubmit={handleSubmit}>   
+
+        <div className="inputfield">
+          <label>User Name</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="input"
+            required
+          />
+        </div>
+
+        <div className="inputfield">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="input"
+            required
+          />
+        </div>
+
           <div className="inputfield terms">
             <label className="check">
               <input type="checkbox" />
@@ -21,12 +109,15 @@ const Signin = () => {
             <span>Remember me</span>
             <a href="#" className="forgot">Forgot password ?</a>
           </div>
+
           <div className="inputfield">
             <input type="submit" value="Sign In" className="btn" />
           </div>
+
           <div className="or">
             <p>Or</p>
           </div>
+
           <div className="out-social">
             <a href="#">
               <button className="social fac">Facebook</button>
@@ -35,13 +126,17 @@ const Signin = () => {
               <button className="social goo">Google</button>
             </a>
           </div>
+
           <div>
             <label>Don't have an account ?</label>{" "}
             <Link to="/signup" className="signin">
               Sign up
             </Link>
           </div>
-        </div>
+
+          {successMessage && <p>{successMessage}</p>}
+          {errorMessage && <p>{errorMessage}</p>}
+        </form>
     </div>
   );
 }
