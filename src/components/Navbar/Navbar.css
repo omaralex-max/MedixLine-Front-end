@@ -150,5 +150,30 @@
 
   .menu-icon {
     display: block;
+    margin-left: auto;
+  }
+
+  .navbar-logo img{
+
+  }
+  .profile-icon {
+    display: none;
+  }
+  
+  .fa-cog{
+    display: none;
+  }
+  .navbar-title{
+    display: none;
+  }
+  .navbar-logo{
+    margin-left: 0px;
+  }
+  .fa-bars{
+    margin-right: 0px;
+
+  }
+  .navbar-container{
+    justify-content: space-between;
   }
 }
