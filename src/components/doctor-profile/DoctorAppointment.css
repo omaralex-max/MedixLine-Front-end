@@ -1,0 +1,38 @@
+.appointments-table {
+    margin: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table
+  .table td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table img {
+    border-radius: 50%; /* Optional: for rounded patient images */
+  }
+  
+  /* Status Button Styles */
+  .status-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .status-button.pending {
+    background-color: red; /* Red for Pending */
+  }
+  
+  .status-button.confirmed {
+    background-color: green; /* Green for Confirmed */
+  }
+  

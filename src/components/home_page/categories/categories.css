@@ -5,5 +5,15 @@
 .categoriesTitle{
     font-family: 'Times New Roman', Times, serif;
 }
+.categoryCard{
+    padding: 0px 0px;
+    margin: 0px;
+}
 
+@media (max-width: 768px) {
+    .categoriesInnerContainer {
+        width: 100% !important; 
+    }
+
+}
 

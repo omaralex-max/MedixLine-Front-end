@@ -139,3 +139,29 @@
   margin-bottom: 20px;
 }
 }
+
+
+@media (max-width: 768px) {
+  .footerLogo{
+    display: none;
+  }
+
+  .footerDescription{
+    display: none;
+  }
+
+  .departmentFooter{
+    display: none;
+  }
+  .footerLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contactFooter{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

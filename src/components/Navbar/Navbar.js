@@ -1,32 +1,72 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Navbar.css";
-import logo from "../../assets/icons/logo.jpg";
+import logo from "../../assets/icons/logo1.png";
 import profile from "../../assets/images/profile.jpg";
+import axios from 'axios';
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
+  let user = localStorage.getItem('user')
+
+  const handelLogout = (e) => {
+    e.preventDefault();
+    axios.post('http://127.0.0.1:8000/api/auth/logout/', {}, {
+        headers: {
+          'Authorization': `Token ${localStorage.getItem('token')}`
+        }
+      })
+      .then((response) => {
+        console.log(response)
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleMouseEnter = (dropdownSetter) => {
+    
     dropdownSetter(true);
   };
 
   const handleMouseLeave = (dropdownSetter) => {
-    dropdownSetter(false);
+          dropdownSetter(false);
+    
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.nav-links');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+            navLinks.forEach(link => link.classList.add('scrolledLinks'));
+        } else {
+            navbar.classList.remove('scrolled');
+            navLinks.forEach(link => link.classList.remove('scrolledLinks'));
+
+        }
+    };
+    window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
           <img src={logo} alt="Logo" />
-          <span className="navbar-title">Doctris</span>
+          <span className="navbar-title d-none">Doctris</span>
         </div>
 
         <div className="menu-icon" onClick={toggleMenu}>
@@ -156,10 +196,18 @@ const Navbar = () => {
               </ul>
             )}
           </li>
+
+          <li className="nav-item">
+            {user === null ?  
+            (<a href="/signin" className="nav-links signInButtonNav">Sign In</a>):
+            (<a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>)
+            }
+    
+  </li>
         </ul>
 
         <div className="nav-icons">
-          <span className="settings-icon">
+          <span className="settings-icon d-none">
             <i className="fas fa-cog"></i>
           </span>
           <img src={profile} alt="Profile" className="profile-icon" />

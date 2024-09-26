@@ -30,6 +30,18 @@
     border-radius: 15px; 
 }
 
+ @media (max-width: 990px) {
+    .searchContainer {
+        min-height: 150px; 
+    }
+    .searchInput{
+        margin-bottom: 5px;
+
+    }
+    .searchHome{
+       margin-left: 25%;
+    }
+}
 .searchButton{
     background-color: rgb(57, 108, 240) !important;
     width: 100px !important;

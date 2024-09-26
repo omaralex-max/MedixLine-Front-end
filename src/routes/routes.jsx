@@ -4,6 +4,7 @@ import Signup from "../pages/sign_up";
 import Signin from "../pages/sign_in"
 import Home from '../pages/home';
 import PatientProfile from "../pages/patient_profile"
+import DoctorPage from '../pages/Doctorpage';
 
 export default function Router() {
 
@@ -14,6 +15,7 @@ export default function Router() {
                       <Route path="/signup" element={<Signup />}></Route>
                       <Route path="/" element={<Home />}></Route>
                       <Route path="/patient-profile" element={<PatientProfile />}></Route>
+                      <Route path="/doctorpage/*" element={<DoctorPage />} />
                   </Routes>
           </ BrowserRouter>
   )
