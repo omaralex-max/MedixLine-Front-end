@@ -10,8 +10,8 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col">
-            <img src={Logo} alt="" className="logo" />
-            <p>
+            <img src={Logo} alt="" className="logo footerLogo" />
+            <p className="footerDescription">
               Great doctor if you need your family member to get effective
               immediate assistance, emergency treatment or a simple consultation.
             </p>
@@ -33,9 +33,9 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="col">
+          <div className="col footerLinks">
             <h3>MedixLine</h3>
-            <div className="links">
+            <div className="links ">
               <a href="#">About us</a>
               <a href="#">Services</a>
               <a href="#">Team</a>
@@ -44,9 +44,9 @@ const Footer = () => {
               <Link to="/signin">Login</Link>       
             </div>
           </div>
-          <div className="col">
+          <div className="col departmentFooter">
             <h3>Departments</h3>
-            <div className="links">
+            <div className="links ">
               <a href="#">Eye Care</a>
               <a href="#">Dentistry</a>
               <a href="#">Cardiology</a>
@@ -57,7 +57,7 @@ const Footer = () => {
               <a href="#">Gastroenterology</a>
             </div>
           </div>
-          <div className="col">
+          <div className="col contactFooter">
             <h3>Contact</h3>
             <div className="contact-details">
               <i className="fa fa-location" />

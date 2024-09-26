@@ -1,18 +1,35 @@
-.CategoryCard:hover {
+.CategoryCardDetails:hover {
     background-color: #f0f0f0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     transition: all 0.5s ease;
     cursor: pointer;
   }
 
-.CategoryCard{
+.CategoryCardDetails{
   transition: all 0.3s ease;
-}
-  
-.departmentIcon{
-    width: 60px;
 }
 
 .categoryTitle{
     font-family: 'Times New Roman', Times, serif;
+}
+
+.departmentIcon {
+  width: 100%; 
+  max-width: 100px;
+  height: auto; 
+}
+
+@media (max-width: 768px) {
+  .categoryCardDetails p {
+    display: none;
+  }
+
+  .departmentIcon {
+    width: 100%; 
+    max-width: 100px;
+    height: auto; 
+  }
+
+  
+  
 }

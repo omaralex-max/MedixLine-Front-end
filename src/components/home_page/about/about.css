@@ -1,14 +1,46 @@
 
 .parentDivAbout{
     background-color: rgb(248, 249, 250) !important;
-
+    height: 40vh;
 }
 .aboutContainer{
-    height: 30vh;
+    height: 100%;
     width: 80%;
 
 }
 
+.aboutContainer p{
+    font-size: 22px;
+    margin-top: 40px;
+}
+
 .aboutTitles{
     font-family:'Times New Roman', Times, serif;
+}
+
+@media (max-width: 768px) {
+    .vision{
+        display:none ;
+
+    }
+    
+    .whyUs{
+        display: none;
+    }
+
+    .mission{
+        margin: 0px;
+        width: 100%;
+        height: auto;
+    }
+    
+    .mission >p {
+        width: 100%;
+        line-height: 2;
+    }
+
+    
+.parentDivAbout{
+    height: auto;
+}
 }
