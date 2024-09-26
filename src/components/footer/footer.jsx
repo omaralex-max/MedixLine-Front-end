@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-import Logo from "../../assets/icons/house-solid.svg"
+import Logo from "../../assets/icons/logo.jpg"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,8 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col">
-            <img src={Logo} alt="" className="logo" />
+            <img src={Logo} alt="" className="logo" style={{ width: "30px", height: "30px" }}/>
+            <span className="navbar-title" style={{ color: "#d7e2ec" }}>Doctris</span>
             <p>
               Great doctor if you need your family member to get effective
               immediate assistance, emergency treatment or a simple consultation.
