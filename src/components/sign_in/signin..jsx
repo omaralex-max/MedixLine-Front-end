@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 
 const Signin = () => {
 
@@ -26,7 +28,6 @@ const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-  
 
 
     const payload = {
@@ -36,7 +37,6 @@ const Signin = () => {
     }
       
 
-    console.log("Payload: ", payload);
 
     fetch("http://localhost:8000/api/auth/login/", {
       method: "POST",
@@ -47,17 +47,16 @@ const Signin = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.id) {
+        if (data.token) {
           setSuccessMessage("Patient registered successfully!");
           setErrorMessage("");
           localStorage.setItem('token', data.token);
-          localStorage.setItem('username', data.username);
-          localStorage.setItem('role', data.role);
+          localStorage.setItem('user', JSON.stringify(data.user));
 
-          if (data.role === "doctor") {
-            navigate("http://localhost:8000/api/doctor/");  
-          } else if (data.role === "patient") {
-            navigate("http://localhost:8000/api/patient/");  
+          if (data.user.user.role === "doctor") {
+            navigate('/doctorpage/');  
+          } else if (data.user.user.role === "patient") {
+            navigate('/');
           }
 
         } else {

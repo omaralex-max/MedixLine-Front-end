@@ -9,7 +9,7 @@ export default function Categories(){
     const [specializations, setspecializations] = useState([])
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8084/api/doctor/specializations/")
+        axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
         .then(response => {
           setspecializations(response.data)
           })
@@ -18,7 +18,6 @@ export default function Categories(){
             });
       }, []);
 
-      console.log(specializations)
     return(
         <>
         <div className="w-100 d-flex flex-column align-items-center text-center mt-5">

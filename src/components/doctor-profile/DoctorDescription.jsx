@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import './DoctorPage.css';
 
 const DoctorDescription = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <div className="doctor-sidebar">
       <div className="doctor-image-container">
         <img src={require('../assets/th (2).jpeg')} className="img-fluid" alt="Dr. John Doe" />
       </div>
       <div className="doctor-info">
-        <h5 className="doctor-name">Dr. Jonny sense</h5>
+        <h5 className="doctor-name">Dr. {user.user.first_name}</h5>
         <p className="doctor-profession">Cardiologist</p>
         <p className="doctor-description">
           Dr. Jonny sense is a highly experienced cardiologist with over 15 years of practice. He specializes in
