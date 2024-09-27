@@ -55,26 +55,13 @@ const DoctorSchadule = () => {
 
   return (
     <div className="schedule card container-fluid p-3 appointment-container">
-            <h1 className="card text-2xl font-semibold mb-5 text-center">
-        Schadule
-             </h1>
-      <div className="row">
-        <div className="col-md-12">
-          <FullCalendar
-            ref={calendarRef}
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              start: "today prev,next",
-              center: "title",
-              end: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            height={"90vh"}
-            dateClick={onDateClick}
-            events={events}
-          />
-        </div>
-      </div>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        events={events}
+        dateClick={onDateClick}
+        ref={calendarRef}
+      />
     </div>
   );
 };

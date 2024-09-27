@@ -61,9 +61,6 @@ const AppointmentsTable = () => {
           <thead>
             <tr>
               <th className="py-3 px-4 text-left">
-                Patient Image
-              </th>
-              <th className="py-3 px-4 text-left">
                 Patient Name
               </th>
               <th className="py-3 px-4 text-left">
@@ -89,9 +86,6 @@ const AppointmentsTable = () => {
           <tbody>
             {appointments.map((appointment, index) => (
               <tr key={index}>
-                <td className="py-3 px-4 text-left">
-                  <img src={appointment.img} alt={appointment.name} className="img-fluid rounded-circle" style={{ width: '50px', height: '50px' }} />
-                </td>
                 <td className="py-3 px-4 text-left">
                   {appointment.name}
                 </td>
