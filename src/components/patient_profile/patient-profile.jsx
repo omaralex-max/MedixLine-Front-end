@@ -3,7 +3,7 @@ import "./patient_profile.css";
 const PatientProfile = () => {
   return (
     <>
-      <div className="col-lg-8 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+      {/* <div className="col-lg-8 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
         <div className="card border-0 shadow overflow-hidden">
           <ul className="nav nav-pills nav-justified flex-column flex-sm-row rounded-0 shadow overflow-hidden bg-light mb-0 Prof">
             <li className="nav-item">
@@ -20,7 +20,7 @@ const PatientProfile = () => {
                 </div>
               </a>
             </li>
-          </ul>
+          </ul> */}
           <div className="tab-content p-4">
             <div className="tab-pane fade show active">
               <h5 className="mb-0 h5">Introduction:</h5>
@@ -250,8 +250,8 @@ const PatientProfile = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </>
   );
 };

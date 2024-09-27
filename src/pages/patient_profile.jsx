@@ -4,8 +4,20 @@ import BG from "../assets/images/bg-profile.2859920b4c41966e4d91.jpg";
 import ProfileSetting from "../components/patient_profile/patient-profile-setting";
 import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/footer/footer";
+import { useState } from "react";
 
 const PatientProfile = () => {
+
+  const [currentPage, setCurrentPage] = useState('profile')
+
+  const handleProfile = () => {
+    setCurrentPage('profile')
+  };
+
+  const handleProfileSetting = () => {
+    setCurrentPage('setting')
+  };
+
   return (
     <>
       <Nav/>
@@ -121,9 +133,33 @@ const PatientProfile = () => {
                   </div>
                 </div>
               </div>
+              
             </div>
-            <Profile />
-            {/* <ProfileSetting /> */}
+
+            <div className="col-lg-8 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+              <div className="card border-0 shadow overflow-hidden">
+                <ul className="nav nav-pills nav-justified flex-column flex-sm-row rounded-0 shadow overflow-hidden bg-light mb-0 Prof">
+                  <li className="nav-item" onClick={handleProfile}>
+                  <a className={`nav-link rounded-0 ${currentPage === 'profile' ? 'active' : ''}`} href="#">
+                  <div className="text-center pt-1 pb-1">
+                        <h5 className="title fw-normal mb-0 h5">Profile</h5>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="nav-item" onClick={handleProfileSetting}>
+                  <a className={`nav-link rounded-0 ${currentPage === 'setting' ? 'active' : ''}`} href="#">
+                      <div className="text-center pt-1 pb-1">
+                        <h5 className="title fw-normal mb-0 h5">Profile Settings</h5>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                {
+                  currentPage === 'profile' ? (<Profile />) :
+                  (<ProfileSetting />)
+                }
+              </div>
+            </div>            
           </div>
         </div>
       </section>
