@@ -122,8 +122,8 @@ const PatientProfile = () => {
                 </div>
               </div>
             </div>
-            <Profile />
-            {/* <ProfileSetting /> */}
+            {/* <Profile /> */}
+            <ProfileSetting />
           </div>
         </div>
       </section>
