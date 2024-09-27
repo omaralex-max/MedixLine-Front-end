@@ -62,6 +62,15 @@
   align-items: center;
   transition: color 0.3s ease;
 }
+
+.helloUser{
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+}
 .nav-links.scrolledLinks{
   color: black;
   
@@ -188,5 +197,9 @@
   }
   .navbar.scrolled {
     transition: none;
+  }
+
+  .welcomeUser{
+    display: none;
   }
 }

@@ -38,9 +38,17 @@
         width: 100%;
         line-height: 2;
     }
-
-    
 .parentDivAbout{
     height: auto;
 }
+}
+
+@media (min-width: 768px) and (max-width: 1400px){
+    .parentDivAbout{
+        margin-bottom: 10px;
+    }
+
+    .aboutContainer p{
+        font-size: 18px;
+    }
 }
