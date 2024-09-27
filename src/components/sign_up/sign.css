@@ -13,6 +13,11 @@
   flex-direction: column;
   min-height: 100vh;
 }
+
+.push{
+  position: relative;
+  bottom: -170px;
+}
 .wrapper {
   max-width: 500px;
   width: 100%;
@@ -22,9 +27,6 @@
   padding: 30px;
   box-shadow: 2px 2px 4px #757575;
   border-radius: 10px;
-}
-.push {
-  margin: 0 0 150px 0;
 }
 .forgot {
   margin-left: 130px;
