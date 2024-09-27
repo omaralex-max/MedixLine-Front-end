@@ -61,6 +61,18 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const [specializations, setspecializations] = useState([])
+
+    useEffect(() => {
+        axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
+        .then(response => {
+          setspecializations(response.data)
+          })
+          .catch(error => {
+            console.error(error);
+            });
+      }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -81,31 +93,7 @@ const Navbar = () => {
           >
             <a href="/" className="nav-links">
               HOME{" "}
-              <i
-                className={
-                  homeDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
-            </a>
-            {homeDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Dashboard</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Profile</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Notifications</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Activity</a>
-                </li>
-              </ul>
-            )}
+              </a>
           </li>
 
           <li
@@ -113,39 +101,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setDoctorsDropdown)}
             onMouseLeave={() => handleMouseLeave(setDoctorsDropdown)}
           >
-            <a href="/" className="nav-links">
-              DOCTORS{" "}
-              <i
-                className={
-                  doctorsDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
+            <a href="#aboutId" className="nav-links">
+              DEPARTMENTS{" "}
             </a>
-            {doctorsDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Doctor List</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Schedules</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Appointments</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Messages</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Reports</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Billing</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-              </ul>
-            )}
           </li>
 
           <li
@@ -153,57 +111,34 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="/" className="nav-links">
-              PATIENTS{" "}
-              <i
-                className={
-                  patientsDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
+            <a href="#searchContainerId" className="nav-links">
+              ABOUT{" "}
+             
             </a>
-            {patientsDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Patient List</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Medical Records</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Appointments</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Prescriptions</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Invoices</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Insurance</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Lab Results</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Messages</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Feedback</a>
-                </li>
-              </ul>
-            )}
+           
           </li>
 
           <li className="nav-item">
             {user === null ?  
-            (<a href="/signin" className="nav-links signInButtonNav">Sign In</a>):
-            (<a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>)
+            (
+              <>
+              <a href="/signin" className="nav-links signInButtonNav">Sign In</a>
+              
+
+              </>
+
+            )
+            :
+
+            (
+            <>
+            
+            <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>
+            </>)
             }
     
-  </li>
+          </li>
+
         </ul>
 
         <div className="nav-icons">

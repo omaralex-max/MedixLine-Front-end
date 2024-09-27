@@ -14,8 +14,8 @@ function Header ()
             <h1 id="title" className="d-none d-lg-block ">Book Your Appointments Now</h1>
             <p id="description" className="d-none d-lg-block">Welcome to MedixLine, the ultimate healthcare app designed to connect 
                 you and your family with top medical professionals</p>
-                <div className="row">
-                    <div className="searchContainer d-flex flex-row flex-md-column justify-content-center align-items-center col-lg-12 col-s-8 ">
+                <div className="row w-100 d-flex justify-content-center">
+                    <div className="searchContainer d-flex flex-row flex-md-column justify-content-center align-items-center col-lg-12 col-s-8 w-50" id="searchContainerId">
                         <form className="w-100">
                             <div className="form-group row ">
                                 <div className="col-lg-5 col-s-8">
