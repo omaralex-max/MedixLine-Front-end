@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "../components/doctor-profile/DoctorPage.css"
+import UpdateProfile from '../components/doctor-profile/updateprofile'
 const DoctorPage = () => {
   return (
     <>
@@ -27,6 +28,7 @@ const DoctorPage = () => {
               <Routes>
                 <Route path="/" element={<DoctorSchadule />} />
                 <Route path="appointments" element={<AppointmentsTable />} />
+                <Route path="update-profile" element={<UpdateProfile />} />
               </Routes>
             </div>
           </Col>
