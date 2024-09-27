@@ -15,15 +15,13 @@
       height: 60vh;
     }
   }
-<<<<<<< HEAD
-=======
   
   
   .doctor-image-container {
     display: flex;
     justify-content: center;
     margin-bottom: 15px; /* Space below the image */
-  }
+  /* } */
   
   .Dimg {
     width: 100px; /* Adjust width */
@@ -76,7 +74,7 @@
     opacity: 0.8; /* Optional: Add opacity */
     transform: translateY(-2px); /* Optional: Add slight shift on hover */
     transition: transform 0.3s ease; /* Optional: Add transition effect */
->>>>>>> 0e416e1dd883035d1953735d47c78e1dafe043e0
+  }
 
   .card {
     width: 100%;
@@ -94,7 +92,7 @@
     .card {
       height: 60%;
     }
-  } */
+  } 
 
   @media (max-width: 768px) {
     .appointment {
