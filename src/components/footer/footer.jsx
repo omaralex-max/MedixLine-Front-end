@@ -1,15 +1,18 @@
 import React from "react";
 import "./footer.css";
-import Logo from "../../assets/icons/house-solid.svg"
+import Logo from "../../assets/icons/logo.jpg"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="footer mt-5">
-      <div className="container">
-        <div className="row">
-          <div className="col">
+      <div className="container footer-container">
+        <div className="row footer-row">
+          <div className="col footer-col">
+            {/* <img src={Logo} alt="" className="logo" style={{ width: "30px", height: "30px" }}/>
+            <span className="navbar-title" style={{ color: "#d7e2ec" }}>Doctris</span> */}
+            {/* <p> */}
             <img src={Logo} alt="" className="logo footerLogo" />
             <p className="footerDescription">
               Great doctor if you need your family member to get effective
@@ -33,7 +36,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="col footerLinks">
+          <div className="col footer-col footerLinks">
             <h3>MedixLine</h3>
             <div className="links ">
               <a href="#">About us</a>
@@ -44,7 +47,7 @@ const Footer = () => {
               <Link to="/signin">Login</Link>       
             </div>
           </div>
-          <div className="col departmentFooter">
+          <div className="col footer-col departmentFooter">
             <h3>Departments</h3>
             <div className="links ">
               <a href="#">Eye Care</a>
@@ -57,7 +60,7 @@ const Footer = () => {
               <a href="#">Gastroenterology</a>
             </div>
           </div>
-          <div className="col contactFooter">
+          <div className="col footer-col contactFooter">
             <h3>Contact</h3>
             <div className="contact-details">
               <i className="fa fa-location" />
