@@ -59,7 +59,7 @@ const TimeTable = () => {
                     </div>
                 ))}
             </div>
-            <button className="btn btn-primary mt-4 apptBtn" onClick={handleBookSlot}>Book Selected Slot</button>
+            <button className="btn btn-primary mt-4 apptBtn try" onClick={handleBookSlot}>Book Selected Slot</button>
         </div>
     );
 };
