@@ -5,6 +5,7 @@ import Signin from "../pages/sign_in"
 import Home from '../pages/home';
 import PatientProfile from "../pages/patient_profile"
 import DoctorPage from '../pages/Doctorpage';
+import SingleDoctorView from '../pages/singleDoctorView';
 
 export default function Router() {
 
@@ -16,6 +17,7 @@ export default function Router() {
                       <Route path="/" element={<Home />}></Route>
                       <Route path="/patient-profile" element={<PatientProfile />}></Route>
                       <Route path="/doctorpage/*" element={<DoctorPage />} />
+                      <Route path="/doctorview" element={<SingleDoctorView/>}/>
                   </Routes>
           </ BrowserRouter>
   )

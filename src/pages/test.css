@@ -1,0 +1,79 @@
+.profile-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.profile-header img {
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.profile-header .info {
+    flex: 1;
+}
+.profile-header .info h1 {
+    margin: 0;
+    color: #007bff;
+}
+.profile-header .info p {
+    margin: 5px 0;
+}
+.tabs a {
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+.tabs a.active {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+}
+.content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.content h2 {
+    margin-top: 0;
+}
+.content ul {
+    list-style: none;
+    padding: 0;
+}
+.content ul li {
+    margin: 5px 0;
+}
+.team .member {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.team .member img {
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.team .member h3 {
+    margin: 10px 0;
+}
+.team .member p {
+    margin: 5px 0;
+}
+.team .member .rating {
+    color: #ffc107;
+}
+.team .member .icons {
+    margin-top: 10px;
+}
+.team .member .icons i {
+    margin: 0 5px;
+    color: #007bff;
+}
