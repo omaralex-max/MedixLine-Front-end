@@ -25,7 +25,7 @@ export default function Categories(){
             <div className="row categoriesInnerContainer mt-5 w-100">
             {
             specializations.map(specialization => (
-                <div className="col-12 col-md-3 mb-3 categoryCard" key={specialization.id} >
+                <div className="col-6 col-md-3 mb-3 categoryCard" key={specialization.id} >
                     <Category  title={specialization.title}
                     description={specialization.description} image={specialization.image} />
                 </div>
