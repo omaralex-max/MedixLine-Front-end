@@ -1,36 +1,12 @@
 import "./patient_profile.css";
 
 const PatientProfile = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <>
-      {/* <div className="col-lg-8 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-        <div className="card border-0 shadow overflow-hidden">
-          <ul className="nav nav-pills nav-justified flex-column flex-sm-row rounded-0 shadow overflow-hidden bg-light mb-0 Prof">
-            <li className="nav-item">
-              <a className="active nav-link rounded-0" href="#">
-                <div className="text-center pt-1 pb-1">
-                  <h5 className="title fw-normal mb-0 h5">Profile</h5>
-                </div>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className=" nav-link rounded-0" href="#">
-                <div className="text-center pt-1 pb-1">
-                  <h5 className="title fw-normal mb-0 h5">Profile Settings</h5>
-                </div>
-              </a>
-            </li>
-          </ul> */}
           <div className="tab-content p-4">
             <div className="tab-pane fade show active">
-              <h5 className="mb-0 h5">Introduction:</h5>
-              <p className="text-muted mt-4 mb-0">
-                Web designers to occupy the space which will later be filled
-                with 'real' content. This is required when, for example, the
-                final text is not yet available. Dummy text is also known as
-                'fill text'. Dummy texts have been in use by typesetters since
-                the 16th century.
-              </p>
               <div className="row">
                 <div className="col-lg-6 col-12 mt-4 pwidth">
                   <h5 classNameName="h5">Appointment List</h5>
@@ -250,8 +226,6 @@ const PatientProfile = () => {
               </div>
             </div>
           </div>
-        {/* </div>
-      </div> */}
     </>
   );
 };
