@@ -39,6 +39,12 @@ const Footer = () => {
               <a href="https://www.youtube.com/@MedixTeamTV">
                 <i className="fab fa-youtube" />
               </a>
+              <a href="#">
+                <i className="fab fa-twitter"></i>
+                </a>
+              <a href="#">
+                <i className="fab fa-linkedin"></i>
+                </a>
             </div>
           </div>
           <div className="col footer-col footerLinks">

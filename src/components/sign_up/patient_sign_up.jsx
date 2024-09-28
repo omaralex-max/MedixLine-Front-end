@@ -233,6 +233,12 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
         <div className="inputfield">
           <input type="submit" value="Register" className="btn" />
         </div>
+        <div>
+            <label>Already have an account ?</label>{" "}
+            <Link to="/signin" className="signin">
+              Sign in
+            </Link>
+          </div>
         
         {successMessage && <p>{successMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}

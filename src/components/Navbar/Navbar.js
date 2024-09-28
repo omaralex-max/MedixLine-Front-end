@@ -10,8 +10,14 @@ const Navbar = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
-  let user = localStorage.getItem('user')
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
   const handelLogout = (e) => {
     e.preventDefault();
     axios.post('http://127.0.0.1:8000/api/auth/logout/', {}, {
@@ -118,26 +124,29 @@ const Navbar = () => {
            
           </li>
 
-          <li className="nav-item">
+         
             {user === null ?  
             (
               <>
+               <li className="nav-item">
               <a href="/signin" className="nav-links signInButtonNav">Sign In</a>
+              </li>
               
-
               </>
-
+              
             )
             :
-
             (
             <>
+            <li className="nav-item">
+              <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>
+            </li>
             
-            <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>
-            </>)
+
+            </>
+
+            )
             }
-    
-          </li>
 
         </ul>
 
@@ -146,6 +155,26 @@ const Navbar = () => {
             <i className="fas fa-cog"></i>
           </span>
           <img src={profile} alt="Profile" className="profile-icon" />
+          {user === null ?  
+            (
+              <>
+              
+              
+              </>
+              
+            )
+            :
+            (
+            <>
+            <li className="nav-item">
+              <h1 className="nav-links mb-4 welcomeUser"> Welcome {user.user.first_name}</h1>
+            </li>
+
+            </>
+
+            )
+            }
+          
         </div>
       </div>
     </nav>
