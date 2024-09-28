@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/icons/logo1.png";
-import profile from "../../assets/images/profile.jpg";
+import profile from "../../assets/images/patient-male.png";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 const Navbar = () => {
@@ -167,7 +169,7 @@ const Navbar = () => {
             (
             <>
             <li className="nav-item">
-              <h1 className="nav-links mb-4 welcomeUser"> Welcome {user.user.first_name}</h1>
+              <Link to="patient-profile" className="nav-links mb-4 welcomeUser pt-4"> Welcome, {user.user.first_name}</Link>
             </li>
 
             </>

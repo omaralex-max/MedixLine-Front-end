@@ -4,28 +4,27 @@ import React, { useEffect, useState } from "react";
 
 const PatientProfileSetting = () => {
   const token = localStorage.getItem('token');
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
-    email: "",
-    phone_number: "",
-    address: ""
+    email: ""
   });
 
   // Fetch user details
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/auth/detail/', {
         headers: {
-          'Authorization': `Token ${token}`,
+          'Authorization': `Token ${token}`
         }
       })
       .then(response => {
         setFormData({
           first_name: response.data.first_name,
           last_name: response.data.last_name,
-          email: response.data.email,
-          phone_number: response.data.phone_number, 
-          address: response.data.address 
+          email: response.data.email
+          // phone_number: response.data.phone_number, 
+          // address: response.data.address 
         });
       })
       .catch(error => {
@@ -41,7 +40,7 @@ const PatientProfileSetting = () => {
           is_active: false
         }, {
           headers: {
-            'Authorization': `Token ${token}`,
+            'Authorization': `Token ${token}`
           }
         })
         .then(response => {
@@ -56,26 +55,16 @@ const PatientProfileSetting = () => {
     }
   };
 
-  const handelOnChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
-    });
-  };
-
   const handelUpdatePersonal = (e) => {
     e.preventDefault();
-    console.log(formData);
     axios.patch('http://127.0.0.1:8000/api/auth/detail/',
       {
         first_name: formData.first_name,
         last_name: formData.last_name,
-        email: formData.email,
-        phone_number: formData.phone_number,
-        address: formData.address
+        email: formData.email
       }, {
         headers: {
-          'Authorization': `Token ${token}`,
+          'Authorization': `Token ${token}`
         }
       })
       .then(response => {
@@ -86,6 +75,14 @@ const PatientProfileSetting = () => {
         console.error(error);
       });
   };
+  
+  const handelOnChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
+    });
+  };
+
 
   return (
     <>
@@ -135,7 +132,8 @@ const PatientProfileSetting = () => {
                   />
                 </div>
               </div>
-              <div className="col-lg-6">
+
+              {/* <div className="col-lg-6">
                 <div className="mb-3">
                   <label className="form-label">Phone no.</label>
                   <input
@@ -148,6 +146,7 @@ const PatientProfileSetting = () => {
                   />
                 </div>
               </div>
+
               <div className="col-lg-6">
                 <div className="mb-3">
                   <label className="form-label">Address</label>
@@ -160,7 +159,8 @@ const PatientProfileSetting = () => {
                     onChange={handelOnChange}
                   />
                 </div>
-              </div>
+              </div> */}
+
             </div>
             <div className="row">
               <div className="col-sm-12">
