@@ -31,7 +31,7 @@ const Navbar = () => {
         console.log(response)
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.location.reload();
+        window.location.href = '/';
       })
       .catch((error) => {
         console.error(error);

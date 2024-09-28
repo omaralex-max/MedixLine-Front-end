@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./DoctorPage.css"
+import axios from 'axios';
+
+
+
 const DoctorDescription = () => {
   const user = JSON.parse(localStorage.getItem('user'));
+  const token = localStorage.getItem('token');
+  const [specialization, setSpecialization] = useState(null)
+
+
+  useEffect((e) => {
+    axios.get(`http://127.0.0.1:8000/api/doctor/specializations/${user.specialization}`)
+    .then(response => {
+
+      setSpecialization(response.data.title)
+  })
+  .catch(error => {
+    console.error(error);
+    });
+    }, [token]);
 
   return (
     <div className="card doctor-sidebar h-100">
@@ -18,7 +36,7 @@ const DoctorDescription = () => {
             position: 'relative',
           }}>
             <img
-              src={require('../assets/th (2).jpeg')}
+              src={`http://127.0.0.1:8000/${user.profile_picture}`}
               className="img-fluid rounded-circle mt-5"
               style={{
                 width: '150px',
@@ -36,12 +54,10 @@ const DoctorDescription = () => {
         </div>
         <div className="doctor-info text-center mt-5">
           <h5 className="card-title doctor-name">Dr. {user.user.first_name}</h5>
-          <p className="card-text doctor-profession">Cardiologist</p>
+          <p className="card-text doctor-profession">{specialization}</p>
           <p className="card-text doctor-description">
-            Dr. Jonny sense is a highly experienced cardiologist with over 15 years of practice. He specializes in
-            treating heart-related issues and is known for his compassionate care.
+            {user.description}
           </p>
-          <p className="card-text doctor-updated"><small className="text-muted">Last updated 3 mins ago</small></p>
         </div>
         <hr />
         <div className="doctor-links flex-grow-1 my-5">

@@ -1,5 +1,6 @@
 import Profile from "../components/patient_profile/patient-profile";
-import Pfp from "../assets/images/patient-male.png";
+import male from "../assets/images/patient-male.png";
+import female from "../assets/images/girl.png";
 import BG from "../assets/icons/logo2.png";
 import ProfileSetting from "../components/patient_profile/patient-profile-setting";
 import Nav from "../components/Navbar/Navbar";
@@ -34,7 +35,7 @@ const PatientProfile = () => {
                 </div>
                 <div className="text-center avatar-profile margin-nagative mt-n5 position-relative pb-4 border-bottom">
                   <img
-                    src={Pfp}
+                    src={user.gender === 'male' ? male : female}
                     className="rounded-circle shadow-md avatar avatar-md-md"
                   />
                   <h5 className="mt-3 mb-1 h5">{user.user.first_name.charAt(0).toUpperCase() + user.user.first_name.slice(1).toLowerCase() + " "}

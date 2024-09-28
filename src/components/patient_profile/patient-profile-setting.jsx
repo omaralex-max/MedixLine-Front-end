@@ -4,11 +4,14 @@ import React, { useEffect, useState } from "react";
 
 const PatientProfileSetting = () => {
   const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
-    email: ""
+    email: "",
+    phone_number: "",
+    address: ""
   });
 
   // Fetch user details
@@ -19,18 +22,35 @@ const PatientProfileSetting = () => {
         }
       })
       .then(response => {
+        console.log(response)
         setFormData({
           first_name: response.data.first_name,
           last_name: response.data.last_name,
           email: response.data.email
-          // phone_number: response.data.phone_number, 
-          // address: response.data.address 
         });
       })
       .catch(error => {
         console.error(error);
       });
+      
+    axios.get(`http://127.0.0.1:8000/api/patient/${user.id}/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
+    .then(response => {
+      console.log(response)
+      setFormData({
+        phone_number: response.data.phone_number,
+        address: response.data.address
+        });
+        })
+        .catch(error => {
+          console.error(error);
+          });
   }, [token]);
+
+
 
   const handelDelete = (e) => {
     e.preventDefault();
@@ -57,7 +77,7 @@ const PatientProfileSetting = () => {
 
   const handelUpdatePersonal = (e) => {
     e.preventDefault();
-    axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+    const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
       {
         first_name: formData.first_name,
         last_name: formData.last_name,
@@ -67,13 +87,24 @@ const PatientProfileSetting = () => {
           'Authorization': `Token ${token}`
         }
       })
-      .then(response => {
-        console.log(response.data);
-        alert('Update Success');
-      })
-      .catch(error => {
-        console.error(error);
-      });
+
+      const UpdatePatientData = axios.patch(`http://127.0.0.1:8000/api/patient/${user.id}/`,
+        {
+          phone_number:formData.phone_number,
+          address: formData.address
+        }, {
+          headers: {
+            'Authorization': `Token ${token}`
+          }
+        })
+        Promise.all([updateUserData, UpdatePatientData])
+        .then(response => {
+          console.log(response.data);
+          alert('Update Success');
+        })
+        .catch(error => {
+          console.error(error);
+        });
   };
   
   const handelOnChange = (e) => {
@@ -133,7 +164,7 @@ const PatientProfileSetting = () => {
                 </div>
               </div>
 
-              {/* <div className="col-lg-6">
+              <div className="col-lg-6">
                 <div className="mb-3">
                   <label className="form-label">Phone no.</label>
                   <input
@@ -159,7 +190,7 @@ const PatientProfileSetting = () => {
                     onChange={handelOnChange}
                   />
                 </div>
-              </div> */}
+              </div>
 
             </div>
             <div className="row">
