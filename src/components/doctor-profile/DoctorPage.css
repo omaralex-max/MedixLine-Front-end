@@ -1,117 +1,15 @@
-.container {
-    display: flex; /* Use flexbox for layout */
-  }
-  
-  .doctor-sidebar {
-    width: 550px; /* Fixed width for sidebar */
-    height: 100vh; /* Full height */
-    border: 1px solid #ccc; /* Optional: Add border */
-    border-radius: 4px; 
-    padding: 15px;
-    background-color: white; 
-  }
-  
-  .main-content {
-    margin-left: 320px; 
-    flex: 1; 
-    padding: 15px; 
-  }
-  
-  
-  .doctor-image-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px; /* Space below the image */
-  }
-  
-  .Dimg {
-    width: 100px; /* Adjust width */
-    height: 100px; /* Ensure height matches width for a circle */
-    border-radius: 10%; /* Rounded image */
-    object-fit: cover; /* Maintain aspect ratio */
-  }
-  
-  .doctor-info {
-    text-align: center; /* Center align the text */
-  }
-  
-  .doctor-name {
-    margin: 0; /* Remove default margin */
-    font-size: 1.25rem; /* Font size for the name */
-  }
-  
-  .doctor-profession {
-    font-size: 1rem; /* Font size for the profession */
-    color: #666; /* Optional: Change color */
-  }
-  
-  .doctor-description {
-    margin-top: 10px; /* Space above description */
-  }
-  
-  .doctor-links {
-    margin-top: 15px; /* Space above links */
-    text-align: start; /* Center align the links */
-  }
-  
-  .doctor-link {
-    display: block; /* Make links full width */
-    padding: 10px; /* Space around links */
-    color: #007bff; /* Bootstrap primary color */
-    text-decoration: none; /* Remove underline */
-    margin: 5px 0; /* Space between links */
-  }
-  
-  .doctor-link:hover {
-    background-color: #007bff;
-    color: white; /* Change color on hover */
-    text-decoration: none; /* Remove underline on hover */
-    transition: background-color 0.3s ease; /* Optional: Add transition effect */
-    cursor: pointer; /* Change cursor on hover */
-    border-radius: 4px; /* Optional: Add border radius */
-    box-shadow: 0 4px 3px #007bff6b; /* Optional: Add box shadow */
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); /* Optional: Add text shadow */
-    outline: none; /* Remove outline on hover */
-    opacity: 0.8; /* Optional: Add opacity */
-    transform: translateY(-2px); /* Optional: Add slight shift on hover */
-    transition: transform 0.3s ease; /* Optional: Add transition effect */
 
-  }
-  
-  .doctor-link:active{
-    background-color: #007bff6b; /* Optional: Change background color on active */
-    color: white; /* Optional: Change color on active */
-    text-decoration: none; /* Optional: Remove underline on active */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Optional: Add transition effect */
-    cursor: pointer; /* Change cursor on active */
-    border-radius: 4px; /* Optional: Add border radius */
-    box-shadow: 0 4px 3px #007bff6b; /* Optional: Add box shadow */
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); /* Optional: Add text shadow */
-    outline: none; /* Remove outline on active */
-    opacity: 0.8; /* Optional: Add opacity */
-    transform: translateY(-4px);
-  }
-
-  @media (max-width: 768px) {
-    .doctor-sidebar {
-      width: 100%; /* Full width on small screens */
-      position: relative; /* Allow normal flow */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
     }
-    .col-lg-6 {
-      margin-left: 0; /* Remove margin on small screens */
+    
+    
+    ::-webkit-scrollbar-thumb {
+    background: skyblue;  
+    border-radius: 10px;
     }
-  }
-
-  .doctor-link:active{
-    background-color: #007bff6b; /* Optional: Change background color on active */
-    color: white; /* Optional: Change color on active */
-    text-decoration: none; /* Optional: Remove underline on active */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Optional: Add transition effect */
-    cursor: pointer; /* Change cursor on active */
-    border-radius: 4px; /* Optional: Add border radius */
-    box-shadow: 0 4px 3px #007bff6b; /* Optional: Add box shadow */
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); /* Optional: Add text shadow */
-    outline: none; /* Remove outline on active */
-    opacity: 0.8; /* Optional: Add opacity */
-    transform: translateY(-4px);
-  }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background: lightblue;  
+    }

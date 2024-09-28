@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './DoctorAppointment.css';
-
+import Table from 'react-bootstrap/Table';
+import "../doctor-profile/DoctorPage.css"
 // Import images
 const johnDoeImg = require('../assets/th (1).jpeg');
 const janeSmithImg = require('../assets/th (1).jpeg');
@@ -52,43 +52,68 @@ const AppointmentsTable = () => {
   };
 
   return (
-    <div className="appointments-table">
-      <h2>Appointments</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Patient Image</th>
-            <th>Patient Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Appointment Time</th>
-            <th>Fees</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment, index) => (
-            <tr key={index}>
-              <td>
-                <img src={appointment.img} alt={appointment.name} className="patient-image" />
-              </td>
-              <td>{appointment.name}</td>
-              <td>{appointment.gender}</td>
-              <td>{appointment.age}</td>
-              <td>{appointment.appointmentTime}</td>
-              <td>{appointment.fees}</td>
-              <td>
-                <button
-                  className={`status-button ${appointment.status.toLowerCase()}`}
-                  onClick={() => toggleStatus(index)}
-                >
-                  {appointment.status}
-                </button>
-              </td>
+    <div className="appointment  card p-4">
+      <h1 className="card text-2xl font-semibold mb-5 text-center p-3">
+        Appointments
+      </h1>
+      <div className="overflow-x-auto">
+        <Table className="min-w-full bg-white shadow-md rounded-lg">
+          <thead>
+            <tr>
+              <th className="py-3 px-4 text-left">
+                Patient Name
+              </th>
+              <th className="py-3 px-4 text-left">
+                Gender
+              </th>
+              <th className="py-3 px-4 text-left">
+                Age
+              </th>
+              <th className="py-3 px-4 text-left">
+                Appointment Time
+              </th>
+              <th className="py-3 px-4 text-left">
+                Fees
+              </th>
+              <th className="py-3 px-4 text-left">
+                Status
+              </th>
+              <th className="py-3 px-4 text-left">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {appointments.map((appointment, index) => (
+              <tr key={index}>
+                <td className="py-3 px-4 text-left">
+                  {appointment.name}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  {appointment.gender}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  {appointment.age}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  {appointment.appointmentTime}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  {appointment.fees}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  {appointment.status}
+                </td>
+                <td className="py-3 px-4 text-left">
+                  <button className="btn btn-primary" onClick={() => toggleStatus(index)}>
+                    {appointment.status === 'Pending' ? 'Confirm' : 'Unconfirm'}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// src/pages/DoctorPage.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DoctorDescription from '../components/doctor-profile/DoctorDescription';
@@ -6,49 +5,35 @@ import DoctorSchadule from '../components/doctor-profile/DoctorSchadule';
 import AppointmentsTable from '../components/doctor-profile/DoctorAppointment';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/footer/footer';
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import "../components/doctor-profile/DoctorPage.css"
+import UpdateProfile from '../components/doctor-profile/updateprofile'
 const DoctorPage = () => {
   return (
     <>
-
-      <Navbar />
-
-      <div
-        className="doctor-page-container"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr', // Two equal columns
-          //gap: '20px', // Space between the columns
-          padding: '30px',
-          paddingTop: '100px', // Adds space to push content below the navbar
-          minHeight: '80vh', // Ensures page content takes up most of the screen
-        }}
-      >
-
-        <div className="doctor-description-box">
-          <DoctorDescription />
-        </div>
-
-        <div
-          className="doctor-details-box"
-          style={{
-            padding: '30px',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-            backgroundColor: '#f9f9f9',
-          }}
-        >
-          <Routes>
-
-            <Route path="/" element={<DoctorSchadule />} />
-
-            <Route path="appointments" element={<AppointmentsTable />} />
-          </Routes>
-        </div>
+      <div className="navbar-container">
+        <Navbar />
       </div>
-
-
+      <Container className="doctor-page-container my-5 pt-5">
+        <Row>
+          <Col xs={12} md={4} lg={3} xl={4}>
+            <div className="doctor-description-box">
+              <DoctorDescription />
+            </div>
+          </Col>
+          <Col xs={12} md={8} lg={9} xl={8}>
+            <div className="doctor-details-box">
+              <Routes>
+                <Route path="/" element={<DoctorSchadule />} />
+                <Route path="appointments" element={<AppointmentsTable />} />
+                <Route path="update-profile" element={<UpdateProfile />} />
+              </Routes>
+            </div>
+          </Col>
+        </Row>
+      </Container>
       <Footer />
     </>
   );
