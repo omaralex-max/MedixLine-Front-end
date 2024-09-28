@@ -1,0 +1,42 @@
+.parentAppDiv {
+    background-color: #f8f9fa;
+    border-radius: 10px; 
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+}
+
+.apptTitle {
+    color: #007bff; 
+    margin-bottom: 20px;
+}
+
+.apptDay {
+    color: #343a40; 
+    margin-bottom: 15px;
+}
+
+.eachDayAppoint {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.eachSlotAppt {
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s; 
+}
+
+.eachSlotAppt:hover {
+    background-color: #e0f7fa; 
+    transform: scale(1.05); 
+}
+
+.apptBtn {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.apptBtn:hover {
+    background-color: #0056b3; 
+}

@@ -141,6 +141,9 @@
   color: #2c3e50;
 }
 
+.welcomeUser:hover{
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
@@ -203,4 +206,6 @@
   .welcomeUser{
     display: none;
   }
+ 
+
 }

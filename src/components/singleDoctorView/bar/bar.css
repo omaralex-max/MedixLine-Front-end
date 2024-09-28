@@ -1,0 +1,58 @@
+.itemBar a:hover{
+    background-color:#007bff;
+    color: white;
+    cursor: pointer;
+
+}
+.itemBar a{
+    color: black;
+    font-weight: bold;
+}
+
+.itemBar {
+    flex: 1; /* Make items take equal space */
+}
+
+.nav-link {
+    font-size: 1.2rem; /* Increase font size */
+    padding: 15px 20px; /* Increase padding for larger clickable area */
+    text-align: center; /* Center text */
+}
+
+.tabContainer {
+    padding: 20px; /* Add some padding to the content area */
+}
+
+.eachPatientReview {
+    border: 1px solid #ddd; /* Optional: Add border for reviews */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.barDescriptionDocPat{
+    max-width: 800px;
+}
+
+@media (max-width: 768px) {
+    .itemBar a{
+        font-size: 11px;
+        
+    }
+    .itemBar{
+        flex:1;
+    }
+    
+}
+
+@media (max-width: 576px) {
+    .navTabBar {
+        display: flex;
+        flex-wrap: nowrap;
+        width:27rem; 
+    }
+    
+    .itemBar a{
+        font-size: 11px;
+    }
+
+}

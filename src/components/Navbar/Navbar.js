@@ -131,7 +131,7 @@ const Navbar = () => {
             (
               <>
                <li className="nav-item">
-              <a href="/signin" className="nav-links signInButtonNav">Sign In</a>
+              <a href="/signin" className="nav-links signInButtonNav">SIGN IN</a>
               </li>
               
               </>
@@ -141,7 +141,7 @@ const Navbar = () => {
             (
             <>
             <li className="nav-item">
-              <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>
+              <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>LOG OUT</a>
             </li>
             
 
