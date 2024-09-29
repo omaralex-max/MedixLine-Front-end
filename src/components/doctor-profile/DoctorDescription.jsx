@@ -37,7 +37,7 @@ const DoctorDescription = () => {
       <div className="card-body d-flex flex-column">
       <div className="doctor-image-container">
           <div className="cover-image" style={{
-            backgroundImage: `url(${require('../../assets/icons/logo2.png')})`,
+            backgroundImage: `url(${require('../../assets/images/bg-profile.2859920b4c41966e4d91.jpg')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: '200px',
