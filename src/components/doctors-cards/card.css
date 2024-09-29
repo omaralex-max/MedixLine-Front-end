@@ -1,0 +1,36 @@
+.card-bg-half-150 {
+  padding: 90px 0;
+}
+.Dbold{
+  font-weight: 700;
+}
+.team .team-person img {
+  transition: all .5s;
+}
+.team .team-person img:hover {
+  transform: scale(1.1);
+}
+.btn.btn-icon {
+  align-items: center;
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  padding: 0;
+  width: 36px;
+}
+.btn.btn-pills {
+  border-radius: 30px;
+}
+.card-social {
+  background-color: #396cf01a !important;
+  border: 1px solid #396cf01a !important;
+  box-shadow: 0 3px 5px 0 #396cf04d;
+  color: #396cf0 !important;
+}
+.card-social:hover {
+  background-color: #396cf0 !important;
+  color: #ffffff !important;
+}
+.Dtext{
+  text-decoration: none;
+}

@@ -30,7 +30,43 @@
     border-radius: 15px; 
 }
 
- @media (max-width: 990px) {
+ @media (max-width: 768px) {
+    .searchContainer {
+        min-height: 120px; 
+        min-width: 400px;
+    }
+    .searchInput{
+        margin-bottom: 5px;
+
+    }
+    .searchHome{
+       margin-left: 0px;
+       color: rebeccapurple;
+    }
+    .homeForm{
+        max-width:380px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 990px){
+    .searchContainer {
+        min-height: 120px; 
+        min-width: 400px;
+    }
+    .searchInput{
+        margin-bottom: 5px;
+
+    }
+    .searchHome{
+       margin-left: 0px;
+       color: rebeccapurple;
+    }
+    .homeForm{
+        max-width:380px;
+    }
+}
+
+@media (max-width: 990px) {
     .searchContainer {
         min-height: 150px; 
     }
@@ -41,6 +77,34 @@
     .searchHome{
        margin-left: 25%;
     }
+}
+@media (min-width: 990px) and (max-width: 1200px){
+    .searchContainer {
+        min-height: 120px; 
+        min-width:875px;
+    }
+    .searchInput{
+        margin-bottom: 5px;
+
+    }
+   
+}
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .searchContainer {
+        min-height: 120px; 
+        min-width:870px;
+    }
+    
+}
+
+@media (min-width: 1400px) {
+    .searchContainer {
+        min-height: 120px; 
+        min-width:850px;
+    }
+    
 }
 .searchButton{
     background-color: rgb(57, 108, 240) !important;

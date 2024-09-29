@@ -1,11 +1,11 @@
-.CategoryCardDetails:hover {
+.categoryCardDetails:hover {
     background-color: #f0f0f0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     transition: all 0.5s ease;
     cursor: pointer;
   }
 
-.CategoryCardDetails{
+.categoryCardDetails{
   transition: all 0.3s ease;
 }
 
@@ -30,6 +30,4 @@
     height: auto; 
   }
 
-  
-  
 }

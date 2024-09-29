@@ -20,12 +20,12 @@ export default function Categories(){
 
     return(
         <>
-        <div className="w-100 d-flex flex-column align-items-center text-center mt-5">
+        <div className="w-100 d-flex flex-column align-items-center text-center mt-5" id="categoryHomeId">
             <h1 className="categoriesTitle">Our Medical Services</h1>
             <div className="row categoriesInnerContainer mt-5 w-100">
             {
             specializations.map(specialization => (
-                <div className="col-12 col-md-3 mb-3 categoryCard" key={specialization.id}>
+                <div className="col-6 col-md-3 mb-3 categoryCard" key={specialization.id} >
                     <Category  title={specialization.title}
                     description={specialization.description} image={specialization.image} />
                 </div>

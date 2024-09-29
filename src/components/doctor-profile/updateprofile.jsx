@@ -1,11 +1,124 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
+
 
 const UpdateProfile = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
     const [workingDays, setWorkingDays] = useState([]);
     const [workingHours, setWorkingHours] = useState({ start: "", end: "" });
     const [sessionTime, setSessionTime] = useState("");
     const [sessionPrice, setSessionPrice] = useState("");
+    const token = localStorage.getItem('token')
+
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        address: "",
+        bio: ""
+      });
+
+    useEffect(() => {
+      axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+          headers: {
+            'Authorization': `Token ${token}`
+          }
+        })
+        .then(response => {
+          console.log(response)
+          setFormData({
+            first_name: response.data.first_name,
+            last_name: response.data.last_name,
+            email: response.data.email
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+        
+      axios.get(`http://127.0.0.1:8000/api/doctor/${user.id}/`, {
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      })
+      .then(response => {
+        console.log(response)
+        setFormData({
+          phone_number: response.data.phone_number,
+          address: response.data.address,
+          bio: response.data.description
+          });
+          })
+          .catch(error => {
+            console.error(error);
+            });
+    }, [token]);
+    
+    
+    const handelOnChange = (e) => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
+        });
+    };
+
+    const handelUpdatePersonal = (e) => {
+        e.preventDefault();
+        const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+          {
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email
+          }, {
+            headers: {
+              'Authorization': `Token ${token}`
+            }
+          })
+    
+          const UpdatePatientData = axios.patch(`http://127.0.0.1:8000/api/doctor/${user.id}/`,
+            {
+              phone_number:formData.phone_number,
+              address: formData.address,
+              description: formData.bio
+            }, {
+              headers: {
+                'Authorization': `Token ${token}`
+              }
+            })
+            Promise.all([updateUserData, UpdatePatientData])
+            .then(response => {
+              console.log(response.data);
+              alert('Update Success');
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      };
+
+    const handelDelete = (e) => {
+      e.preventDefault();
+      if (window.confirm('Are you sure you want to delete your account!')) {
+        axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+          {
+            is_active: false
+          }, {
+            headers: {
+              'Authorization': `Token ${token}`
+            }
+          })
+          .then(response => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/';
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+    };
+    
 
     const handleWorkingDaysChange = (event) => {
         const { value, checked } = event.target;
@@ -32,7 +145,7 @@ const UpdateProfile = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-2 col-md-4">
                         <img
-                            src={require('../assets/th (2).jpeg')}
+                            src={`http://127.0.0.1:8000/${user.profile_picture}`}
                             className="avatar avatar-md-md rounded-pill shadow mx-auto d-block"
                             alt=""
                         />
@@ -55,17 +168,19 @@ const UpdateProfile = () => {
                 </div>
             </div>
             <div className="p-4">
-                <form>
+                <form onSubmit={handelUpdatePersonal}>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">First Name</label>
                                 <input
-                                    name="name"
+                                    name="first_name"
                                     id="name"
                                     type="text"
                                     className="form-control"
                                     placeholder="First Name :"
+                                    value={formData.first_name}
+                                    onChange={handelOnChange}
                                 />
                             </div>
                         </div>
@@ -73,11 +188,13 @@ const UpdateProfile = () => {
                             <div className="mb-3">
                                 <label className="form-label">Last Name</label>
                                 <input
-                                    name="name"
+                                    name="last_name"
                                     id="name2"
                                     type="text"
                                     className="form-control"
                                     placeholder="Last Name :"
+                                    value={formData.last_name}
+                                    onChange={handelOnChange}
                                 />
                             </div>
                         </div>
@@ -92,6 +209,8 @@ const UpdateProfile = () => {
                                     type="email"
                                     className="form-control"
                                     placeholder="Your email :"
+                                    value={formData.email}
+                                    onChange={handelOnChange}
                                 />
                             </div>
                         </div>
@@ -99,25 +218,43 @@ const UpdateProfile = () => {
                             <div className="mb-3">
                                 <label className="form-label">Phone no.</label>
                                 <input
-                                    name="number"
+                                    name="phone_number"
                                     id="number"
                                     type="text"
                                     className="form-control"
                                     placeholder="Phone no. :"
+                                    value={formData.phone_number}
+                                    onChange={handelOnChange}
                                 />
                             </div>
                         </div>
+
+                        <div className="col-lg-6">
+                            <div className="mb-3">
+                                <label className="form-label">Address</label>
+                                <input
+                                    name="address"
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Address :"
+                                    value={formData.address}
+                                    onChange={handelOnChange}
+                                />comments
+                            </div>
+                        </div>                        
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="mb-3">
                                 <label className="form-label">Your Bio Here</label>
                                 <textarea
-                                    name="comments"
+                                    name="bio"
                                     id="comments"
                                     rows="4"
                                     className="form-control"
                                     placeholder="Bio :"
+                                    value={formData.bio}
+                                    onChange={handelOnChange}
                                 />
                             </div>
                         </div>
@@ -247,7 +384,7 @@ const UpdateProfile = () => {
                 <div class="p-4">
                     <h6 class="mb-0 fw-normal">Do you want to delete the account? Please press the "Delete" button below.</h6>
                     <div class="mt-4">
-                        <button class="btn btn-danger">Delete Account</button>
+                        <button class="btn btn-danger" onClick={handelDelete}>Delete Account</button>
                     </div>
                 </div>
             </div>

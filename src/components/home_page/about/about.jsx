@@ -5,7 +5,7 @@ import "./about.css";
 export default function About(){
     return(
         <>
-        <div className="d-flex justify-content-center align-content-between w-100 parentDivAbout">
+        <div className="d-flex justify-content-center align-content-between w-100 parentDivAbout" >
             <div className="row aboutContainer text-center mt-5">
                 <div className="col-4 mission col-s-12">
                     <h3 className="aboutTitles ">Our Mission</h3>
@@ -22,7 +22,7 @@ export default function About(){
                 </div>
 
                 <div className="col-4 whyUs">
-                    <h3 className="aboutTitles ">Why Us</h3>
+                    <h3 className="aboutTitles " id="aboutId">Why Us</h3>
                     <p>
                      Our innovative platform simplifies appointment scheduling and ensures a seamless experience for every patient.
                     </p>

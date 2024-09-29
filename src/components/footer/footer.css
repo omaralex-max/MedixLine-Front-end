@@ -164,4 +164,8 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .media{
+  justify-content: center;
+  }
 }

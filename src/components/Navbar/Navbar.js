@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from "react";
 import "./Navbar.css";
-import logo from "../../assets/icons/mm.png";
-import profile from "../../assets/images/profile.jpg";
+import logo from "../../assets/icons/logo1.png";
+import profile from "../../assets/images/patient-male.png";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 const Navbar = () => {
@@ -10,8 +12,14 @@ const Navbar = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
-  let user = localStorage.getItem('user')
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
   const handelLogout = (e) => {
     e.preventDefault();
     axios.post('http://127.0.0.1:8000/api/auth/logout/', {}, {
@@ -23,7 +31,7 @@ const Navbar = () => {
         console.log(response)
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.location.reload();
+        window.location.href = '/';
       })
       .catch((error) => {
         console.error(error);
@@ -61,6 +69,18 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const [specializations, setspecializations] = useState([])
+
+    useEffect(() => {
+        axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
+        .then(response => {
+          setspecializations(response.data)
+          })
+          .catch(error => {
+            console.error(error);
+            });
+      }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -81,31 +101,7 @@ const Navbar = () => {
           >
             <a href="/" className="nav-links">
               HOME{" "}
-              <i
-                className={
-                  homeDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
-            </a>
-            {homeDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Dashboard</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Profile</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Notifications</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Activity</a>
-                </li>
-              </ul>
-            )}
+              </a>
           </li>
 
           <li
@@ -113,39 +109,13 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setDoctorsDropdown)}
             onMouseLeave={() => handleMouseLeave(setDoctorsDropdown)}
           >
-            <a href="/" className="nav-links">
-              DOCTORS{" "}
-              <i
-                className={
-                  doctorsDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
-            </a>
-            {doctorsDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Doctor List</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Schedules</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Appointments</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Messages</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Reports</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Billing</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-              </ul>
-            )}
+                <a href="/#aboutId" className="nav-links"> 
+                      DEPARTMENTS
+                      </a>
+              
+                
+                 
+             
           </li>
 
           <li
@@ -153,57 +123,39 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="/" className="nav-links">
-              PATIENTS{" "}
-              <i
-                className={
-                  patientsDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }
-              ></i>
+           
+            <a href="/#searchContainerId" className="nav-links">
+              ABOUT{" "}
+             
             </a>
-            {patientsDropdown && (
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <a href="/">Patient List</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Medical Records</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Appointments</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Prescriptions</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Invoices</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Insurance</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Lab Results</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Messages</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Settings</a>
-                </li>
-                <li className="dropdown-item">
-                  <a href="/">Feedback</a>
-                </li>
-              </ul>
-            )}
+           
+           
           </li>
 
-          <li className="nav-item">
+         
             {user === null ?  
-            (<a href="/signin" className="nav-links signInButtonNav">Sign In</a>):
-            (<a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>Log out</a>)
+            (
+              <>
+               <li className="nav-item">
+              <a href="/signin" className="nav-links signInButtonNav">SIGN IN</a>
+              </li>
+              
+              </>
+              
+            )
+            :
+            (
+            <>
+            <li className="nav-item">
+              <a href="/signup" className="nav-links signInButtonNav" onClick={handelLogout}>LOG OUT</a>
+            </li>
+            
+
+            </>
+
+            )
             }
-    
-  </li>
+
         </ul>
 
         <div className="nav-icons">
@@ -211,6 +163,26 @@ const Navbar = () => {
             <i className="fas fa-cog"></i>
           </span>
           <img src={profile} alt="Profile" className="profile-icon" />
+          {user === null ?  
+            (
+              <>
+              
+              
+              </>
+              
+            )
+            :
+            (
+            <>
+            <li className="nav-item">
+              <Link to="patient-profile" className="nav-links mb-4 welcomeUser pt-4"> Welcome, {user.user.first_name}</Link>
+            </li>
+
+            </>
+
+            )
+            }
+          
         </div>
       </div>
     </nav>

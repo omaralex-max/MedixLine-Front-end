@@ -52,15 +52,25 @@
 .nav-item {
   margin: 0 15px;
   position: relative;
+  list-style: none;
 }
 
 .nav-links {
-  color: #0a66c2;
+  color: white;
   font-size: 18px;
   text-decoration: none;
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
+}
+
+.helloUser{
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
 }
 .nav-links.scrolledLinks{
   color: black;
@@ -131,6 +141,9 @@
   color: #2c3e50;
 }
 
+.welcomeUser:hover{
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
@@ -189,4 +202,10 @@
   .navbar.scrolled {
     transition: none;
   }
+
+  .welcomeUser{
+    display: none;
+  }
+ 
+
 }
