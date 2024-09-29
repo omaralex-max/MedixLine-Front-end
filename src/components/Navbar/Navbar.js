@@ -109,9 +109,13 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setDoctorsDropdown)}
             onMouseLeave={() => handleMouseLeave(setDoctorsDropdown)}
           >
-            <a href="#aboutId" className="nav-links">
-              DEPARTMENTS{" "}
-            </a>
+                <a href="/#aboutId" className="nav-links"> 
+                      DEPARTMENTS
+                      </a>
+              
+                
+                 
+             
           </li>
 
           <li
@@ -119,10 +123,12 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="#searchContainerId" className="nav-links">
+           
+            <a href="/#searchContainerId" className="nav-links">
               ABOUT{" "}
              
             </a>
+           
            
           </li>
 

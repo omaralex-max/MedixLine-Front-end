@@ -19,6 +19,7 @@ export default function Router() {
                       <Route path="/patient-profile" element={<PatientProfile />} />
                       <Route path="/doctorpage/*" element={<DoctorPage />} />
                       <Route path="/doctorcard" element={<DoctorsCard />} />
+                      <Route path="/doctordetails" element={<SingleDoctorView />} />
                   </Routes>
           </ BrowserRouter>
   )
