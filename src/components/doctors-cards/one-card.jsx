@@ -3,7 +3,8 @@ import DRimg from "../assets/th (2).jpeg";
 import { Link } from "react-router-dom";
 
 
-const OneCard = () => {
+const OneCard = ({ doctor }) => {
+  // console.log(doctor)
   return (
     <>
       <div className="col-lg-6 col-md-12 mt-4 pt-2">
@@ -11,13 +12,13 @@ const OneCard = () => {
           <div className="row align-items-center cardpad">
             <div className="col-md-6">
               <div className="team-person position-relative overflow-hidden">
-                <img src={DRimg} className="img-fluid" alt="" />
+                <img src={doctor.profile_picture} className="img-fluid" alt="" />
               </div>
             </div>
             <div className="col-md-6">
               <div className="card-body">
                 <Link className="title text-dark h5 d-block mb-0 Dtext" to="#">
-                  Calvin Carlo
+                  {doctor.user.first_name} {doctor.user.last_name}
                 </Link>
                 <div className="d-flex justify-content-between align-items-center mt-2">
                   <ul className="list-unstyled mb-0">

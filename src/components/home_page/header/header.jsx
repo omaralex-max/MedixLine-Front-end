@@ -1,7 +1,7 @@
 import React from "react"
 import "./header.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyIcon from "../static/images/icon.png"
+import MyIcon from "../../assets/dd.png"
 import Navbar from "../../Navbar/Navbar"
 
 function Header ()
@@ -10,7 +10,7 @@ function Header ()
         <>
         <div className="background-container d-flex flex-column justify-content-center align-items-center">
             <Navbar/>
-            <img src={MyIcon} className="icon img-fluid "></img>
+            <img src={MyIcon} className="icon img-fluid " alt="icon"/>
             <h1 id="title" className="d-none d-lg-block ">Book Your Appointments Now</h1>
             <p id="description" className="d-none d-lg-block">Welcome to MedixLine, the ultimate healthcare app designed to connect 
                 you and your family with top medical professionals</p>
