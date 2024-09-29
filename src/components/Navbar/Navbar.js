@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "./Navbar.css";
-import logo from "../../assets/icons/logo1.png";
+import logo from "../../assets/icons/mm.png";
 import profile from "../../assets/images/profile.jpg";
 import axios from 'axios';
 

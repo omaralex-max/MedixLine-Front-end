@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-import Logo from "../../assets/icons/logo.jpg"
+import Logo from "../../assets/icons/mm.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 
