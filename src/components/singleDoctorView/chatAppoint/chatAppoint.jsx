@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import "./chatAppoint.css"
-export default function ChatAppoint(){
+export default function ChatAppoint({doctor}){
     const [messages, setMessages] = useState(() => {
         const savedMessages = localStorage.getItem('chatMessages');
         return savedMessages ? JSON.parse(savedMessages) : [];
@@ -35,7 +35,7 @@ export default function ChatAppoint(){
                 className="form-control custom-input me-2" 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Chat With The Doctor..."
+                placeholder={`Chat With Dr. ${doctor.user.first_name}.`}
                 />
                 <button type="submit" className="btn btn-primary custom-send-button">Send</button>
             </form>
