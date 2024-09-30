@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import DoctorDescription from '../components/doctor-profile/DoctorDescription';
 import DoctorSchadule from '../components/doctor-profile/DoctorSchadule';
 import AppointmentsTable from '../components/doctor-profile/DoctorAppointment';
-import Navbar from '../components/Navbar/Navber';
+import DoctorReviews from '../components/doctor-profile/DoctorReviews';
+import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/footer/footer';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -29,6 +30,7 @@ const DoctorPage = () => {
                 <Route path="/" element={<DoctorSchadule />} />
                 <Route path="appointments" element={<AppointmentsTable />} />
                 <Route path="update-profile" element={<UpdateProfile />} />
+                <Route path="doctor-reviews" element={<DoctorReviews />} />
               </Routes>
             </div>
           </Col>

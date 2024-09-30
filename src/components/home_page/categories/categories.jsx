@@ -26,7 +26,7 @@ export default function Categories(){
             {
             specializations.map(specialization => (
                 <div className="col-6 col-md-3 mb-3 categoryCard" key={specialization.id} >
-                    <Category  title={specialization.title}
+                    <Category  title={specialization.title} id={specialization.id}
                     description={specialization.description} image={specialization.image} />
                 </div>
             ))

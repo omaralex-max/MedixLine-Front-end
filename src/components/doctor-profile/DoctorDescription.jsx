@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState  } from 'react';
+import { Link , useLocation} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./DoctorPage.css"
 import axios from 'axios';
@@ -23,12 +23,21 @@ const DoctorDescription = () => {
     });
     }, [token]);
 
+  const location = useLocation();
+  const links = [
+    { to: '/doctorpage', icon: 'fas fa-calendar-alt', text: 'Schedule' },
+    { to: '/doctorpage/appointments', icon: 'fas fa-list-alt', text: 'Appointments' },
+    { to: '/doctorpage/chat', icon: 'fas fa-comment-alt', text: 'Chat' },
+    { to: '/doctorpage/doctor-reviews', icon: 'fas fa-star', text: 'Patient Review' },
+    { to: '/doctorpage/update-profile', icon: 'fas fa-gear', text: 'Profile Settings' },
+  ];
+
   return (
     <div className="card doctor-sidebar h-100">
       <div className="card-body d-flex flex-column">
       <div className="doctor-image-container">
           <div className="cover-image" style={{
-            backgroundImage: `url(${require('../../assets/icons/logo2.png')})`,
+            backgroundImage: `url(${require('../../assets/images/bg-profile.2859920b4c41966e4d91.jpg')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: '200px',
@@ -60,14 +69,13 @@ const DoctorDescription = () => {
           </p>
         </div>
         <hr />
-        <div className="doctor-links flex-grow-1 my-5">
-          <Link to="/doctorpage" style={{width:"100%" ,  textAlign: "left"}} className="btn btn-outline-primary doctor-link"> <i className="fas fa-calendar-alt"></i> Schedule</Link> <br />
-          <Link to="/doctorpage/appointments" style={{width:"100%" ,  textAlign: "left"}} className="btn btn-outline-primary doctor-link mt-4"><i className="fas fa-list-alt"></i> Appointments</Link> <br />
-          <Link to="/chat" style={{width:"100%" ,  textAlign: "left"}} className="btn btn-outline-primary doctor-link mt-4"><i className="fas fa-comment-alt"></i> Chat</Link> <br />
-          <Link to="/review" style={{width:"100%" ,  textAlign: "left"}} className="btn btn-outline-primary doctor-link mt-4"> <i className="fas fa-star"></i> Patient Review</Link> <br />
-          <Link to="/doctorpage/update-profile" style={{width:"100%" ,  textAlign: "left", marginBottom:"25%"}} className="btn btn-outline-primary doctor-link mt-4"> <i className="fas fa-gear"></i> Profile Settings</Link> <br />
-          {/* <Link to="/logout" style={{width:"100%" ,  textAlign: "left"}} className="btn btn-outline-primary doctor-link mt-3"> <i className="fas fa-sign-out-alt"></i> Log out</Link> <br /> */}
-        </div>
+<div className="doctor-links flex-grow-1 my-5">
+      {links.map((link, index) => (
+        <Link to={link.to} key={index} className={`btn btn-outline-primary doctor-link mb-4 w-100 text-start ${location.pathname === link.to ? 'active' : ''}`}>
+          <i className={link.icon}></i> {link.text}
+        </Link>
+      ))}
+    </div>
       </div>
     </div>
    

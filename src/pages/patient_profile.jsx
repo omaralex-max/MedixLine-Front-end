@@ -3,7 +3,7 @@ import male from "../assets/images/patient-male.png";
 import female from "../assets/images/girl.png";
 import BG from "../assets/icons/logo2.png";
 import ProfileSetting from "../components/patient_profile/patient-profile-setting";
-import Nav from "../components/Navbar/Navber";
+import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/footer/footer";
 import { useState } from "react";
 
