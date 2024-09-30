@@ -2,7 +2,7 @@ import React from "react"
 import "./header.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyIcon from "../static/images/icon.png"
-import Navbar from "../../Navbar/Navbar"
+import Navbar from "../../Navbar/HomeNavbar"
 
 function Header ()
 {

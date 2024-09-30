@@ -1,5 +1,5 @@
 import CardHolder from "../components/doctors-cards/card-holder";
-import Nav from "../components/Navbar/Navbar";
+import Nav from "../components/Navbar/Navber";
 import Footer from "../components/footer/footer";
 
 const DoctorsCard = () => {

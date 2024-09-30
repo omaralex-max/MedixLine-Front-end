@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import DoctorDescription from '../components/doctor-profile/DoctorDescription';
 import DoctorSchadule from '../components/doctor-profile/DoctorSchadule';
 import AppointmentsTable from '../components/doctor-profile/DoctorAppointment';
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../components/Navbar/Navber';
 import Footer from '../components/footer/footer';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
