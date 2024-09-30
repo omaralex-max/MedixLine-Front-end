@@ -1,0 +1,27 @@
+.Doctor-review-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #333;
+  margin-left: 28px;
+}
+
+.Doctor-review-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 30px;
+}
+
+.rating-section {
+  flex: 2;
+}
+
+.review-section {
+  flex: 3;
+}
