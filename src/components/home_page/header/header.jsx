@@ -1,8 +1,8 @@
 import React from "react"
 import "./header.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from "../../Navbar/HomeNavbar"
 import MyIcon from "../../assets/dd.png"
-import Navbar from "../../Navbar/Navbar"
 
 function Header ()
 {
