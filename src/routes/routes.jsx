@@ -8,6 +8,7 @@ import DoctorPage from '../pages/Doctorpage';
 import SingleDoctorView from '../pages/singleDoctorView';
 import DoctorsCard from "../pages/doctors_card"
 import Loading from '../components/loading/loading';
+import Search from '../pages/search';
 
 export default function Router() {
 
@@ -22,6 +23,7 @@ export default function Router() {
                       <Route path="/doctorpage/*" element={<DoctorPage />} />
                       <Route path="/doctorcard" element={<DoctorsCard />} />
                       <Route path="/doctordetails/:id" element={<SingleDoctorView />} />
+                      <Route path="/search" element={<Search />} />
                   </Routes>
           </Suspense>
           </ BrowserRouter>

@@ -3,8 +3,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from "react";
 
 const PatientProfileSetting = () => {
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const token = localStorage.getItem('token')
+
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -17,40 +18,28 @@ const PatientProfileSetting = () => {
   // Fetch user details
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/auth/detail/', {
-        headers: {
-          'Authorization': `Token ${token}`
-        }
-      })
-      .then(response => {
-        console.log(response)
-        setFormData({
-          first_name: response.data.first_name,
-          last_name: response.data.last_name,
-          email: response.data.email
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-      
-    axios.get(`http://127.0.0.1:8000/api/patient/${user.id}/`, {
       headers: {
         'Authorization': `Token ${token}`
       }
     })
     .then(response => {
-      console.log(response)
+        localStorage.setItem('user', JSON.stringify(response.data))
+        setUser(response.data)
+        
       setFormData({
+        first_name: response.data.user.first_name,
+        last_name: response.data.user.last_name,
+        email: response.data.user.email,
         phone_number: response.data.phone_number,
-        address: response.data.address
-        });
-        })
-        .catch(error => {
-          console.error(error);
-          });
-  }, [token]);
-
-
+        address: response.data.address,
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    
+}, [token]);
+      
 
   const handelDelete = (e) => {
     e.preventDefault();
@@ -78,11 +67,13 @@ const PatientProfileSetting = () => {
   const handelUpdatePersonal = (e) => {
     e.preventDefault();
     const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
-      {
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        email: formData.email
-      }, {
+        {"user": {
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                email: formData.email
+            }
+        }
+      , {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -91,7 +82,7 @@ const PatientProfileSetting = () => {
       const UpdatePatientData = axios.patch(`http://127.0.0.1:8000/api/patient/${user.id}/`,
         {
           phone_number:formData.phone_number,
-          address: formData.address
+          address: formData.address,
         }, {
           headers: {
             'Authorization': `Token ${token}`
@@ -99,8 +90,17 @@ const PatientProfileSetting = () => {
         })
         Promise.all([updateUserData, UpdatePatientData])
         .then(response => {
-          console.log(response.data);
-          alert('Update Success');
+            axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+                headers: {
+                  'Authorization': `Token ${token}`
+                }
+              })
+              .then(response => {
+                  localStorage.setItem('user', JSON.stringify(response.data))
+                  setUser(response.data)
+                  })
+            alert('Update Success');
+            window.location.href = '/patient-profile';
         })
         .catch(error => {
           console.error(error);
@@ -112,7 +112,7 @@ const PatientProfileSetting = () => {
       ...formData,
       [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
     });
-  };
+};
 
 
   return (
@@ -203,46 +203,7 @@ const PatientProfileSetting = () => {
               </div>
             </div>
           </form>
-          <div className="mt-4 pt-2">
-            <h5 className="mb-0">Change Password :</h5>
-            <form className="mt-4">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="mb-3">
-                    <label className="form-label">Old password :</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Old password"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="mb-3">
-                    <label className="form-label">New password :</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="New password"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="mb-3">
-                    <label className="form-label">Re-type New password :</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Re-type New password"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-12 mt-2 mb-0">
-                  <button className="btn btn-primary">Save password</button>
-                </div>
-              </div>
-            </form>
-          </div>
+
           <div className="mt-4 pt-2">
             <h5 className="mb-0 text-danger">Delete Account :</h5>
             <p className="mb-0 mt-4">
