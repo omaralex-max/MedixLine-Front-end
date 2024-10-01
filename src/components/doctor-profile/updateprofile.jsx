@@ -144,8 +144,10 @@ const UpdateProfile = () => {
       e.preventDefault();
       if (window.confirm('Are you sure you want to delete your account!')) {
         axios.patch('http://127.0.0.1:8000/api/auth/detail/',
-          {
+          { "user":
+            {
             is_active: false
+            }
           }, {
             headers: {
               'Authorization': `Token ${token}`

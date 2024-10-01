@@ -10,6 +10,7 @@ const Chat = ({ doctorId }) => {
     const [selectedPatient, setSelectedPatient] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
     const baseURL = 'http://127.0.0.1:8000/api/'
 
@@ -19,10 +20,9 @@ const Chat = ({ doctorId }) => {
             setLoading(true);
             setError('');
             try {
-                const response = await axios.get(`${baseURL}doctor/`, {
+                const response = await axios.get(`${baseURL}patient/`, {
                     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
                 });
-                console.log(response.data)
                 setPatients(response.data);
             } catch (error) {
                 setError('Error fetching patients. Please try again.');
@@ -40,10 +40,9 @@ const Chat = ({ doctorId }) => {
                 setLoading(true);
                 setError('');
                 try {
-                    const response = await axios.get(`${baseURL}chat/messages/${doctorId}/${selectedPatient.id}`, {
+                    const response = await axios.get(`${baseURL}chat/messages/${user.user.id}/${selectedPatient.user.id}`, {
                         headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
                     });
-                    console.log(response.data)
                     setMessages(response.data);
                 } catch (error) {
                     setError('Error fetching messages. Please try again.');
@@ -62,8 +61,8 @@ const Chat = ({ doctorId }) => {
         try {
             const response = await axios.post(`${baseURL}chat/send-message/`, {
                 message: newMessage,
-                sender: doctorId,
-                reciever: selectedPatient.id,
+                sender: user.user.id,
+                reciever: selectedPatient.user.id,
             }, {
                 headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
             });
@@ -150,9 +149,9 @@ const Chat = ({ doctorId }) => {
                                 {/* Messages Display */}
                                 <div className="chat-messages p-4" style={{ height: '60vh', overflowY: 'auto' }}>
                                     {messages.map(message => (
-                                        <div key={message.id} className={`chat-message-${message.sender.id !== doctorId ? 'right' : 'left'} pb-4`}>
+                                        <div key={message.id} className={`chat-message-${message.sender !== user.user.id ? 'right' : 'left'} pb-4`}>
                                             <div>
-                                                <strong>{message.sender.id === doctorId ? 'You' : `${message.sender.first_name}`}</strong>
+                                                <strong>{message.sender === user.user.id ? 'You' : `${selectedPatient.user.first_name}`}</strong>
                                                 <div className="text-muted small mt-2">{message.date}</div>
                                             </div>
                                             <div className="bg-light rounded py-2 px-3 mr-3">
