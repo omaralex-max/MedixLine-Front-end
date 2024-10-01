@@ -124,6 +124,15 @@ const Navbar = () => {
               ABOUT{" "}
             </a>
           </li>
+          <li
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <a href="/#searchContainerId" className="nav-links">
+              INBOX{" "}
+            </a>
+          </li>
 
           {user === null ? (
             <>
