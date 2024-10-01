@@ -15,7 +15,7 @@ export default function SingleDoctorView()
         axios
         .get(`http://127.0.0.1:8000/api/doctor/${id}`) 
         .then((response) => {
-            console.log("Doctor data:", response.data); 
+            // console.log("Doctor data:", response.data); 
           setDoctor(response.data);
         })
         .catch((error) => {
@@ -23,7 +23,7 @@ export default function SingleDoctorView()
         });
     }, [doctor,id]);
 
-  console.log("hello" ,doctor)
+//   console.log("hello" ,doctor)
     return (
         <> 
         <Navbar/>
