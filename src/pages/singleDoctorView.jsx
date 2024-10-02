@@ -21,7 +21,7 @@ export default function SingleDoctorView()
         .catch((error) => {
           console.error("Error fetching the doctors' data", error);
         });
-    }, [doctor,id]);
+    }, [id]);
 
 //   console.log("hello" ,doctor)
     return (
@@ -29,8 +29,8 @@ export default function SingleDoctorView()
         <Navbar/>
         {doctor ? (
             <>
-                <HeaderDocPat key={doctor.id} doctor={doctor} />
-                <Bar key={doctor.id} doctor={doctor} />
+                <HeaderDocPat doctor={doctor} />
+                <Bar doctor={doctor} />
             </>
         ) : (
             <Loading/>
