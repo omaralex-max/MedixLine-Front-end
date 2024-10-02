@@ -7,12 +7,12 @@ import axios from 'axios';
 
 
 const DoctorDescription = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const token = localStorage.getItem('token');
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [specialization, setSpecialization] = useState(null)
 
 
   useEffect((e) => {
+    setUser(JSON.parse(localStorage.getItem('user')))
     axios.get(`http://127.0.0.1:8000/api/doctor/specializations/${user.specialization}`)
     .then(response => {
 
@@ -21,7 +21,7 @@ const DoctorDescription = () => {
   .catch(error => {
     console.error(error);
     });
-    }, [token]);
+    }, []);
 
   const location = useLocation();
   const links = [
@@ -37,7 +37,7 @@ const DoctorDescription = () => {
       <div className="card-body d-flex flex-column">
       <div className="doctor-image-container">
           <div className="cover-image" style={{
-            backgroundImage: `url(${require('../../assets/images/bg-profile.2859920b4c41966e4d91.jpg')})`,
+            backgroundImage: `url(${require('../../assets/images/logo2.png')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: '200px',

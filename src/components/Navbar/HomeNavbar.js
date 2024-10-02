@@ -13,9 +13,9 @@ const Navbar = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
     }
   }, []);
   const handelLogout = (e) => {
@@ -122,6 +122,15 @@ const Navbar = () => {
           >
             <a href="/#searchContainerId" className="nav-links">
               ABOUT{" "}
+            </a>
+          </li>
+          <li
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <a href="/#searchContainerId" className="nav-links">
+              INBOX{" "}
             </a>
           </li>
 

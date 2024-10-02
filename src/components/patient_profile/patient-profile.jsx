@@ -1,8 +1,13 @@
 import "./patient_profile.css";
+import React, { useEffect, useState } from "react";
+
 
 const PatientProfile = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
+  useEffect((e) => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+    }, []);
   return (
     <>
           <div className="tab-content p-4">

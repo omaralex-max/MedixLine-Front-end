@@ -27,17 +27,12 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-
+  
     const payload = {
-
-        username: formData.username,
-        password: formData.password,
-    }
-      
-
-
+      username: formData.username,
+      password: formData.password,
+    };
+  
     fetch("http://localhost:8000/api/auth/login/", {
       method: "POST",
       headers: {
@@ -48,17 +43,29 @@ const Signin = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.token) {
-          setSuccessMessage("Patient registered successfully!");
+          setSuccessMessage("Logged in successfully!");
           setErrorMessage("");
           localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
-
-          if (data.user.user.role === "doctor") {
-            navigate('/doctorpage/');  
-          } else if (data.user.user.role === "patient") {
-            navigate('/');
-          }
-
+  
+          axios
+            .get('http://127.0.0.1:8000/api/auth/detail/', {
+              headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`,
+              },
+            })
+            .then((response) => {
+              localStorage.setItem('user', JSON.stringify(response.data));
+  
+              // Navigate based on user role
+              if (response.data.user.role === "doctor") {
+                navigate('/doctorpage/');
+              } else if (response.data.user.role === "patient") {
+                navigate('/');
+              }
+            })
+            .catch((error) => {
+              setErrorMessage("Error: " + error.message);
+            });
         } else {
           setErrorMessage("Error: " + JSON.stringify(data));
         }
