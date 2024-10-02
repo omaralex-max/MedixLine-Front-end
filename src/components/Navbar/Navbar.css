@@ -47,6 +47,8 @@
   display: flex;
   align-items: center;
   list-style: none;
+  position: relative;
+  bottom: -9px;
 }
 
 .nav-item {
@@ -63,7 +65,6 @@
   align-items: center;
   transition: color 0.3s ease;
   position: relative;
-  bottom: -8px;
 }
 .navnav{
   color: rgb(27, 26, 26);
@@ -73,21 +74,12 @@
   align-items: center;
   transition: color 0.3s ease;
   position: relative;
-  bottom: -8px;
 }
-#wel{
-  bottom: 8px;
-}
+
 .navpushing{
   position: relative;
-  right: -38px;
 }
-.sinpushing{
-  right: -231px;
-}
-.sininpushing{
-  right: -305px;
-}
+
 .helloUser{
   color: black;
   font-size: 18px;
@@ -228,5 +220,38 @@
     display: none;
   }
  
+}
 
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .navhid {
+    display: none;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .nav-links {
+    color: black;
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .hidenav {
+    display: none;
+  }
 }
