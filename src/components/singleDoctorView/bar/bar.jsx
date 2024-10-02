@@ -4,6 +4,8 @@ import TimeTable from "../timetable/timetable";
 import ChatAppoint from "../chatAppoint/chatAppoint";
 import NavBarTabTitle from "../navBarTabTitles/navBarTabTitles";
 import OverViewAppt from "../overView/overView";
+import Reviews from "../reviews/reviews";
+import Comment from "../comments/comments";
 export default function Bar({doctor}) {
    
     return (
@@ -15,17 +17,10 @@ export default function Bar({doctor}) {
                 </div>
                 <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                     <div className="eachPatientReview mb-2">
-                        <h2>Ahmed Ismail ★★★★</h2>
-                        <p>'A perfect Doctor'</p>
+                        <Reviews  doctor={doctor}/>
+                        <Comment doctor={doctor}/>
                     </div>
-                    <div className="eachPatientReview mb-2">
-                        <h2>Menna Salama ★★★</h2>
-                        <p>'I have had better'</p>
-                    </div>
-                    <div className="eachPatientReview mb-2">
-                        <h2>Menna Salama ★★★★★</h2>
-                        <p>'Thank you doctor for everything...'</p>
-                    </div>
+                    
                 </div>
                 <div className="tab-pane fade" id="timetable" role="tabpanel" aria-labelledby="timetable-tab">
                     <TimeTable/>

@@ -124,10 +124,19 @@ const Navbar = () => {
               ABOUT{" "}
             </a>
           </li>
+          <li
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <a href="/#searchContainerId" className="nav-links">
+              INBOX{" "}
+            </a>
+          </li>
 
           {user === null ? (
             <>
-              <li className="nav-item sininpushing">
+              <li className="nav-item navhid">
                 <a href="/signin" className="nav-links signInButtonNav">
                   SIGN IN
                 </a>
@@ -135,7 +144,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className="nav-item sinpushing">
+              <li className="nav-item navhid">
                 <a
                   href="/signup"
                   className="nav-links signInButtonNav"
@@ -149,6 +158,29 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-icons navpushing">
+          <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
+            {user === null ? (
+              <>
+                <li className="nav-item">
+                  <a href="/signin" className="nav-links signInButtonNav hidenav">
+                    SIGN IN
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <a
+                    href="/signup"
+                    className="nav-links signInButtonNav hidenav"
+                    onClick={handelLogout}
+                  >
+                    LOG OUT
+                  </a>
+                </li>
+              </>
+            )}
+          </ul>
           <span className="settings-icon d-none">
             <i className="fas fa-cog"></i>
           </span>
@@ -157,7 +189,7 @@ const Navbar = () => {
             <></>
           ) : (
             <>
-              <li className="nav-item" id="wel">
+              <li className="nav-item">
                 <Link
                   to="patient-profile"
                   className="nav-links mb-4 welcomeUser pt-4"

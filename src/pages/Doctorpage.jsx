@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "../components/doctor-profile/DoctorPage.css"
 import UpdateProfile from '../components/doctor-profile/updateprofile'
+import ChatDoctor from '../components/doctor-profile/chatDoctor'
 const DoctorPage = () => {
   return (
     <>
@@ -31,6 +32,7 @@ const DoctorPage = () => {
                 <Route path="appointments" element={<AppointmentsTable />} />
                 <Route path="update-profile" element={<UpdateProfile />} />
                 <Route path="doctor-reviews" element={<DoctorReviews />} />
+                <Route path="chat" element={<ChatDoctor doctorId="1" />} />
               </Routes>
             </div>
           </Col>
