@@ -17,7 +17,7 @@ export default function SingleDoctorView()
 
     useEffect(() => {
         axios
-        .get(http://127.0.0.1:8000/api/doctor/${id}) 
+        .get(`http://127.0.0.1:8000/api/doctor/${id}`) 
         .then((response) => {
             // console.log("Doctor data:", response.data); 
           setDoctor(response.data);
