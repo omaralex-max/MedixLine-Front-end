@@ -108,10 +108,3 @@
   box-shadow: 0 3px 5px 0 #396cf04d;
   color: #396cf0 !important;
 }
-
-
-@media (min-width: 1200px) {
-  .bg-hero {
-    margin: 0 370px;
-  }
-}
