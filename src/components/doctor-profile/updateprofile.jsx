@@ -1,15 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { json } from "react-router-dom";
 
 
 const UpdateProfile = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const [workingDays, setWorkingDays] = useState([]);
-    const [workingHours, setWorkingHours] = useState({ start: "", end: "" });
-    const [sessionTime, setSessionTime] = useState("");
-    const [sessionPrice, setSessionPrice] = useState("");
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
     const token = localStorage.getItem('token')
+    const [days, setDays] = useState([]);
 
     const [formData, setFormData] = useState({
         first_name: "",
@@ -17,43 +15,56 @@ const UpdateProfile = () => {
         email: "",
         phone_number: "",
         address: "",
-        bio: ""
+        bio: "",
+        working_days: [],
+        end_time: null,
+        start_time: null,
+        duration: null,
+        price: null
       });
 
     useEffect(() => {
+        console.log(user)
+        axios.get(`http://127.0.0.1:8000/api/doctor/workingdays`, {
+            headers: {
+                'Authorization': `Token ${token}`,
+                }
+                })
+                .then(response => {
+                    setDays(response.data);
+                    
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        });
       axios.get('http://127.0.0.1:8000/api/auth/detail/', {
           headers: {
             'Authorization': `Token ${token}`
           }
         })
         .then(response => {
-          console.log(response)
+            localStorage.setItem('user', JSON.stringify(response.data))
+            setUser(response.data)
+            
           setFormData({
-            first_name: response.data.first_name,
-            last_name: response.data.last_name,
-            email: response.data.email
+            first_name: response.data.user.first_name,
+            last_name: response.data.user.last_name,
+            email: response.data.user.email,
+            phone_number: response.data.phone_number,
+            address: response.data.address,
+            bio: response.data.description,
+            working_days: response.data.working_days,
+            end_time: response.data.end_time,
+            start_time: response.data.start_time,
+            duration: response.data.duration,
+            price: response.data.price
           });
+          console.log(formData)
         })
         .catch(error => {
           console.error(error);
         });
         
-      axios.get(`http://127.0.0.1:8000/api/doctor/${user.id}/`, {
-        headers: {
-          'Authorization': `Token ${token}`
-        }
-      })
-      .then(response => {
-        console.log(response)
-        setFormData({
-          phone_number: response.data.phone_number,
-          address: response.data.address,
-          bio: response.data.description
-          });
-          })
-          .catch(error => {
-            console.error(error);
-            });
     }, [token]);
     
     
@@ -64,14 +75,37 @@ const UpdateProfile = () => {
         });
     };
 
+    const handleWorkingDaysChange = (event) => {
+        const { value, checked } = event.target;
+        const dayId = parseInt(value);
+      
+        if (checked) {
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            working_days: [...prevFormData.working_days, dayId]
+          }));
+        } else {
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            working_days: prevFormData.working_days.filter((day) => day !== dayId)
+          }));
+        }
+      };
+
+
+    
+
+
     const handelUpdatePersonal = (e) => {
         e.preventDefault();
         const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
-          {
-            first_name: formData.first_name,
-            last_name: formData.last_name,
-            email: formData.email
-          }, {
+            {"user": {
+                    first_name: formData.first_name,
+                    last_name: formData.last_name,
+                    email: formData.email
+                }
+            }
+          , {
             headers: {
               'Authorization': `Token ${token}`
             }
@@ -89,8 +123,17 @@ const UpdateProfile = () => {
             })
             Promise.all([updateUserData, UpdatePatientData])
             .then(response => {
-              console.log(response.data);
-              alert('Update Success');
+                axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+                    headers: {
+                      'Authorization': `Token ${token}`
+                    }
+                  })
+                  .then(response => {
+                      localStorage.setItem('user', JSON.stringify(response.data))
+                      setUser(response.data)
+                      })
+                alert('Update Success');
+                window.location.href = '/doctorpage/update-profile';
             })
             .catch(error => {
               console.error(error);
@@ -101,8 +144,10 @@ const UpdateProfile = () => {
       e.preventDefault();
       if (window.confirm('Are you sure you want to delete your account!')) {
         axios.patch('http://127.0.0.1:8000/api/auth/detail/',
-          {
+          { "user":
+            {
             is_active: false
+            }
           }, {
             headers: {
               'Authorization': `Token ${token}`
@@ -120,21 +165,30 @@ const UpdateProfile = () => {
     };
     
 
-    const handleWorkingDaysChange = (event) => {
-        const { value, checked } = event.target;
-        setWorkingDays((prev) =>
-            checked ? [...prev, value] : prev.filter(day => day !== value)
-        );
-    };
 
     const handleSubmitWorkingHours = (event) => {
         event.preventDefault();
-        console.log("Working Days:", workingDays);
-        console.log("Working Hours:", workingHours);
-        console.log("Session Time:", sessionTime);
-        console.log("Session Price:", sessionPrice);
-        // Here you can add logic to save the data, e.g., API call
+        axios.patch(`http://127.0.0.1:8000/api/doctor/${user.id}/`,
+            {
+                working_days: formData.working_days,
+                end_time: formData.end_time,
+                start_time: formData.start_time,
+                duration: formData.duration,
+                price: formData.price
+            }, {
+              headers: {
+                'Authorization': `Token ${token}`
+              }
+            })
+            .then(response => {
+                alert('Update Success');
+                window.location.href = '/doctorpage/update-profile';
+                })
+                .catch(error => {
+                    console.error(error);
+                    });
     };
+
     return (
         
         <div className="rounded shadow mt-4">
@@ -157,12 +211,11 @@ const UpdateProfile = () => {
                             .jpg or .png format
                         </p>
                     </div>
+
+                    
                     <div className="col-lg-5 col-md-12 text-lg-end text-center mt-4 mt-lg-0">
                         <a className="btn btn-primary" href="/doctor-profile-setting">
                             Upload
-                        </a>
-                        <a className="btn btn-soft-primary ms-2" href="/doctor-profile-setting">
-                            Remove
                         </a>
                     </div>
                 </div>
@@ -272,38 +325,7 @@ const UpdateProfile = () => {
                     </div>
                 </form>
             </div>
-            <div class="rounded shadow mt-4">
-                <div class="p-4 border-bottom">
-                    <h5 class="mb-0">Change Password :</h5>
-                </div>
-                <div class="p-4">
-                    <form>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Old password :</label>
-                                    <input type="password" class="form-control" placeholder="Old password" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <label class="form-label">New password :</label>
-                                    <input type="password" class="form-control" placeholder="New password" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Re-type New password :</label>
-                                    <input type="password" class="form-control" placeholder="Re-type New password" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12 mt-2 mb-0">
-                                <button type="submit" class="btn btn-primary">Save password</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
             <div className="rounded shadow mt-4 p-3">
                 <div className="p-4 border-bottom">
                     <h5 className="mb-0">Set Working Days and Hours :</h5>
@@ -313,15 +335,17 @@ const UpdateProfile = () => {
                         <div className="mb-3">
                             <label className="form-label">Select Working Days:</label>
                             <div>
-                                {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) => (
-                                    <div key={day} className="form-check">
+                                {days.map((day) => (
+                                    <div key={day.day} className="form-check">
                                         <input
                                             type="checkbox"
-                                            value={day}
+                                            name = {day.id}
+                                            value={day.id}
                                             className="form-check-input"
-                                            onChange={handleWorkingDaysChange}
+                                            checked={formData.working_days.includes(day.id)}
+                                            onChange={handleWorkingDaysChange}                                            
                                         />
-                                        <label className="form-check-label">{day}</label>
+                                        <label className="form-check-label">{day.day}</label>
                                     </div>
                                 ))}
                             </div>
@@ -334,18 +358,22 @@ const UpdateProfile = () => {
                                     <label>Start Time</label>
                                     <input
                                         type="time"
+                                        name="start_time"
                                         className="form-control"
                                         placeholder="Start Time"
-                                        onChange={(e) => setWorkingHours({ ...workingHours, start: e.target.value })}
+                                        value={formData.start_time}
+                                        onChange={handelOnChange}
                                     />
                                 </div>
                                 <div className="col-md-6">
                                     <label>End Time</label>
                                     <input
                                         type="time"
+                                        name="end_time"
                                         className="form-control"
                                         placeholder="End Time"
-                                        onChange={(e) => setWorkingHours({ ...workingHours, end: e.target.value })}
+                                        value={formData.end_time}
+                                        onChange={handelOnChange}
                                     />
                                 </div>
                             </div>
@@ -355,10 +383,11 @@ const UpdateProfile = () => {
                             <label className="form-label">Session Duration (minutes):</label>
                             <input
                                 type="number"
+                                name="duration"
                                 className="form-control"
                                 placeholder="Session Duration"
-                                value={sessionTime}
-                                onChange={(e) => setSessionTime(e.target.value)}
+                                value={formData.duration}
+                                onChange={handelOnChange}
                             />
                         </div>
 
@@ -366,14 +395,15 @@ const UpdateProfile = () => {
                             <label className="form-label">Session Price:</label>
                             <input
                                 type="number"
+                                name="price"
                                 className="form-control"
                                 placeholder="Session Price"
-                                value={sessionPrice}
-                                onChange={(e) => setSessionPrice(e.target.value)}
+                                value={formData.price}
+                                onChange={handelOnChange}
                             />
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Save Working Hours</button>
+                        <button type="submit" className="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>

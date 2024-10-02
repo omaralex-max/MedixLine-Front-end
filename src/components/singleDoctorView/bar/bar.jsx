@@ -26,9 +26,7 @@ export default function Bar({doctor}) {
                     <TimeTable/>
                 </div>
                 <div className="tab-pane fade" id="bookNow" role="tabpanel" aria-labelledby="bookNow-tab">
-                    <ChatAppoint  key={doctor.id} doctor={doctor}/>
-                  
-                   
+                    <ChatAppoint  key={doctor.id} doctor={doctor}/>   
                 </div>
             </div>
         </div>

@@ -13,3 +13,9 @@
     ::-webkit-scrollbar-thumb:hover {
     background: lightblue;  
     }
+
+    .chat-messages {
+      overflow-y: auto;
+      height: 50vh;
+      max-height: 60vh; /* adjust the height as per your requirement */
+  }

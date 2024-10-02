@@ -109,9 +109,3 @@
   color: #396cf0 !important;
 }
 
-
-@media (min-width: 1200px) {
-  .bg-hero {
-    margin: 0 370px;
-  }
-}

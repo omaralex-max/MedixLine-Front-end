@@ -47,6 +47,8 @@
   display: flex;
   align-items: center;
   list-style: none;
+  position: relative;
+  bottom: -9px;
 }
 
 .nav-item {
@@ -62,6 +64,20 @@
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
+  position: relative;
+}
+.navnav{
+  color: rgb(27, 26, 26);
+  font-size: 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.navpushing{
+  position: relative;
 }
 
 .helloUser{
@@ -141,9 +157,6 @@
   color: #2c3e50;
 }
 
-.welcomeUser:hover{
-  cursor: pointer;
-}
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
@@ -165,9 +178,9 @@
     transform: translateY(0);
   }
 
-  .nav-item {
-    margin: 20px 0;
-  }
+    .nav-item {
+      margin: 20px 0;
+    }
 
   .menu-icon {
     display: block;
@@ -207,5 +220,38 @@
     display: none;
   }
  
+}
 
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .navhid {
+    display: none;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  .navhid {
+    display: none;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .nav-links {
+    color: black;
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .hidenav {
+    display: none;
+  }
 }
