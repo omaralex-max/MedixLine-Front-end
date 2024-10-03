@@ -18,6 +18,7 @@ function Header (){
             fetch(`http://localhost:8000/api/doctor/search/?department=${department}&doctor=${doctor}`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     const reshapedResults = data.map(result => ({
                         id: result.id,
                         user: {

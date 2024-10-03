@@ -8,14 +8,15 @@ import { useLocation } from "react-router-dom";
 const CardHolder = () => {
   const [doctors, setDoctors] = useState([]);
   const location = useLocation();
-  const { id: specializationId } = location.state;
-  const { title: specializationName } = location.state;
+  const specializationId = location.state?.id;
+  const specializationName = location.state?.title;
 
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/doctor/") 
       .then((response) => {
         setDoctors(response.data);
+        console.log(location)
       })
       .catch((error) => {
         console.error("Error fetching the doctors' data", error);

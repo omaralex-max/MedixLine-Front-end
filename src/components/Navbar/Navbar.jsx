@@ -125,9 +125,9 @@ const handleClickDepartment = (e) => {
             onMouseEnter={() => handleMouseEnter(setHomeDropdown)}
             onMouseLeave={() => handleMouseLeave(setHomeDropdown)}
           >
-            <a href="/" className="navnav">
+            <Link to="/" className="navnav">
               HOME{" "}
-            </a>
+            </Link>
           </li>
 
           <li
@@ -207,7 +207,7 @@ const handleClickDepartment = (e) => {
             <>
               <li className="nav-item">
                 <Link
-                  to="patient-profile"
+                  to= {user.user.role === "patient" ? "/patient-profile" : "/doctorpage"}
                   className="navnav mb-4 welcomeUser pt-4"
                 >
                   {" "}

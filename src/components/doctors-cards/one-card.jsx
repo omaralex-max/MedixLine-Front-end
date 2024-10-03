@@ -6,27 +6,35 @@ import axios from "axios";
 const OneCard = ({ doctor }) => {
   const [days, setDays] = useState([]);
   const token = localStorage.getItem('token');
+  const [workingDays, setWorkingDays] = useState([]);
 
-  const fetchWorkingDays = () => {
-    axios.get('http://127.0.0.1:8000/api/doctor/workingdays', {
-      headers: {
-        'Authorization': `Token ${token}`
-      }
-    })
-    .then(response => {
-      const availableDays = response.data;
-      const booked = availableDays.map(day => ({
-        day: day.day
-      }));
-      setDays(booked);
-    })
-    .catch(error => {
-      console.error("Error fetching days:", error);
+
+
+
+  const fetchWorkingDaysNames = (dayIds) => {
+    if (!Array.isArray(dayIds)) {
+      console.error('working_days is not an array or is undefined');
+      return;
+  }
+    dayIds.forEach((dayId) => {
+        axios.get(`http://127.0.0.1:8000/api/doctor/workingdays/${dayId}`, {
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(response => {
+            const dayName = response.data.day.charAt(0).toUpperCase() + response.data.day.slice(1).toLowerCase();  
+            setWorkingDays(prevDays => [...prevDays, dayName]);  
+        })
+        .catch(error => {
+            console.error(`Error fetching details for day ${dayId}:`, error);
+        });
     });
-  };
+};
 
   useEffect(() => {
-    fetchWorkingDays();
+    console.log(doctor)
+    fetchWorkingDaysNames(doctor.working_days);
   }, []);
 
   const filledStars = Math.round(doctor.average_rating);
@@ -78,7 +86,7 @@ const OneCard = ({ doctor }) => {
                   <small className="text-muted ms-2">{doctor.address}</small>
                 </li>
 
-                {days.length > 0 && (
+                {workingDays.length > 0 && (
                   <li className="d-flex ms-0 mt-2">
                     <svg
                       stroke="currentColor"
@@ -93,8 +101,8 @@ const OneCard = ({ doctor }) => {
                       <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM13 12H17V14H11V7H13V12Z" />
                     </svg>
                     <small className="text-muted ms-2">
-                      Available Days: {days.map((slot, index) => (
-                        <span key={index}>{slot.day}{index < days.length - 1 ? ', ' : ''}</span>
+                      Available Days: {workingDays.map((day, index) => (
+                        <span key={day}>{day}{index < workingDays.length - 1 ? ', ' : ''}</span>
                       ))}
                     </small>
                   </li>
