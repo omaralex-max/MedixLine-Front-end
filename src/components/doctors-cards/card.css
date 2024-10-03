@@ -34,3 +34,24 @@
 .Dtext{
   text-decoration: none;
 }
+
+.text-star-filled-cards{
+    color: rgb(70, 106, 214);
+
+}
+
+.team .team-person img {
+  padding: 20px 20px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  transition: all .5s;
+}
+
+.team .team-person img:hover {
+  transform: scale(1.1);
+}
+.customCardEachDoctor{
+  border: none !important;
+  box-shadow: none !important; 
+}

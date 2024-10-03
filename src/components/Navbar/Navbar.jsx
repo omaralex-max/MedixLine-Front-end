@@ -15,7 +15,7 @@ const Navbar = () => {
 
   
   const handleClickAbout = (e) => {
-  
+    e.preventDefault()
     navigate("/");
     setTimeout(() => {
         const element = document.getElementById("searchContainerId");
@@ -26,6 +26,7 @@ const Navbar = () => {
 };
 
 const handleClickDepartment = (e) => {
+  e.preventDefault()
   
   navigate("/");
   setTimeout(() => {
