@@ -46,6 +46,8 @@ const Signin = () => {
           setSuccessMessage("Logged in successfully!");
           setErrorMessage("");
           localStorage.setItem('token', data.token);
+          localStorage.setItem('patient_id', data.user.id);
+          // console.log(data)
   
           axios
             .get('http://127.0.0.1:8000/api/auth/detail/', {

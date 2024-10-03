@@ -13,7 +13,7 @@ export default function Bar({doctor}) {
             <NavBarTabTitle/>
             <div className="tab-content mt-2" id="myTabContent">
                 <div className="tab-pane fade show active ms-3" id="experience" role="tabpanel" aria-labelledby="experience-tab">
-                    <OverViewAppt key={doctor.id} doctor={doctor}/>
+                    <OverViewAppt key={doctor.  id} doctor={doctor}/>
                 </div>
                 <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                     <div className="eachPatientReview mb-2">

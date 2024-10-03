@@ -39,6 +39,7 @@ export default function SingleDoctorView()
                 <HeaderDocPat  doctor={doctor} />
                 <Bar doctor={doctor} />
                 <FetchPatients onFetch={handleFetchPatients} />
+                <CommentsAndRatingsList doctor={doctor} patientsData={patientsData} />
             </>
         ) : (
             <Loading/>
