@@ -16,7 +16,7 @@ const CardHolder = () => {
       .get("http://127.0.0.1:8000/api/doctor/") 
       .then((response) => {
         setDoctors(response.data);
-        console.log(location)
+        console.log(doctors)
       })
       .catch((error) => {
         console.error("Error fetching the doctors' data", error);
@@ -44,7 +44,8 @@ const CardHolder = () => {
           <div className="container">
             <div className="row align-items-center">
               {doctors
-                  .filter((doctor) => doctor.specialization === specializationId)
+                  .filter((doctor) => doctor.specialization === specializationId &&
+                doctor.is_confirmed == true)
                   .map((doctor) => (
                     <OneCard key={doctor.id} doctor={doctor} />
                 ))}
