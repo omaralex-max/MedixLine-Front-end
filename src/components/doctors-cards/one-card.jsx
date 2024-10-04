@@ -33,7 +33,6 @@ const OneCard = ({ doctor }) => {
 };
 
   useEffect(() => {
-    console.log(doctor)
     fetchWorkingDaysNames(doctor.working_days);
   }, []);
 

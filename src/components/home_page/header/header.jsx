@@ -18,7 +18,6 @@ function Header (){
             fetch(`http://localhost:8000/api/doctor/search/?department=${department}&doctor=${doctor}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
                     const reshapedResults = data.map(result => ({
                         id: result.id,
                         user: {
@@ -29,6 +28,8 @@ function Header (){
                         address: result.address,
                         price: result.price,
                         is_confirmed: result.is_confirmed,
+                        average_rating: result.average_rating,
+                        working_days: result.working_days
                     }));
                     navigate("/search", { state: { searchResults: reshapedResults } });
                 })
