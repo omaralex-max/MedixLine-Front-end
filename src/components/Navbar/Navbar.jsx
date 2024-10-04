@@ -10,7 +10,7 @@ const Navbar = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const navigate=useNavigate()
 
   
@@ -41,6 +41,7 @@ const handleClickDepartment = (e) => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
+      console.log(user.user.role)
     }
   }, []);
   const handelLogout = (e) => {

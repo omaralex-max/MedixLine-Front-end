@@ -20,7 +20,7 @@ export default function Router() {
                       <Route path="/signup" element={<Signup />} />
                       <Route path="/" element={<Home />} />
                       <Route path="/patient-profile" element={<PatientProfile />} />
-                      <Route path="/doctorpage" element={<DoctorPage />} />
+                      <Route path="/doctorpage/*" element={<DoctorPage />} />
                       <Route path="/doctorcard" element={<DoctorsCard />} />
                       <Route path="/doctordetails/:id" element={<SingleDoctorView />} />
                       <Route path="/search" element={<Search />} />

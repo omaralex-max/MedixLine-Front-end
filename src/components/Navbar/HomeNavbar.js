@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/icons/logo1.png";
+import male from "../../assets/images/patient-male.png";
+import female from "../../assets/images/girl.png";
 import profile from "../../assets/images/patient-male.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -184,14 +186,14 @@ const Navbar = () => {
           <span className="settings-icon d-none">
             <i className="fas fa-cog"></i>
           </span>
-          <img src={profile} alt="Profile" className="profile-icon" />
+          <img src={user && user.gender === "female"? female : user && user.gender === "male" ? male : male} alt="Profile" className="profile-icon" />
           {user === null ? (
             <></>
           ) : (
             <>
               <li className="nav-item">
                 <Link
-                  to="patient-profile"
+                  to= {user.user.role === "patient" ? "/patient-profile" : "/doctorpage"}
                   className="nav-links mb-4 welcomeUser pt-4"
                 >
                   {" "}
