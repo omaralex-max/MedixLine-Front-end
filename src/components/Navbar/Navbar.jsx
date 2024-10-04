@@ -3,7 +3,7 @@ import "./Navbar.css";
 import logo from "../../assets/icons/logo1.png";
 import profile from "../../assets/images/patient-male.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,31 @@ const Navbar = () => {
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate=useNavigate()
+
+  
+  const handleClickAbout = (e) => {
+    e.preventDefault()
+    navigate("/");
+    setTimeout(() => {
+        const element = document.getElementById("searchContainerId");
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 0);
+};
+
+const handleClickDepartment = (e) => {
+  e.preventDefault()
+  
+  navigate("/");
+  setTimeout(() => {
+      const element = document.getElementById("aboutId");
+      if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+      }
+  }, 0);
+};
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -100,9 +125,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setHomeDropdown)}
             onMouseLeave={() => handleMouseLeave(setHomeDropdown)}
           >
-            <a href="/" className="navnav">
+            <Link to="/" className="navnav">
               HOME{" "}
-            </a>
+            </Link>
           </li>
 
           <li
@@ -110,7 +135,7 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setDoctorsDropdown)}
             onMouseLeave={() => handleMouseLeave(setDoctorsDropdown)}
           >
-            <a href="/#aboutId" className="navnav">
+            <a href="#" className="navnav" onClick={handleClickDepartment}>
               DEPARTMENTS
             </a>
           </li>
@@ -120,7 +145,7 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="/#searchContainerId" className="navnav">
+            <a href="#" className="navnav" onClick={handleClickAbout}>
               ABOUT{" "}
             </a>
           </li>
@@ -182,7 +207,7 @@ const Navbar = () => {
             <>
               <li className="nav-item">
                 <Link
-                  to="patient-profile"
+                  to= {user.user.role === "patient" ? "/patient-profile" : "/doctorpage"}
                   className="navnav mb-4 welcomeUser pt-4"
                 >
                   {" "}

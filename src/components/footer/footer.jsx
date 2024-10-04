@@ -1,13 +1,26 @@
 import "./footer.css";
 import Logo from "../../assets/icons/mm.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 
 const Footer = () => {
   const [specializations, setspecializations] = useState([])
+  const navigate=useNavigate()
+
+
+  const handleClickAbout = (e) => {
+    e.preventDefault()
+    navigate("/");
+    setTimeout(() => {
+        const element = document.getElementById("searchContainerId");
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 0);
+};
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
@@ -50,7 +63,9 @@ const Footer = () => {
           <div className="col footer-col footerLinks">
             <h3>MedixLine</h3>
             <div className="links ">
-              <a href="#categoryHomeId">About us</a>
+            <a href="#" className="navnav" onClick={handleClickAbout}>
+              About us{" "}
+            </a>
               <Link to="/signin">Login</Link>       
             </div>
           </div>
@@ -59,10 +74,14 @@ const Footer = () => {
             <div className="links ">
               {
             specializations.map(specialization => (
-                <a href="#" key={specialization.id} >
+                <Link to={{
+                  pathname: "/doctorcard"
+                }} 
+                state={{ id: specialization.id, title: specialization.title }} 
+                key={specialization.id} >
                     {specialization.title}
       
-                </a>
+                </Link>
             ))
           }
             </div>
