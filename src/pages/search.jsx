@@ -22,10 +22,11 @@ function Search() {
 
                                             <h2>Search Results</h2>
                                             <ul>
-                                            {searchResults.map(result => (
-                                                <OneCard key={result.id} doctor={result} className="search-results" />
-                                            ))}
-
+                                                {searchResults.map(result => (
+                                                    result.is_confirmed && (
+                                                        <OneCard key={result.id} doctor={result} className="search-results" />
+                                                    )
+                                                ))}
                                             </ul>
                                         </div>
                                     )}
