@@ -51,7 +51,7 @@ export default function HeaderDocPat({doctor}){
                     <div className="text-center text-md-start">
                         <p className="text-secondary d-none d-md-block">Today's Date: {currentDate}</p>
                     <h1 className="doctorNamePat text-primary">Dr. {doctor.user.first_name} {doctor.user.last_name}</h1>
-                        <p className="fw-3 fs-3"> Price: {doctor.price} $</p>
+                        <p className="fw-3 fs-3"> Price: {doctor.price} EGP</p>
                         <div className="fw-3 fs-3"> 
                         {specialization ? (
                             <p className="fw-3 fs-3">Specialization: {specialization.title}</p>

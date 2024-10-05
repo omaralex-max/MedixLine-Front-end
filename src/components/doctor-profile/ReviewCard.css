@@ -6,7 +6,8 @@
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  width: 150px;
+  width: 200px;
+  height:200px;
   transition: transform 0.2s;
 }
 
@@ -31,7 +32,7 @@
 .review-name {
   color: #007bff;
   font-weight: 600;
-  font-size: 0.7em;
+  font-size: 2em;
   margin-right: 5px;
 }
 
@@ -43,11 +44,11 @@
 .review-comment {
   font-style: italic;
   margin: 5px 0;
-  font-size: 0.7em;
+  font-size: 1.2em;
   color: gray;
 }
 
 .stars {
-  color: #fbc02d;
+  color:  rgb(57, 73, 121);
   font-size: 0.85em;
 }
