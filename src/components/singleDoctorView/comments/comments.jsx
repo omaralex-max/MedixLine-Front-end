@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./comments.css"
+
 export default function CommentComponent({ doctor }) {
     const user = JSON.parse(localStorage.getItem('user'));
     const [newComment, setNewComment] = useState("");
@@ -31,6 +32,10 @@ export default function CommentComponent({ doctor }) {
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
+        if (!user) {
+            alert("Please login to comment");
+            return;
+        }
         if (!newComment) return;
         if (hasCommented) {
             alert("You have already commented on this doctor.");

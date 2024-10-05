@@ -18,9 +18,6 @@ const OneCard = ({ doctor }) => {
   }
     dayIds.forEach((dayId) => {
         axios.get(`http://127.0.0.1:8000/api/doctor/workingdays/${dayId}`, {
-            headers: {
-                'Authorization': `Token ${token}`
-            }
         })
         .then(response => {
             const dayName = response.data.day.charAt(0).toUpperCase() + response.data.day.slice(1).toLowerCase();  

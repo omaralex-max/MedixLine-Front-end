@@ -17,9 +17,6 @@ const TimeTable = () => {
 
     const fetchBookedSlots = () => {
         axios.get('http://127.0.0.1:8000/api/appointment/all', {
-            headers: {
-                'Authorization': `Token ${token}`
-            }
         })
         .then(response => {
             const appointments = response.data;
@@ -40,9 +37,6 @@ const TimeTable = () => {
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/doctor/${id}`, {
-            headers: {
-                'Authorization': `Token ${token}`
-            }
         })
         .then(response => {
             const doctorData = response.data;
@@ -64,9 +58,6 @@ const TimeTable = () => {
     const fetchWorkingDaysNames = (dayIds) => {
         dayIds.forEach((dayId) => {
             axios.get(`http://127.0.0.1:8000/api/doctor/workingdays/${dayId}`, {
-                headers: {
-                    'Authorization': `Token ${token}`
-                }
             })
             .then(response => {
                 const dayName = response.data.day.charAt(0).toUpperCase() + response.data.day.slice(1).toLowerCase();  
@@ -103,7 +94,12 @@ const TimeTable = () => {
     const handleBookSlot = () => {
         const { day, time } = selectedSlot;
         const patientId = localStorage.getItem('patient_id');
-        const token = localStorage.getItem('token'); 
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            alert('You need to sign in first to book an appointment.');
+            return;
+        }
     
         if (day && time && patientId) {
             const appointmentDate = moment().day(day).format('YYYY-MM-DD');

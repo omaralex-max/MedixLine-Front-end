@@ -3,7 +3,6 @@ import "./Navbar.css";
 import logo from "../../assets/icons/logo1.png";
 import male from "../../assets/images/patient-male.png";
 import female from "../../assets/images/girl.png";
-import profile from "../../assets/images/patient-male.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

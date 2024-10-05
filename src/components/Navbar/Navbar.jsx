@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../../assets/icons/logo1.png";
-import profile from "../../assets/images/patient-male.png";
+import male from "../../assets/images/patient-male.png";
+import female from "../../assets/images/girl.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -201,7 +202,7 @@ const handleClickDepartment = (e) => {
           <span className="settings-icon d-none">
             <i className="fas fa-cog"></i>
           </span>
-          <img src={profile} alt="Profile" className="profile-icon" />
+          <img src={user && user.gender === "female"? female : user && user.gender === "male" ? male : male} alt="Profile" className="profile-icon" />
           {user === null ? (
             <></>
           ) : (

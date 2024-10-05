@@ -41,7 +41,12 @@ export default function Reviews({ doctor }) {
         setValue(newValue);
     };
 
-    const submitRating = async () => {
+    const submitRating = async (e) => {
+        e.preventDefault();
+        if (!(localStorage.getItem('token'))) {
+            alert("Please login to rate a doctor");
+            return;
+        }
         try {
             const url = existingRatingId 
                 ? `http://127.0.0.1:8000/api/doctor/ratings/${existingRatingId}/` 

@@ -25,9 +25,6 @@ export default function HeaderDocPat({doctor}){
     const fetchRatings = async () => {
         try {
             const response = await axios.get(`http://127.0.0.1:8000/api/doctor/ratings/`, {
-                headers: {
-                    'Authorization': `Token ${localStorage.getItem('token')}`
-                }
             });
             const ratingList = response.data.filter(r => r.doctor === doctor.id );
             // console.log(ratingList)

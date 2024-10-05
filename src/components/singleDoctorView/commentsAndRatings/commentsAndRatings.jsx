@@ -69,7 +69,10 @@ export default function CommentsAndRatingsList({ doctor, patientsData }) {
     return (
         <div className="comments-and-ratings mt-5 ">
         <h3>Ratings</h3>
-        <ul className="list-group">
+        {allRatings.length === 0 ? (
+            <p>No ratings yet.</p>
+        ): (
+            <ul className="list-group">
             {allRatings.map((rating, index) => (
                 <li key={index} className="list-group-item">
                     <div className="rating-header">
@@ -87,6 +90,8 @@ export default function CommentsAndRatingsList({ doctor, patientsData }) {
                 </li>
             ))}
         </ul>
+
+        )}
     </div>
     );
 }
