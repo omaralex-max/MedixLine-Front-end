@@ -111,7 +111,7 @@ const PatientProfileSetting = () => {
   const handelOnChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
+      [e.target.name]: e.target.value
     });
 };
 
@@ -147,19 +147,6 @@ const PatientProfileSetting = () => {
                     className="form-control"
                     placeholder="Last Name :"
                     value={formData.last_name}
-                    onChange={handelOnChange}
-                  />
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="mb-3">
-                  <label className="form-label">Your Email</label>
-                  <input
-                    name="email"
-                    type="email"
-                    className="form-control"
-                    placeholder="Your email :"
-                    value={formData.email}
                     onChange={handelOnChange}
                   />
                 </div>

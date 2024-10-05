@@ -71,7 +71,7 @@ const UpdateProfile = () => {
     const handelOnChange = (e) => {
         setFormData({
           ...formData,
-          [e.target.name]: e.target.value !== "" ? e.target.value : formData[e.target.name]
+          [e.target.name]: e.target.value
         });
     };
 
@@ -252,21 +252,9 @@ const UpdateProfile = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="row">
-                        <div className="col-md-6">
-                            <div className="mb-3">
-                                <label className="form-label">Your Email</label>
-                                <input
-                                    name="email"
-                                    id="email"
-                                    type="email"
-                                    className="form-control"
-                                    placeholder="Your email :"
-                                    value={formData.email}
-                                    onChange={handelOnChange}
-                                />
-                            </div>
-                        </div>
+                        
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label className="form-label">Phone no.</label>
@@ -292,7 +280,7 @@ const UpdateProfile = () => {
                                     placeholder="Address :"
                                     value={formData.address}
                                     onChange={handelOnChange}
-                                />comments
+                                />
                             </div>
                         </div>                        
                     </div>

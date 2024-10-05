@@ -196,7 +196,7 @@ const Navbar = () => {
                   className="nav-links mb-4 welcomeUser pt-4"
                 >
                   {" "}
-                  Welcome, {user.user.first_name}
+                  Welcome, {user.user.role === "doctor" ? `Dr. ${user.user.first_name}`: user.user.first_name}
                 </Link>
               </li>
             </>
