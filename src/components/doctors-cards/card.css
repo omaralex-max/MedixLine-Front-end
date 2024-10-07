@@ -1,15 +1,31 @@
 .card-bg-half-150 {
   padding: 90px 0;
 }
-.Dbold{
+
+.Dbold {
   font-weight: 700;
 }
-.team .team-person img {
-  transition: all .5s;
+
+.team .team-person {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
 }
+
+.team .team-person img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
 .team .team-person img:hover {
   transform: scale(1.1);
 }
+
 .btn.btn-icon {
   align-items: center;
   display: inline-flex;
@@ -18,40 +34,32 @@
   padding: 0;
   width: 36px;
 }
+
 .btn.btn-pills {
   border-radius: 30px;
 }
+
 .card-social {
   background-color: #396cf01a !important;
   border: 1px solid #396cf01a !important;
   box-shadow: 0 3px 5px 0 #396cf04d;
   color: #396cf0 !important;
 }
+
 .card-social:hover {
   background-color: #396cf0 !important;
   color: #ffffff !important;
 }
-.Dtext{
+
+.Dtext {
   text-decoration: none;
 }
 
-.text-star-filled-cards{
-    color: rgb(70, 106, 214);
-
+.text-star-filled-cards {
+  color: rgb(70, 106, 214);
 }
 
-.team .team-person img {
-  padding: 20px 20px;
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  transition: all .5s;
-}
-
-.team .team-person img:hover {
-  transform: scale(1.1);
-}
-.customCardEachDoctor{
+.customCardEachDoctor {
   border: none !important;
-  box-shadow: none !important; 
+  box-shadow: none !important;
 }
