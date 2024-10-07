@@ -20,7 +20,7 @@ const Chat = ({ doctorId }) => {
             setLoading(true);
             setError('');
             try {
-                const response = await axios.get(`${baseURL}patient/`, {
+                const response = await axios.get(`${baseURL}chat/my-inbox/${user.user.id}/`, {
                     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
                 });
                 setPatients(response.data);
@@ -31,7 +31,7 @@ const Chat = ({ doctorId }) => {
             }
         };
         fetchPatients();
-    }, []);
+    }, [doctorId]);
 
     // Fetch messages when a patient is selected
     useEffect(() => {
@@ -40,7 +40,7 @@ const Chat = ({ doctorId }) => {
                 setLoading(true);
                 setError('');
                 try {
-                    const response = await axios.get(`${baseURL}chat/messages/${user.user.id}/${selectedPatient.user.id}`, {
+                    const response = await axios.get(`${baseURL}chat/messages/${user.user.id}/${selectedPatient.id}`, {
                         headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
                     });
                     setMessages(response.data);
@@ -106,13 +106,13 @@ const Chat = ({ doctorId }) => {
                                                 <img
                                                     src="https://bootdey.com/img/Content/avatar/avatar3.png"
                                                     className="rounded-circle mr-1"
-                                                    alt={`${patient.user.first_name}`}
+                                                    alt={`${patient.first_name}`}
                                                     width={40}
                                                     height={40}
                                                 />
                                                 <div className="flex-grow-1 ml-3">
-                                                    {patient.user.first_name} {patient.user.last_name}
-                                                    <div className="small">{patient.user.is_active ? 'Online' : 'Offline'}</div>
+                                                    {patient.first_name} {patient.last_name}
+                                                    <div className="small">{patient.is_active ? 'Online' : 'Offline'}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,18 +126,18 @@ const Chat = ({ doctorId }) => {
                                 <div className="py-2 px-4 border-bottom d-none d-lg-block">
                                     {selectedPatient ? (
                                         <div className="d-flex align-items-center py-1">
-                                            <img
+                                            {/* <img
                                                 src={selectedPatient?.user.profile_picture}
                                                 className="rounded-circle mr-1"
                                                 alt={`${selectedPatient?.user.first_name} Avatar`}
                                                 width={40}
                                                 height={40}
-                                            />
+                                            /> */}
 
                                             <div className="flex-grow-1 pl-3">
-                                                <strong>{selectedPatient.user.first_name} {selectedPatient.user.last_name}</strong>
+                                                <strong>{selectedPatient.first_name} {selectedPatient.last_name}</strong>
                                                 <div className="text-muted small">
-                                                    <em>{selectedPatient.user.is_active ? 'Online' : 'Offline'}</em>
+                                                    <em>{selectedPatient.is_active ? 'Online' : 'Offline'}</em>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@ const Chat = ({ doctorId }) => {
                                     {messages.map(message => (
                                         <div key={message.id} className={`chat-message-${message.sender !== user.user.id ? 'right' : 'left'} pb-4`}>
                                             <div>
-                                                <strong>{message.sender === user.user.id ? 'You' : `${selectedPatient.user.first_name}`}</strong>
+                                                <strong>{message.sender === user.user.id ? 'You' : `${selectedPatient.first_name}`}</strong>
                                                 <div className="text-muted small mt-2">{message.date}</div>
                                             </div>
                                             <div className="bg-light rounded py-2 px-3 mr-3">

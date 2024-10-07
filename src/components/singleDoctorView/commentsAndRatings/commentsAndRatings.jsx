@@ -8,10 +8,9 @@ export default function CommentsAndRatingsList({ doctor, patientsData }) {
 
     const getPatientNameById = (patientId) => {
         const patient = patientsData.find(p => p.id === patientId);
-        return patient ? `${patient.user.first_name} ${patient.user.last_name}` : "";
+        return patient ? `${patient.user.first_name} ${patient.user.last_name}` : "Anonymous";
         
     };
-   
     useEffect(() => {
         const fetchRatingAndComments = async () => {
             try {
