@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./sign.css";
 import { Link } from "react-router-dom";
+import { FaLock } from "react-icons/fa";
+import { MdOutlineDateRange } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
+import { FaPhone } from "react-icons/fa6";
+import { FaAddressCard } from "react-icons/fa6";
+import { FaUserInjured } from "react-icons/fa";
+
 
 const PatientForm = ({ activeForm, onSwitchForm }) => {
 
@@ -81,169 +88,171 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
 
 
   return (
-    <div className="wrapper">
-      <div className="title">Sign Up</div>
-      <button
-        onClick={() => onSwitchForm("patient")}
-        className={`switch ${activeForm === "patient" ? "active" : ""}`}
-      >
-        Patient
-      </button>
-      <button
-        onClick={() => onSwitchForm("doctor")}
-        className={`switch ${activeForm === "doctor" ? "active" : ""}`}
-      >
-        Doctor
-      </button>
-      {activeForm === "patient" && (
-        <form className="form" onSubmit={handleSubmit}>
-
-        <div className="inputfield">
-          <label>First Name</label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Last Name</label>
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>User Name</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Date of Birth</label>
-          <input
-            type="date"
-            name="date_of_birth"
-            value={formData.date_of_birth}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Gender</label>
-          <div className="custom_select">
-            <select
-              name="gender"
-              value={formData.gender}
+    <div className="signuphoder">
+      <div className="wrapper">
+        <div className="title">Sign Up</div>
+        <button
+          onClick={() => onSwitchForm("patient")}
+          className={`switch ${activeForm === "patient" ? "active" : ""}`}
+        >
+          Patient
+        </button>
+        <button
+          onClick={() => onSwitchForm("doctor")}
+          className={`switch ${activeForm === "doctor" ? "active" : ""}`}
+        >
+          Doctor
+        </button>
+        {activeForm === "patient" && (
+          <form className="form" onSubmit={handleSubmit}>
+      
+          <div className="inputfield">
+            <label><FaUserInjured />First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
               onChange={handleChange}
+              className="input"
               required
-            >
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            />
           </div>
-        </div>
-
-        <div className="inputfield">
-          <label>Email Address</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Phone Number</label>
-          <input
-            type="text"
-            name="phone_number"
-            value={formData.phone_number}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Address</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield terms">
-          <label className="check">
-            <input type="checkbox" required />
-            <span className="checkmark" />
-          </label>
-          <span>Agreed to terms and conditions</span>
-        </div>
-
-        <div className="inputfield">
-          <input type="submit" value="Register" className="btn" />
-        </div>
-        <div>
-            <label>Already have an account ?</label>{" "}
-            <Link to="/signin" className="signin">
-              Sign in
-            </Link>
+      
+          <div className="inputfield">
+            <label><FaUserInjured />Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              className="input"
+              required
+            />
           </div>
-        
-        {successMessage && <p>{successMessage}</p>}
-        {errorMessage && <p>{errorMessage}</p>}
-      </form>
-      )}
+      
+          <div className="inputfield">
+            <label><FaUserInjured />User Name</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label><MdOutlineDateRange />Date of Birth</label>
+            <input
+              type="date"
+              name="date_of_birth"
+              value={formData.date_of_birth}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label><FaLock />Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label><FaLock />Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label>Gender</label>
+            <div className="custom_select">
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+      
+          <div className="inputfield">
+            <label><MdEmail />Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label><FaPhone />Phone Number</label>
+            <input
+              type="text"
+              name="phone_number"
+              value={formData.phone_number}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield">
+            <label><FaAddressCard />Address</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+      
+          <div className="inputfield terms">
+            <label className="check">
+              <input type="checkbox" required />
+              <span className="checkmark" />
+            </label>
+            <span>Agreed to terms and conditions</span>
+          </div>
+      
+          <div className="inputfield">
+            <input type="submit" value="Register" className="btn" />
+          </div>
+          <div>
+              <label>Already have an account ?</label>{" "}
+              <Link to="/signin" className="signin">
+                Sign in
+              </Link>
+            </div>
+          
+          {successMessage && <p>{successMessage}</p>}
+          {errorMessage && <p>{errorMessage}</p>}
+        </form>
+        )}
+      </div>
     </div>
   );
 };

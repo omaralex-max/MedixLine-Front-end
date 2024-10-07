@@ -5,32 +5,45 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-}
-.signbody{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
+  
 }
 
-.push{
-  position: relative;
-  bottom: -170px;
-}
 .wrapper {
   max-width: 500px;
   width: 100%;
   background: #fff;
   margin: 20px auto;
   padding: 30px;
-  box-shadow: 2px 2px 4px #757575;
   border-radius: 10px;
+  background-color: rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
+}
+.wrapper input, select {
+  background-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
+  color: white;
+}
+
+.signuphoder {
+  display: flex;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/Home_cover_image.22cc4dad9468ef5c2638.jpg");
+}
+.signhoder{
+  display: flex;
+  padding: 170px 0px;
+  background-image: url("../../assets/images/Home_cover_image.22cc4dad9468ef5c2638.jpg");
 }
 .forgot {
   margin-left: 130px;
   text-decoration: none;
-  color: black;
+  color: #ebf0fd;
 }
 
 .wrapper .title {
@@ -38,6 +51,7 @@
   font-weight: 700;
   margin-bottom: 25px;
   text-align: center;
+  color: #ebf0fd;
 }
 
 .wrapper .form {
@@ -48,19 +62,20 @@
   margin-bottom: 15px;
   display: flex;
   align-items: center;
+  color: #ebf0fd;
 }
 
 .wrapper .form .inputfield label {
   width: 200px;
-  color: #757575;
+  color: #ebf0fd;
   margin-right: 10px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .wrapper .form .inputfield .input {
   width: 100%;
   outline: none;
-  border: 1px solid #d5dbd9;
   font-size: 15px;
   padding: 8px 10px;
   border-radius: 5px;
@@ -157,13 +172,14 @@
   width: 100%;
   padding: 8px 10px;
   font-size: 15px;
-  border: 0px;
-  background: #009efa;
-  box-shadow: 0 4px 3px rgba(0, 158, 250, 0.5);
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
   outline: none;
+  background-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
 }
 
 .wrapper .form .inputfield .btn:hover {
@@ -204,9 +220,10 @@
   padding: 10px 60px;
   margin: 5px 18px 30px 18px;
   border-radius: 5px;
-  border: 0px;
-  background: #007bff;
-  box-shadow: 0 4px 3px #007bff6b;
+  background-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
 }
 .switch:hover {
   background: #007bff6b;
@@ -218,18 +235,20 @@
 }
 .signin {
   text-decoration: none;
+  color: #ebf0fd;
 }
 
 .social {
-  padding: 10px 50px 10px 50px;
+  padding: 10px 44px 10px 50px;
   margin: 15px 30px 50px 10px;
   border-radius: 5px;
-  border: 0px;
-  color: #009efa;
-  background: #ebf0fd;
-  box-shadow: 0 4px 3px #007bff6b;
+  color: #ebf0fd;
   font-size: large;
   font-weight: 600;
+  background-color: rgba(255, 255, 255, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(50px);
 }
 .social:active {
   transform: translateY(4px);

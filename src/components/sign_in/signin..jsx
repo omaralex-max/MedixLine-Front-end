@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import { FaUserAlt } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 
 const Signin = () => {
 
@@ -77,72 +78,74 @@ const Signin = () => {
 
 
   return (
-    <div className="wrapper push">
-
-      <div className="title">Sign In</div>
-
-        <form className="form" onSubmit={handleSubmit}>   
-
-        <div className="inputfield">
-          <label>User Name</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-        <div className="inputfield">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
-
-          <div className="inputfield terms">
-            <label className="check">
-              <input type="checkbox" />
-              <span className="checkmark" />
-            </label>
-            <span>Remember me</span>
-            <a href="#" className="forgot">Forgot password ?</a>
-          </div>
-
+    <div className="signhoder">
+      <div className="wrapper">
+      
+        <div className="title">Sign In</div>
+      
+          <form className="form" onSubmit={handleSubmit}>   
+      
           <div className="inputfield">
-            <input type="submit" value="Sign In" className="btn" />
+            <label><FaUserAlt />User Name</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="input"
+              required
+            />
           </div>
-
-          <div className="or">
-            <p>Or</p>
+      
+          <div className="inputfield">
+            <label><FaLock />Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="input"
+              required
+            />
           </div>
-
-          <div className="out-social">
-            <a href="#">
-              <button className="social fac">Facebook</button>
-            </a>
-            <a href="#">
-              <button className="social goo">Google</button>
-            </a>
-          </div>
-
-          <div>
-            <label>Don't have an account ?</label>{" "}
-            <Link to="/signup" className="signin">
-              Sign up
-            </Link>
-          </div>
-
-          {successMessage && <p>{successMessage}</p>}
-          {errorMessage && <p>{errorMessage}</p>}
-        </form>
+      
+            <div className="inputfield terms">
+              <label className="check">
+                <input type="checkbox" />
+                <span className="checkmark" />
+              </label>
+              <span>Remember me</span>
+              <a href="#" className="forgot">Forgot password ?</a>
+            </div>
+      
+            <div className="inputfield">
+              <input type="submit" value="Sign In" className="btn" />
+            </div>
+      
+            <div className="or">
+              <p>Or</p>
+            </div>
+      
+            <div className="out-social">
+              <a href="#">
+                <button className="social fac">Facebook</button>
+              </a>
+              <a href="#">
+                <button className="social goo">Google</button>
+              </a>
+            </div>
+      
+            <div>
+              <label>Don't have an account ?</label>{" "}
+              <Link to="/signup" className="signin">
+                Sign up
+              </Link>
+            </div>
+      
+            {successMessage && <p>{successMessage}</p>}
+            {errorMessage && <p>{errorMessage}</p>}
+          </form>
+      </div>
     </div>
   );
 }

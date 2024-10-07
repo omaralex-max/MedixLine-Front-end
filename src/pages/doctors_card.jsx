@@ -1,6 +1,7 @@
 import CardHolder from "../components/doctors-cards/card-holder";
 import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/footer/footer";
+import Scrolling from "../components/scrolling-up/scrolling"
 
 const DoctorsCard = () => {
   return (
@@ -8,6 +9,7 @@ const DoctorsCard = () => {
       <Nav/>
       <CardHolder />
       <Footer/>
+      <Scrolling />
     </>
   );
 }

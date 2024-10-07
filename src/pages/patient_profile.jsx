@@ -6,6 +6,7 @@ import ProfileSetting from "../components/patient_profile/patient-profile-settin
 import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/footer/footer";
 import { useState } from "react";
+import Scrolling from "../components/scrolling-up/scrolling"
 
 const PatientProfile = () => {
 
@@ -153,6 +154,7 @@ const PatientProfile = () => {
         </div>
       </section>
       <Footer/>
+      <Scrolling />
     </>
   );
 };
