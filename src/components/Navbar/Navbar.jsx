@@ -152,6 +152,16 @@ const handleClickDepartment = (e) => {
             </a>
           </li>
 
+          <li
+            className="nav-item"
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <Link to="/inbox" className="navnav">
+              INBOX{" "}
+            </Link>
+            </li>
+
           {user === null ? (
             <>
               <li className="nav-item navhid">

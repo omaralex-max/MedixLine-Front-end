@@ -32,9 +32,6 @@ export default function FetchPatients({ onFetch }) {
         }
     }, [user, onFetch, fetched]); 
 
-    if (loadingPatients) {
-        return <div>Loading patients...</div>;
-    }
 
     if (error) {
         return <div>{error}</div>;

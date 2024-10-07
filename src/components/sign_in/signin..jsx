@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -16,6 +16,13 @@ const Signin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      navigate("/");
+      }
+  }, [navigate])
 
   const handleChange = (e) => {
     setFormData({
@@ -66,14 +73,14 @@ const Signin = () => {
               }
             })
             .catch((error) => {
-              setErrorMessage("Error: " + error.message);
+              setErrorMessage(error.message);
             });
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          setErrorMessage(data.message);
         }
       })
       .catch((error) => {
-        setErrorMessage("Error: " + error.message);
+        setErrorMessage(error.message);
       });
   };
 
@@ -122,6 +129,9 @@ const Signin = () => {
             <input type="submit" value="Sign In" className="btn" />
           </div>
 
+          {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+
           <div className="or">
             <p>Or</p>
           </div>
@@ -143,7 +153,6 @@ const Signin = () => {
           </div>
 
           {successMessage && <p>{successMessage}</p>}
-          {errorMessage && <p>{errorMessage}</p>}
         </form>
     </div>
   );

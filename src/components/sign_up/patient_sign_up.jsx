@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./sign.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PatientForm = ({ activeForm, onSwitchForm }) => {
 
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -18,10 +19,16 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
     address: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
 
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      navigate("/");
+      }
+  }, [navigate])
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -66,16 +73,33 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         if (data.id) {
-          setSuccessMessage("Patient registered successfully!");
+          alert("Registered successfully!, Please check your email inbox to activate your account");
           setErrorMessage("");
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          if (data.user) {
+            setErrorMessage(extractFirstErrorMessage(data.user))
+          }
+          else {
+            setErrorMessage(extractFirstErrorMessage(data));
+          }
         }
       })
       .catch((error) => {
         setErrorMessage("Error: " + error.message);
       });
+  };
+
+  const extractFirstErrorMessage = (errorData) => {
+    for (let field in errorData) {
+      if (errorData[field] && errorData[field].length > 0) {
+        
+        return errorData[field][0];
+      }
+    }
+   
+    return "An unknown error occurred.";
   };
 
 
@@ -240,8 +264,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
             </Link>
           </div>
         
-        {successMessage && <p>{successMessage}</p>}
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
       </form>
       )}
     </div>

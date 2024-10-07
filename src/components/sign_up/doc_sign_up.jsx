@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./sign.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -26,7 +26,10 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [specializations, setspecializations] = useState([])
 
+
+
   useEffect(() => {
+
     axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
     .then(response => {
       setspecializations(response.data)
@@ -92,16 +95,33 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.id) {
-          setSuccessMessage("Doctor registered successfully!");
+          alert("Registered successfully!, Please check your email inbox to activate your account");
           setErrorMessage("");
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          if (data.user) {
+            setErrorMessage(extractFirstErrorMessage(data.user))
+          }
+          else {
+            setErrorMessage(extractFirstErrorMessage(data));
+          }
         }
       })
       .catch((error) => {
         setErrorMessage("Error: " + error.message);
       });
   };
+
+  const extractFirstErrorMessage = (errorData) => {
+    for (let field in errorData) {
+      if (errorData[field] && errorData[field].length > 0) {
+        
+        return errorData[field][0];
+      }
+    }
+   
+    return "An unknown error occurred.";
+  };
+
 
   return (
     <div className="wrapper">
@@ -270,6 +290,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               type="file"
               name="profile_picture"
               className="img-btn"
+              required
               onChange={handleChange}
             />
           </div>
@@ -280,6 +301,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               type="file"
               name="national_id"
               className="img-btn"
+              required
               onChange={handleChange}
             />
           </div>
@@ -290,6 +312,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               type="file"
               name="syndicate_id"
               className="img-btn"
+              required
               onChange={handleChange}
             />
           </div>
@@ -325,8 +348,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
               Sign in
             </Link>
           </div>
-          {successMessage && <p>{successMessage}</p>}
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <p className="text-danger">{errorMessage}</p>}
         </form>
       )}
     </div>

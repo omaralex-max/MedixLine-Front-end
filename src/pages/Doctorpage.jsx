@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import DoctorDescription from '../components/doctor-profile/DoctorDescription';
 import DoctorSchadule from '../components/doctor-profile/DoctorSchadule';
 import AppointmentsTable from '../components/doctor-profile/DoctorAppointment';
@@ -12,7 +12,14 @@ import Col from 'react-bootstrap/Col';
 import "../components/doctor-profile/DoctorPage.css"
 import UpdateProfile from '../components/doctor-profile/updateprofile'
 import ChatDoctor from '../components/doctor-profile/chatDoctor'
+
 const DoctorPage = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  if (!user || user.user.role === "patient") {
+    return <Navigate to={user ? '/patient-profile' : '/signin'} />;
+  }
+  
   return (
     <>
       <div className="navbar-container">

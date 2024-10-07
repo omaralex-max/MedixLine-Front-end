@@ -130,9 +130,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="/#searchContainerId" className="nav-links">
+            <Link to="/inbox" className="nav-links">
               INBOX{" "}
-            </a>
+            </Link>
           </li>
 
           {user === null ? (

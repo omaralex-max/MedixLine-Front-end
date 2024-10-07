@@ -44,8 +44,7 @@ const CardHolder = () => {
           <div className="container">
             <div className="row align-items-center">
               {doctors
-                  .filter((doctor) => doctor.specialization === specializationId &&
-                doctor.is_confirmed == true)
+                  .filter((doctor) => doctor.specialization === specializationId)
                   .map((doctor) => (
                     <OneCard key={doctor.id} doctor={doctor} />
                 ))}

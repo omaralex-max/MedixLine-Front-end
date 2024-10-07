@@ -9,6 +9,8 @@ import SingleDoctorView from '../pages/singleDoctorView';
 import DoctorsCard from "../pages/doctors_card"
 import Loading from '../components/loading/loading';
 import Search from '../pages/search';
+import NotFound from '../components/not_found/not_found';
+import Inbox from '../pages/inbox';
 
 export default function Router() {
 
@@ -24,6 +26,8 @@ export default function Router() {
                       <Route path="/doctorcard" element={<DoctorsCard />} />
                       <Route path="/doctordetails/:id" element={<SingleDoctorView />} />
                       <Route path="/search" element={<Search />} />
+                      <Route path="/inbox" element={<Inbox />} />
+                      <Route path='*' element={<NotFound />} />
                   </Routes>
           </Suspense>
           </ BrowserRouter>
