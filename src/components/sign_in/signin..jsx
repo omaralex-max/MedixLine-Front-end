@@ -132,7 +132,7 @@ const Signin = () => {
               <input type="submit" value="Sign In" className="btn" />
             </div>
       
-            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+            {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
       
       
             <div className="or">

@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./sign.css";
-import { Link } from "react-router-dom";
-import { FaLock } from "react-icons/fa";
-import { MdOutlineDateRange } from "react-icons/md";
-import { MdEmail } from "react-icons/md";
-import { FaPhone } from "react-icons/fa6";
-import { FaAddressCard } from "react-icons/fa6";
-import { FaUserInjured } from "react-icons/fa";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const PatientForm = ({ activeForm, onSwitchForm }) => {
 
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -25,10 +19,16 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
     address: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
 
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      navigate("/");
+      }
+  }, [navigate])
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -73,16 +73,33 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         if (data.id) {
-          setSuccessMessage("Patient registered successfully!");
+          alert("Registered successfully!, Please check your email inbox to activate your account");
           setErrorMessage("");
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          if (data.user) {
+            setErrorMessage(extractFirstErrorMessage(data.user))
+          }
+          else {
+            setErrorMessage(extractFirstErrorMessage(data));
+          }
         }
       })
       .catch((error) => {
         setErrorMessage("Error: " + error.message);
       });
+  };
+
+  const extractFirstErrorMessage = (errorData) => {
+    for (let field in errorData) {
+      if (errorData[field] && errorData[field].length > 0) {
+        
+        return errorData[field][0];
+      }
+    }
+   
+    return "An unknown error occurred.";
   };
 
 
@@ -107,7 +124,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           <form className="form" onSubmit={handleSubmit}>
       
           <div className="inputfield">
-            <label><FaUserInjured />First Name</label>
+            <label>First Name</label>
             <input
               type="text"
               name="first_name"
@@ -119,7 +136,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaUserInjured />Last Name</label>
+            <label>Last Name</label>
             <input
               type="text"
               name="last_name"
@@ -131,7 +148,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaUserInjured />User Name</label>
+            <label>User Name</label>
             <input
               type="text"
               name="username"
@@ -143,7 +160,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><MdOutlineDateRange />Date of Birth</label>
+            <label>Date of Birth</label>
             <input
               type="date"
               name="date_of_birth"
@@ -155,7 +172,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaLock />Password</label>
+            <label>Password</label>
             <input
               type="password"
               name="password"
@@ -167,7 +184,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaLock />Confirm Password</label>
+            <label>Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
@@ -195,7 +212,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><MdEmail />Email Address</label>
+            <label>Email Address</label>
             <input
               type="email"
               name="email"
@@ -207,7 +224,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaPhone />Phone Number</label>
+            <label>Phone Number</label>
             <input
               type="text"
               name="phone_number"
@@ -219,7 +236,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
           </div>
       
           <div className="inputfield">
-            <label><FaAddressCard />Address</label>
+            <label>Address</label>
             <input
               type="text"
               name="address"
@@ -242,14 +259,12 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
             <input type="submit" value="Register" className="btn" />
           </div>
           <div>
-              <label className="bolding">Already have an account ?</label>{" "}
+              <label className="bolding"  >Already have an account ?</label>{" "}
               <Link to="/signin" className="signin">
                 Sign in
               </Link>
-            </div>
-          
-          {successMessage && <p>{successMessage}</p>}
-          {errorMessage && <p>{errorMessage}</p>}
+            </div>     
+          {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
         </form>
         )}
       </div>

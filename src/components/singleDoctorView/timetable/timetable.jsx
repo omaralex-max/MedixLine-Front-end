@@ -95,18 +95,22 @@ const TimeTable = () => {
         const { day, time } = selectedSlot;
         const patientId = localStorage.getItem('patient_id');
         const token = localStorage.getItem('token');
-
+    
         if (!token) {
             alert('You need to sign in first to book an appointment.');
             return;
         }
     
         if (day && time && patientId) {
-            const appointmentDate = moment().day(day).format('YYYY-MM-DD');
+            const today = moment();
+            const dayIndex = moment().day(day).isoWeekday();
+            let appointmentDate = moment().day(day).startOf('day');
+            if (today.isoWeekday() > dayIndex) {
+                appointmentDate.add(1, 'weeks');
+            }
             const appointmentTime = moment(time, "hh:mm A").format('HH:mm:ss');
-    
             const appointmentData = {
-                date: appointmentDate,
+                date: appointmentDate.format('YYYY-MM-DD'),
                 time: appointmentTime,
                 patient: parseInt(patientId, 10), 
                 doctor: parseInt(id, 10) 
@@ -116,7 +120,7 @@ const TimeTable = () => {
                 headers: {
                     'Authorization': `Token ${token}`,
                     'Content-Type': 'application/json',
-                },              
+                },
             })
             .then(response => {
                 alert(`Appointment booked for ${time} on ${day}`);

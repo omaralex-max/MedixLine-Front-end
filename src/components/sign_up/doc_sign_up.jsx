@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./sign.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { FaUserDoctor } from "react-icons/fa6";
-import { MdOutlineDateRange } from "react-icons/md";
-import { FaLock } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { FaPhone } from "react-icons/fa6";
-import { FaAddressCard } from "react-icons/fa6";
-import { FaImage } from "react-icons/fa6";
-import { MdVerifiedUser } from "react-icons/md";
-import { HiUserGroup } from "react-icons/hi2";
 
 
 const DocForm = ({ activeForm, onSwitchForm }) => {
@@ -35,7 +26,10 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [specializations, setspecializations] = useState([])
 
+
+
   useEffect(() => {
+
     axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
     .then(response => {
       setspecializations(response.data)
@@ -101,16 +95,33 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.id) {
-          setSuccessMessage("Doctor registered successfully!");
+          alert("Registered successfully!, Please check your email inbox to activate your account");
           setErrorMessage("");
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          if (data.user) {
+            setErrorMessage(extractFirstErrorMessage(data.user))
+          }
+          else {
+            setErrorMessage(extractFirstErrorMessage(data));
+          }
         }
       })
       .catch((error) => {
         setErrorMessage("Error: " + error.message);
       });
   };
+
+  const extractFirstErrorMessage = (errorData) => {
+    for (let field in errorData) {
+      if (errorData[field] && errorData[field].length > 0) {
+        
+        return errorData[field][0];
+      }
+    }
+   
+    return "An unknown error occurred.";
+  };
+
 
   return (
     <div className="signuphoder">
@@ -132,7 +143,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
           <form className="form" onSubmit={handleSubmit}>
       
             <div className="inputfield">
-              <label><FaUserDoctor />First Name</label>
+              <label>First Name</label>
               <input
                 type="text"
                 name="first_name"
@@ -144,7 +155,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaUserDoctor />Last Name</label>
+              <label>Last Name</label>
               <input
                 type="text"
                 name="last_name"
@@ -156,19 +167,19 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaUserDoctor />User Name</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="input"
-                required
-              />
+            <label>User Name</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="input"
+              required
+            />
           </div>
       
             <div className="inputfield">
-              <label><MdOutlineDateRange />Date of Birth</label>
+              <label>Date of Birth</label>
               <input
                 type="date"
                 name="date_of_birth"
@@ -180,7 +191,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaLock />Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 name="password"
@@ -192,7 +203,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaLock />Confirm Password</label>
+              <label>Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -211,7 +222,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
                   value={formData.gender}
                   onChange={handleChange}
                   required
-                  >
+                >
                   <option value="">Select</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -220,7 +231,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><MdEmail />Email Address</label>
+              <label>Email Address</label>
               <input
                 type="email"
                 name="email"
@@ -232,7 +243,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaPhone />Phone Number</label>
+              <label>Phone Number</label>
               <input
                 type="text"
                 name="phone_number"
@@ -263,7 +274,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaAddressCard />Address</label>
+              <label>Address</label>
               <input
                 type="text"
                 name="address"
@@ -275,31 +286,34 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
             </div>
       
             <div className="inputfield">
-              <label><FaImage />Personal Image</label>
+              <label>Personal Image</label>
               <input
                 type="file"
                 name="profile_picture"
                 className="img-btn"
+                required
                 onChange={handleChange}
               />
             </div>
       
             <div className="inputfield">
-              <label><MdVerifiedUser />National ID</label>
+              <label>National ID</label>
               <input
                 type="file"
                 name="national_id"
                 className="img-btn"
+                required
                 onChange={handleChange}
               />
             </div>
       
             <div className="inputfield">
-              <label><HiUserGroup />Syndicate ID</label>
+              <label>Syndicate ID</label>
               <input
                 type="file"
                 name="syndicate_id"
                 className="img-btn"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -335,8 +349,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
                 Sign in
               </Link>
             </div>
-            {successMessage && <p>{successMessage}</p>}
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
           </form>
         )}
       </div>

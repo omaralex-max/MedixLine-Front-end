@@ -1,69 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from 'react-bootstrap/Table';
-import "../doctor-profile/DoctorPage.css"
+import "../doctor-profile/DoctorPage.css";
 import dayjs from 'dayjs';
-// Import images
-// const johnDoeImg = require('../assets/th (1).jpeg');
-// const janeSmithImg = require('../assets/th (1).jpeg');
-// const emilyJohnsonImg = require('../assets/th (1).jpeg');
-
 
 const AppointmentsTable = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-  const [appointments, setAppointments] = useState([])
-
-
-  // const [appointments, setAppointments] = useState([
-  //   {
-  //     img: johnDoeImg,
-  //     name: 'John Doe',
-  //     gender: 'Male',
-  //     age: 30,
-  //     appointmentTime: '2023-09-25 10:00 AM',
-  //     fees: '$100',
-  //     status: 'Confirmed',
-  //   },
-  //   {
-  //     img: janeSmithImg,
-  //     name: 'Jane Smith',
-  //     gender: 'Female',
-  //     age: 25,
-  //     appointmentTime: '2023-09-26 11:00 AM',
-  //     fees: '$150',
-  //     status: 'Pending',
-  //   },
-  //   {
-  //     img: emilyJohnsonImg,
-  //     name: 'Emily Johnson',
-  //     gender: 'Female',
-  //     age: 35,
-  //     appointmentTime: '2023-09-27 1:00 PM',
-  //     fees: '$200',
-  //     status: 'Pending',
-  //   },
-  // ]);
-
-  // const toggleStatus = (index) => {
-  //   const updatedAppointments = appointments.map((appointment, i) => {
-  //     if (i === index) {
-  //       return {
-  //         ...appointment,
-  //         status: appointment.status === 'Pending' ? 'Confirmed' : 'Pending',
-  //       };
-  //     }
-  //     return appointment;
-  //   });
-
-  //   setAppointments(updatedAppointments);
-  // };
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/appointment/all/');
         const userAppointments = response.data.filter(appointment => appointment.doctor === user.id);
-        console.log("userAppointments", userAppointments);
   
         const detailedAppointments = await Promise.all(userAppointments.map(async (appointment) => {
           const token = localStorage.getItem('token'); 
@@ -72,8 +21,6 @@ const AppointmentsTable = () => {
               Authorization: `Token ${token}` 
             }
           });
-          console.log("patientResponse",patientResponse)
-          console.log("appointment",appointment)
           return {
             ...appointment,
             first_name: patientResponse.data.user.first_name,
@@ -82,7 +29,7 @@ const AppointmentsTable = () => {
             gender: patientResponse.data.gender,
             appointmentDate: appointment.date,
             appointmentTime: appointment.time,
-          
+            appointmentStatus: appointment.status,
           };
         }));
   
@@ -94,7 +41,7 @@ const AppointmentsTable = () => {
   
     fetchAppointments();
   }, [user]);  
-  
+  console.log(appointments)
   function calculateAge(dob) {
     const today = dayjs();
     const birthDate = dayjs(dob);
@@ -102,50 +49,70 @@ const AppointmentsTable = () => {
     return age;
   }
 
+  const updateStatus = async (appointmentId, newStatus) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.patch(`http://127.0.0.1:8000/api/appointment/${appointmentId}/`, { status: newStatus }, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      setAppointments(prevAppointments => 
+        prevAppointments.map(appointment => 
+          appointment.id === appointmentId ? { ...appointment, appointmentStatus: newStatus } : appointment
+        )
+      );
+    } catch (error) {
+      console.error('Error updating appointment status:', error);
+    }
+  };
+
   return (
-    <div className="appointment  card p-4">
-      <h1 className="card text-2xl font-semibold mb-5 text-center p-3">
-        Appointments
-      </h1>
-      <div className="overflow-x-auto">
-        <Table className="min-w-full bg-white shadow-md rounded-lg">
+    <div className="appointment card p-4">
+      <h1 className="card text-2xl font-semibold mb-5 text-center p-3">Appointments</h1>
+      <div className="table-responsive">
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th className="py-3 px-4 text-left">
-                Patient Name
-              </th>
-              <th className="py-3 px-4 text-left">
-                Gender
-              </th>
-              <th className="py-3 px-4 text-left">
-                Age
-              </th>
-              <th className="py-3 px-4 text-left">
-                Appointment Date
-              </th>
-              <th className="py-3 px-4 text-left">
-                Appointment Time
-              </th>
-            </tr>
+              <th>Patient Name</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Appointment Date</th>
+              <th>Appointment Time</th>
+              <th>Status</th>
+              {appointments.some(appointment => appointment.appointmentStatus !== 'cancelled' && appointment.appointmentStatus !== 'confirmed') && (
+                  <th className="py-3 px-4 text-left">Actions</th>)}
+                  </tr>
           </thead>
           <tbody>
-            {appointments.map((appointment, index) => (
-              <tr key={index}>
-                <td className="py-3 px-4 text-left">
-                  {appointment.first_name} {appointment.last_name}
+            {appointments.map((appointment) => (
+              <tr key={appointment.id}>
+                <td>{appointment.first_name} {appointment.last_name}</td>
+                <td>{appointment.gender}</td>
+                <td>{calculateAge(appointment.age)}</td>
+                <td>{appointment.appointmentDate}</td>
+                <td>{appointment.appointmentTime}</td>
+                <td className={`text-${appointment.appointmentStatus === 'pending' ? 'secondary' :
+                    appointment.appointmentStatus === 'confirmed' ? 'success' :
+                    appointment.appointmentStatus === 'cancelled' ? 'danger' : ''}`}>
+                  {appointment.appointmentStatus}
                 </td>
-                <td className="py-3 px-4 text-left">
-                  {appointment.gender}
+                {appointment.appointmentStatus !== 'cancelled' && appointment.appointmentStatus !== 'confirmed' ? (
+               <td>
+                    <button 
+                      onClick={() => updateStatus(appointment.id, 'confirmed')} 
+                      className="btn btn-success btn-sm w-100 me-1 mb-1" 
+                    >
+                      Confirm
+                    </button>
+                    <button 
+                      onClick={() => updateStatus(appointment.id, 'cancelled')} 
+                      className="btn btn-danger btn-sm w-100"
+                    >
+                      Cancel
+                    </button>
                 </td>
-                <td className="py-3 px-4 text-left">
-                  {calculateAge(appointment.age)}   
-                </td>
-                <td className="py-3 px-4 text-left">
-                  {appointment.appointmentDate}
-                </td>
-                <td className="py-3 px-4 text-left">
-                  {appointment.appointmentTime}
-                </td>
+      ) : null}
               </tr>
             ))}
           </tbody>
