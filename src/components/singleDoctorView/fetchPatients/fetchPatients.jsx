@@ -20,7 +20,7 @@ export default function FetchPatients({ onFetch }) {
                     setFetched(true); 
                 } catch (error) {
                     console.error("Error fetching patients:", error);
-                    setError("Error fetching patients");
+                    // setError("Error fetching patients");
                 } finally {
                     setLoadingPatients(false);
                 }
