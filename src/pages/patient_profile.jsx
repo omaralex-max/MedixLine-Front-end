@@ -5,15 +5,18 @@ import BG from "../assets/icons/logo2.png";
 import ProfileSetting from "../components/patient_profile/patient-profile-setting";
 import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/footer/footer";
-import { useState } from "react";
 import Scrolling from "../components/scrolling-up/scrolling"
+import { useEffect, useState } from "react";
+import { Navigate } from 'react-router-dom';
 
 const PatientProfile = () => {
 
   const user = JSON.parse(localStorage.getItem('user'))
-
-
   const [currentPage, setCurrentPage] = useState('profile')
+
+  if (!user || user.user.role === "doctor") {
+    return <Navigate to={user ? '/doctorpage' : '/signin'} />;
+  }
 
   const handleProfile = () => {
     setCurrentPage('profile')

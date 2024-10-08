@@ -25,6 +25,11 @@ function Header (){
                             last_name: result.user__last_name,
                         },
                         profile_picture: result.profile_picture, 
+                        address: result.address,
+                        price: result.price,
+                        is_confirmed: result.is_confirmed,
+                        average_rating: result.average_rating,
+                        working_days: result.working_days
                     }));
                     navigate("/search", { state: { searchResults: reshapedResults } });
                 })

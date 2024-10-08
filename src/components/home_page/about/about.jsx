@@ -6,7 +6,7 @@ export default function About(){
     return(
         <>
         <div className="d-flex justify-content-center align-content-between w-100 parentDivAbout" >
-            <div className="row aboutContainer text-center mt-5">
+            <div className="row aboutContainer text-center mt-5 mb-2">
                 <div className="col-4 mission col-s-12">
                     <h3 className="aboutTitles ">Our Mission</h3>
                     <p>

@@ -40,3 +40,13 @@
 .apptBtn:hover {
     background-color: #0056b3; 
 }
+
+.bg-secondary {
+    background-color: grey !important;
+    color: white !important;
+}
+
+.bg-primary {
+    background-color: blue !important;
+    color: white !important;
+}

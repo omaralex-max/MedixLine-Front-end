@@ -25,3 +25,7 @@
 .review-section {
   flex: 3;
 }
+
+.review-section{
+  width: 1000px;
+}

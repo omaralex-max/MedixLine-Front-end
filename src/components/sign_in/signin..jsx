@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+
 
 const Signin = () => {
 
@@ -17,6 +18,13 @@ const Signin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      navigate("/");
+      }
+  }, [navigate])
 
   const handleChange = (e) => {
     setFormData({
@@ -47,6 +55,8 @@ const Signin = () => {
           setSuccessMessage("Logged in successfully!");
           setErrorMessage("");
           localStorage.setItem('token', data.token);
+          localStorage.setItem('patient_id', data.user.id);
+          // console.log(data)
   
           axios
             .get('http://127.0.0.1:8000/api/auth/detail/', {
@@ -65,28 +75,28 @@ const Signin = () => {
               }
             })
             .catch((error) => {
-              setErrorMessage("Error: " + error.message);
+              setErrorMessage(error.message);
             });
         } else {
-          setErrorMessage("Error: " + JSON.stringify(data));
+          setErrorMessage(data.message);
         }
       })
       .catch((error) => {
-        setErrorMessage("Error: " + error.message);
+        setErrorMessage(error.message);
       });
   };
 
 
   return (
     <div className="signhoder">
-      <div className="wrapper">
+      <div className="wrapper push">
       
         <div className="title">Sign In</div>
       
           <form className="form" onSubmit={handleSubmit}>   
       
           <div className="inputfield">
-            <label><FaUserAlt />User Name</label>
+            <label>User Name</label>
             <input
               type="text"
               name="username"
@@ -98,7 +108,7 @@ const Signin = () => {
           </div>
       
           <div className="inputfield">
-            <label><FaLock />Password</label>
+            <label>Password</label>
             <input
               type="password"
               name="password"
@@ -122,6 +132,9 @@ const Signin = () => {
               <input type="submit" value="Sign In" className="btn" />
             </div>
       
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      
+      
             <div className="or">
               <p>Or</p>
             </div>
@@ -136,14 +149,13 @@ const Signin = () => {
             </div>
       
             <div>
-              <label>Don't have an account ?</label>{" "}
+              <label className="bolding">Don't have an account ?</label>{" "}
               <Link to="/signup" className="signin">
                 Sign up
               </Link>
             </div>
       
             {successMessage && <p>{successMessage}</p>}
-            {errorMessage && <p>{errorMessage}</p>}
           </form>
       </div>
     </div>

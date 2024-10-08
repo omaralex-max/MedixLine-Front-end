@@ -8,14 +8,15 @@ import { useLocation } from "react-router-dom";
 const CardHolder = () => {
   const [doctors, setDoctors] = useState([]);
   const location = useLocation();
-  const { id: specializationId } = location.state;
-  const { title: specializationName } = location.state;
+  const specializationId = location.state?.id;
+  const specializationName = location.state?.title;
 
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/doctor/") 
       .then((response) => {
         setDoctors(response.data);
+        console.log(doctors)
       })
       .catch((error) => {
         console.error("Error fetching the doctors' data", error);
@@ -25,21 +26,26 @@ const CardHolder = () => {
     <>
       <div className="root">
         <section className="card-bg-half-150 bg-light d-table w-100">
-          <div className="container">
+        <div className="container">
             <div className="row mt-5 justify-content-center">
-              <div className="col-12">
-                <div className="section-title text-center">
-                  <h1 className="sub-title mb-4 Dbold">{specializationName}</h1>
-                </div>
+              <div className="col-12 text-center">
+                <h1 className="display-4 mb-4 font-weight-bold text-primary">
+                  {specializationName}
+                </h1>
+                <p className="lead text-muted">
+                  Find the best doctors in the field of {specializationName}.
+                </p>
               </div>
             </div>
-          </div>
+        </div>
+
         </section>
         <section className="section">
           <div className="container">
             <div className="row align-items-center">
               {doctors
-                  .filter((doctor) => doctor.specialization === specializationId)
+                  .filter((doctor) => doctor.specialization === specializationId &&
+                doctor.is_confirmed == true)
                   .map((doctor) => (
                     <OneCard key={doctor.id} doctor={doctor} />
                 ))}

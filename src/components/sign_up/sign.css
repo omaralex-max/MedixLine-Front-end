@@ -224,10 +224,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   border: 2px solid rgba(255, 255, 255, .2);
   backdrop-filter: blur(50px);
+  color: #ebf0fd;
 }
 .switch:hover {
-  background: #007bff6b;
-  box-shadow: 0 4px 3px #009efa;
+  background: #2121216b;
+  box-shadow: 0 4px 3px #25282a;
   transition: 0.1s;
 }
 .switch:active {
@@ -272,6 +273,10 @@
   box-shadow: 0 4px 3px #bbbbbb;
 }
 .switch.active {
-  background: #007bff6b;
-  box-shadow: 0 4px 3px #009efa;
+  background: #2121216b;
+  box-shadow: 0 4px 3px #25282a;
+  color: white;
+}
+.bolding{
+  font-weight: 700;
 }
