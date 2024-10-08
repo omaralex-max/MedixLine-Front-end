@@ -264,7 +264,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
             </Link>
           </div>
         
-        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+        {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
       </form>
       )}
     </div>
