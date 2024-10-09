@@ -41,7 +41,7 @@ const CardHolder = () => {
 
         </section>
         <section className="section">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row align-items-center">
               {doctors
                   .filter((doctor) => doctor.specialization === specializationId)
