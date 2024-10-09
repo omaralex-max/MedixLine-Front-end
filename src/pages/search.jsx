@@ -3,6 +3,7 @@ import Footer from "../components/footer/footer"
 import OneCard from "../components/doctors-cards/one-card";
 import React from "react"
 import { useLocation } from "react-router-dom";
+import Scrolling from "../components/scrolling-up/scrolling"
 
 
 function Search() {
@@ -35,6 +36,7 @@ function Search() {
                         </section>
                     </div>
          <Footer/>
+         <Scrolling />
         </>
     )
 // }

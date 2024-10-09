@@ -1,5 +1,5 @@
 import "./footer.css";
-import Logo from "../../assets/icons/mm.png"
+import Logo from "../../assets/icons/logo1.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";

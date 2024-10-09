@@ -12,6 +12,8 @@ import Col from 'react-bootstrap/Col';
 import "../components/doctor-profile/DoctorPage.css"
 import UpdateProfile from '../components/doctor-profile/updateprofile'
 import ChatDoctor from '../components/doctor-profile/chatDoctor'
+import Scrolling from "../components/scrolling-up/scrolling"
+
 
 const DoctorPage = () => {
   const user = JSON.parse(localStorage.getItem('user'))
@@ -46,6 +48,7 @@ const DoctorPage = () => {
         </Row>
       </Container>
       <Footer />
+      <Scrolling />
     </>
   );
 };

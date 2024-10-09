@@ -25,7 +25,7 @@ const DoctorDescription = () => {
 
   const location = useLocation();
   const links = [
-    { to: '/doctorpage', icon: 'fas fa-calendar-alt', text: 'Schedule' },
+    { to: '/doctorpage', icon: 'fas fa-calendar-alt', text: 'Calendar' },
     { to: '/doctorpage/appointments', icon: 'fas fa-list-alt', text: 'Appointments' },
     { to: '/doctorpage/chat', icon: 'fas fa-comment-alt', text: 'Chat' },
     { to: '/doctorpage/doctor-reviews', icon: 'fas fa-star', text: 'Patient Review' },

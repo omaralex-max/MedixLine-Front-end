@@ -62,7 +62,7 @@ const Chat = ({ doctorId }) => {
             const response = await axios.post(`${baseURL}chat/send-message/`, {
                 message: newMessage,
                 sender: user.user.id,
-                reciever: selectedPatient.user.id,
+                reciever: selectedPatient.id,
             }, {
                 headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
             });
