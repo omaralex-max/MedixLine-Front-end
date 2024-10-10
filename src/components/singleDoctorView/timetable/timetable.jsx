@@ -22,7 +22,7 @@ const TimeTable = () => {
             const appointments = response.data;
             console.log("appointments",appointments)            
             const booked = appointments.map(appointment => ({
-                day: moment(appointment.date).format('dddd'), 
+                day: appointment.date, 
                 time: moment(appointment.time, 'HH:mm:ss').format('hh:mm A'), 
                 doctor_id: appointment.doctor
             }));
@@ -80,7 +80,7 @@ const TimeTable = () => {
             start.add(durationInMinutes, 'minutes');  
         }
 
-        // console.log("slotList",slotList)
+        console.log("slotList",slotList)
         return slotList;
     };
 
@@ -139,14 +139,23 @@ const TimeTable = () => {
         }
     };
     
-    const isSlotBooked = (day, slot, id) => {
-        console.log("id",id)
-        // console.log("day",day)
-        // console.log("slot",slot)
-        console.log("bookedSlots",bookedSlots.doctor_id)
-        console.log("ddd",id)
-        console.log("ahmodyyyyy",bookedSlots.some(bookedSlot => bookedSlot.day === day && bookedSlot.time === slot && bookedSlot.doctor_id == id))
-        return bookedSlots.some(bookedSlot => bookedSlot.day === day && bookedSlot.time === slot && bookedSlot.doctor_id == id);
+    const getNextDateForDay = (day) => {
+        const today = moment();
+        const targetDay = moment().day(day).startOf('day'); 
+        // If the target day is before today, move to the next week
+        if (targetDay.isBefore(today, 'day')) {
+            targetDay.add(1, 'weeks');
+        }
+        return targetDay;
+    };
+
+    const isSlotBooked = (day, slot, doctorId) => {
+        const dayDate = getNextDateForDay(day).format('YYYY-MM-DD'); // Convert day to a date
+        return bookedSlots.some(bookedSlot => 
+            bookedSlot.day === dayDate && 
+            bookedSlot.time === slot && 
+            bookedSlot.doctor_id === parseInt(doctorId, 10)
+        );
     };
     
 
