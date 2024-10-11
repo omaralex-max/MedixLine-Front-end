@@ -64,7 +64,7 @@ const PatientForm = ({ activeForm, onSwitchForm }) => {
 
     console.log("Payload: ", payload);
 
-    fetch("http://localhost:8000/api/patient/register/", {
+    fetch("https://medixlineapi-c657ee2ad358.herokuapp.com/api/patient/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

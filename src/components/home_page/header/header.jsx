@@ -15,7 +15,7 @@ function Header (){
         const handleSubmit = (e) => {
             e.preventDefault();
             
-            fetch(`http://localhost:8000/api/doctor/search/?department=${department}&doctor=${doctor}`)
+            fetch(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/search/?department=${department}&doctor=${doctor}`)
                 .then(response => response.json())
                 .then(data => {
                     const reshapedResults = data.map(result => ({

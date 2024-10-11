@@ -42,7 +42,7 @@ const Signin = () => {
       password: formData.password,
     };
   
-    fetch("http://localhost:8000/api/auth/login/", {
+    fetch("https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -88,7 +88,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
       payload.append("profile_picture", formData.profile_picture);
     }
     
-    fetch("http://localhost:8000/api/doctor/register/", {
+    fetch("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/register/", {
       method: "POST",
       body: payload
     })
