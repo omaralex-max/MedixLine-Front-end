@@ -59,7 +59,7 @@ const Signin = () => {
           // console.log(data)
   
           axios
-            .get('http://127.0.0.1:8000/api/auth/detail/', {
+            .get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/', {
               headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
               },

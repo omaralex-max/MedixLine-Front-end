@@ -13,7 +13,7 @@ const DoctorDescription = () => {
 
   useEffect((e) => {
     setUser(JSON.parse(localStorage.getItem('user')))
-    axios.get(`http://127.0.0.1:8000/api/doctor/specializations/${user.specialization}`)
+    axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/${user.specialization}`)
     .then(response => {
 
       setSpecialization(response.data.title)
@@ -45,7 +45,7 @@ const DoctorDescription = () => {
             position: 'relative',
           }}>
             <img
-              src={`http://127.0.0.1:8000/${user.profile_picture}`}
+              src={`https://medixlineapi-c657ee2ad358.herokuapp.com/${user.profile_picture}`}
               className="img-fluid rounded-circle mt-5"
               style={{
                 width: '150px',

@@ -30,7 +30,7 @@ const DocForm = ({ activeForm, onSwitchForm }) => {
 
   useEffect(() => {
 
-    axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
+    axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/")
     .then(response => {
       setspecializations(response.data)
       })

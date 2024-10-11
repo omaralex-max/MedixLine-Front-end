@@ -15,8 +15,8 @@ export default function CommentsAndRatingsList({ doctor, patientsData }) {
         const fetchRatingAndComments = async () => {
             try {
                 const [ratingsResponse, commentsResponse] = await Promise.all([
-                    axios.get(`http://127.0.0.1:8000/api/doctor/ratings/`),
-                    axios.get(`http://127.0.0.1:8000/api/doctor/comments/`)
+                    axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/`),
+                    axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/comments/`)
                 ]);
 
                 if (ratingsResponse.data.length > 0) {

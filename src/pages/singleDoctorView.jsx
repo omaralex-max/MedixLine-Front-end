@@ -17,7 +17,7 @@ export default function SingleDoctorView()
 
     useEffect(() => {
         axios
-        .get(`http://127.0.0.1:8000/api/doctor/${id}`) 
+        .get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/${id}`) 
         .then((response) => {
             // console.log("Doctor data:", response.data); 
           setDoctor(response.data);

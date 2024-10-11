@@ -11,7 +11,7 @@ const Chat = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-    const baseURL = 'http://127.0.0.1:8000/api/';
+    const baseURL = 'https://medixlineapi-c657ee2ad358.herokuapp.com/api/';
 
     // Fetch the doctor details when the component mounts
     useEffect(() => {
@@ -22,7 +22,7 @@ const Chat = () => {
                 const response = await axios.get(`${baseURL}doctor/${id}`, {
                     headers: { 'Authorization': `Token ${localStorage.getItem('token')}` }
                 });
-                console.log("Doctor Data:", response.data);
+                // console.log("Doctor Data:", response.data);
                 setDoctor(response.data);
                 // Fetch messages once the doctor is fetched
                 fetchMessages(response.data.user.id);

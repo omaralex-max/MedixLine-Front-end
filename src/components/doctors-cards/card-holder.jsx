@@ -13,10 +13,9 @@ const CardHolder = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/doctor/") 
+      .get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/") 
       .then((response) => {
         setDoctors(response.data);
-        console.log(doctors)
       })
       .catch((error) => {
         console.error("Error fetching the doctors' data", error);

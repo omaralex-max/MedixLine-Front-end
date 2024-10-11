@@ -23,7 +23,7 @@ const Navbar = () => {
     e.preventDefault();
     axios
       .post(
-        "http://127.0.0.1:8000/api/auth/logout/",
+        "https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/logout/",
         {},
         {
           headers: {
@@ -74,7 +74,7 @@ const Navbar = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/doctor/specializations/")
+      .get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/")
       .then((response) => {
         setspecializations(response.data);
       })

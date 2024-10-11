@@ -11,12 +11,12 @@ const AppointmentsTable = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/appointment/all/');
+        const response = await axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/appointment/all/');
         const userAppointments = response.data.filter(appointment => appointment.doctor === user.id);
   
         const detailedAppointments = await Promise.all(userAppointments.map(async (appointment) => {
           const token = localStorage.getItem('token'); 
-          const patientResponse = await axios.get(`http://127.0.0.1:8000/api/patient/${appointment.patient}`, {
+          const patientResponse = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/patient/${appointment.patient}`, {
             headers: {
               Authorization: `Token ${token}` 
             }
@@ -52,7 +52,7 @@ const AppointmentsTable = () => {
   const updateStatus = async (appointmentId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.patch(`http://127.0.0.1:8000/api/appointment/${appointmentId}/`, { status: newStatus }, {
+      await axios.patch(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/appointment/${appointmentId}/`, { status: newStatus }, {
         headers: {
           Authorization: `Token ${token}`
         }

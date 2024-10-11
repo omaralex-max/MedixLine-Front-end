@@ -25,7 +25,7 @@ const UpdateProfile = () => {
 
     useEffect(() => {
         console.log(user)
-        axios.get(`http://127.0.0.1:8000/api/doctor/workingdays`, {
+        axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/workingdays`, {
             headers: {
                 'Authorization': `Token ${token}`,
                 }
@@ -37,7 +37,7 @@ const UpdateProfile = () => {
                     .catch(error => {
                         console.error(error);
                         });
-      axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+      axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/', {
           headers: {
             'Authorization': `Token ${token}`
           }
@@ -98,7 +98,7 @@ const UpdateProfile = () => {
 
     const handelUpdatePersonal = (e) => {
         e.preventDefault();
-        const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+        const updateUserData = axios.patch('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/',
             {"user": {
                     first_name: formData.first_name,
                     last_name: formData.last_name,
@@ -111,7 +111,7 @@ const UpdateProfile = () => {
             }
           })
     
-          const UpdatePatientData = axios.patch(`http://127.0.0.1:8000/api/doctor/${user.id}/`,
+          const UpdatePatientData = axios.patch(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/${user.id}/`,
             {
               phone_number:formData.phone_number,
               address: formData.address,
@@ -123,7 +123,7 @@ const UpdateProfile = () => {
             })
             Promise.all([updateUserData, UpdatePatientData])
             .then(response => {
-                axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+                axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/', {
                     headers: {
                       'Authorization': `Token ${token}`
                     }
@@ -143,7 +143,7 @@ const UpdateProfile = () => {
     const handelDelete = (e) => {
       e.preventDefault();
       if (window.confirm('Are you sure you want to delete your account!')) {
-        axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+        axios.patch('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/',
           { "user":
             {
             is_active: false
@@ -168,7 +168,7 @@ const UpdateProfile = () => {
 
     const handleSubmitWorkingHours = (event) => {
         event.preventDefault();
-        axios.patch(`http://127.0.0.1:8000/api/doctor/${user.id}/`,
+        axios.patch(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/${user.id}/`,
             {
                 working_days: formData.working_days,
                 end_time: formData.end_time,
@@ -199,7 +199,7 @@ const UpdateProfile = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-2 col-md-4">
                         <img
-                            src={`http://127.0.0.1:8000/${user.profile_picture}`}
+                            src={`https://medixlineapi-c657ee2ad358.herokuapp.com/${user.profile_picture}`}
                             className="avatar avatar-md-md rounded-pill shadow mx-auto d-block"
                             alt=""
                         />
@@ -395,14 +395,14 @@ const UpdateProfile = () => {
                     </form>
                 </div>
             </div>
-            <div class="rounded shadow mt-4 p-3">
-                <div class="p-4 border-bottom">
-                    <h5 class="mb-0 text-danger">Delete Account :</h5>
+            <div className="rounded shadow mt-4 p-3">
+                <div className="p-4 border-bottom">
+                    <h5 className="mb-0 text-danger">Delete Account :</h5>
                 </div>
-                <div class="p-4">
-                    <h6 class="mb-0 fw-normal">Do you want to delete the account? Please press the "Delete" button below.</h6>
-                    <div class="mt-4">
-                        <button class="btn btn-danger" onClick={handelDelete}>Delete Account</button>
+                <div className="p-4">
+                    <h6 className="mb-0 fw-normal">Do you want to delete the account? Please press the "Delete" button below.</h6>
+                    <div className="mt-4">
+                        <button className="btn btn-danger" onClick={handelDelete}>Delete Account</button>
                     </div>
                 </div>
             </div>

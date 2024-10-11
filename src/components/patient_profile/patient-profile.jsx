@@ -11,12 +11,12 @@ const PatientProfile = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/appointment/all/');
+        const response = await axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/appointment/all/');
         const userAppointments = response.data.filter(appointment => appointment.patient === user.id);
 
         const detailedAppointments = await Promise.all(userAppointments.map(async (appointment) => {
-          const doctorResponse = await axios.get(`http://127.0.0.1:8000/api/doctor/${appointment.doctor}`);
-          const specializationResponse = await axios.get(`http://127.0.0.1:8000/api/doctor/specializations/${doctorResponse.data.specialization}`);
+          const doctorResponse = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/${appointment.doctor}`);
+          const specializationResponse = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/${doctorResponse.data.specialization}`);
           const specialization = specializationResponse.data;
 
           return {
@@ -86,7 +86,7 @@ const PatientProfile = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 256 256"
                         className="align-middle h3"
                         height="1em"
@@ -105,10 +105,10 @@ const PatientProfile = () => {
                         <svg
                           stroke="currentColor"
                           fill="none"
-                          stroke-width="2"
+                          strokeWidth="2"
                           viewBox="0 0 24 24"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className="ri-arrow-right-line align-middle"
                           height="1em"
                           width="1em"
@@ -127,7 +127,7 @@ const PatientProfile = () => {
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
-                        stroke-width="0"
+                        strokeWidth="0"
                         viewBox="0 0 24 24"
                         className="align-middle h3"
                         height="1em"
@@ -146,10 +146,10 @@ const PatientProfile = () => {
                         <svg
                           stroke="currentColor"
                           fill="none"
-                          stroke-width="2"
+                          strokeWidth="2"
                           viewBox="0 0 24 24"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           className="ri-arrow-right-line align-middle"
                           height="1em"
                           width="1em"

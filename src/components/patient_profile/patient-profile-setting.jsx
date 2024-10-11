@@ -17,7 +17,7 @@ const PatientProfileSetting = () => {
 
   // Fetch user details
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+    axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/', {
       headers: {
         'Authorization': `Token ${token}`
       }
@@ -44,7 +44,7 @@ const PatientProfileSetting = () => {
   const handelDelete = (e) => {
     e.preventDefault();
     if (window.confirm('Are you sure you want to delete your account!')) {
-      axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+      axios.patch('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/',
         { "user": {
           is_active: false
         }
@@ -67,7 +67,7 @@ const PatientProfileSetting = () => {
 
   const handelUpdatePersonal = (e) => {
     e.preventDefault();
-    const updateUserData = axios.patch('http://127.0.0.1:8000/api/auth/detail/',
+    const updateUserData = axios.patch('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/',
         {"user": {
                 first_name: formData.first_name,
                 last_name: formData.last_name,
@@ -80,7 +80,7 @@ const PatientProfileSetting = () => {
         }
       })
 
-      const UpdatePatientData = axios.patch(`http://127.0.0.1:8000/api/patient/${user.id}/`,
+      const UpdatePatientData = axios.patch(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/patient/${user.id}/`,
         {
           phone_number:formData.phone_number,
           address: formData.address,
@@ -91,7 +91,7 @@ const PatientProfileSetting = () => {
         })
         Promise.all([updateUserData, UpdatePatientData])
         .then(response => {
-            axios.get('http://127.0.0.1:8000/api/auth/detail/', {
+            axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/auth/detail/', {
                 headers: {
                   'Authorization': `Token ${token}`
                 }

@@ -11,11 +11,11 @@ const ReviewList = () => {
   const fetchReviews = async () => {
     try {
       const [patientsResponse, ratingsResponse, commentsResponse] = await Promise.all([
-        axios.get("http://127.0.0.1:8000/api/patient/", {
+        axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/patient/", {
           headers: { Authorization: `Token ${localStorage.getItem("token")}` },
         }),
-        axios.get("http://127.0.0.1:8000/api/doctor/ratings/"),
-        axios.get("http://127.0.0.1:8000/api/doctor/comments/"),
+        axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/"),
+        axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/comments/"),
       ]);
 
       const patients = patientsResponse.data;

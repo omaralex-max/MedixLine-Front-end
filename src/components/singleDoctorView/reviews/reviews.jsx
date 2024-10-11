@@ -10,7 +10,7 @@ export default function Reviews({ doctor }) {
     useEffect(() => {
         const fetchRating = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/doctor/ratings/`, {
+                const response = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/`, {
                     headers: {
                         'Authorization': `Token ${localStorage.getItem('token')}`
                     }
@@ -21,7 +21,7 @@ export default function Reviews({ doctor }) {
                     const rating = response.data.find(r => r.doctor === doctor.id && r.patient === user.id);
                     setValue(rating.value); 
                     setExistingRatingId(rating.id); 
-                    console.log(rating)
+                    // console.log(rating)
                 } else {
                     setValue(0);
                     setExistingRatingId(null);
@@ -49,8 +49,8 @@ export default function Reviews({ doctor }) {
         }
         try {
             const url = existingRatingId 
-                ? `http://127.0.0.1:8000/api/doctor/ratings/${existingRatingId}/` 
-                : 'http://127.0.0.1:8000/api/doctor/ratings/';
+                ? `https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/${existingRatingId}/` 
+                : 'https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/';
             const method = existingRatingId ? 'put' : 'post';
 
             const response = await axios({

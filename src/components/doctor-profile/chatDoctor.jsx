@@ -12,7 +12,7 @@ const Chat = ({ doctorId }) => {
     const [error, setError] = useState('');
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
-    const baseURL = 'http://127.0.0.1:8000/api/'
+    const baseURL = 'https://medixlineapi-c657ee2ad358.herokuapp.com/api/'
 
     // Fetch patients on component load
     useEffect(() => {

@@ -12,7 +12,7 @@ export default function HeaderDocPat({doctor}){
     const [ratingCount,setRatingCount]=useState([])
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/doctor/specializations/")
+        axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/")
         .then(response => {
           setspecializations(response.data)
           })
@@ -24,7 +24,7 @@ export default function HeaderDocPat({doctor}){
     useEffect(() => {
     const fetchRatings = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/doctor/ratings/`, {
+            const response = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/ratings/`, {
             });
             const ratingList = response.data.filter(r => r.doctor === doctor.id );
             // console.log(ratingList)

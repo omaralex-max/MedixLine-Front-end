@@ -16,11 +16,11 @@ const TimeTable = () => {
 
 
     const fetchBookedSlots = () => {
-        axios.get('http://127.0.0.1:8000/api/appointment/all', {
+        axios.get('https://medixlineapi-c657ee2ad358.herokuapp.com/api/appointment/all', {
         })
         .then(response => {
             const appointments = response.data;
-            console.log("appointments",appointments)            
+            // console.log("appointments",appointments)            
             const booked = appointments.map(appointment => ({
                 day: appointment.date, 
                 time: moment(appointment.time, 'HH:mm:ss').format('hh:mm A'), 
@@ -33,10 +33,10 @@ const TimeTable = () => {
         });
     };
         
-    console.log("sfsfwfwfwf",bookedSlots)
+    // console.log("sfsfwfwfwf",bookedSlots)
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/doctor/${id}`, {
+        axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/${id}`, {
         })
         .then(response => {
             const doctorData = response.data;
@@ -57,7 +57,7 @@ const TimeTable = () => {
 
     const fetchWorkingDaysNames = (dayIds) => {
         dayIds.forEach((dayId) => {
-            axios.get(`http://127.0.0.1:8000/api/doctor/workingdays/${dayId}`, {
+            axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/workingdays/${dayId}`, {
             })
             .then(response => {
                 const dayName = response.data.day.charAt(0).toUpperCase() + response.data.day.slice(1).toLowerCase();  
@@ -68,7 +68,7 @@ const TimeTable = () => {
             });
         });
     };
-    console.log("workingDays",workingDays)
+    // console.log("workingDays",workingDays)
 
     const generateTimeSlots = (startTime, endTime, durationInMinutes) => {
         const start = moment(startTime, "HH:mm:ss");
@@ -80,7 +80,7 @@ const TimeTable = () => {
             start.add(durationInMinutes, 'minutes');  
         }
 
-        console.log("slotList",slotList)
+        // console.log("slotList",slotList)
         return slotList;
     };
 
@@ -116,7 +116,7 @@ const TimeTable = () => {
                 doctor: parseInt(id, 10) 
             };
     
-            axios.post(`http://127.0.0.1:8000/api/appointment/`, appointmentData, {
+            axios.post(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/appointment/`, appointmentData, {
                 headers: {
                     'Authorization': `Token ${token}`,
                     'Content-Type': 'application/json',

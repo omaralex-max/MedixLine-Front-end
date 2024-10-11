@@ -10,7 +10,7 @@ export default function CommentComponent({ doctor }) {
     useEffect(() => {
         const checkExistingComment = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/doctor/comments/`, {
+                const response = await axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/comments/`, {
                     headers: {
                         'Authorization': `Token ${localStorage.getItem('token')}`
                     }
@@ -43,7 +43,7 @@ export default function CommentComponent({ doctor }) {
         }
 
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/doctor/comments/`, {
+            const response = await axios.post(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/comments/`, {
                 doctor: doctor.id,
                 patient: user.id,
                 content: newComment

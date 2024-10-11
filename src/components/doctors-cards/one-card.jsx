@@ -17,7 +17,7 @@ const OneCard = ({ doctor }) => {
       return;
   }
     dayIds.forEach((dayId) => {
-        axios.get(`http://127.0.0.1:8000/api/doctor/workingdays/${dayId}`, {
+        axios.get(`https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/workingdays/${dayId}`, {
         })
         .then(response => {
             const dayName = response.data.day.charAt(0).toUpperCase() + response.data.day.slice(1).toLowerCase();  
