@@ -199,7 +199,7 @@ const UpdateProfile = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-2 col-md-4">
                         <img
-                            src={`https://medixlineapi-c657ee2ad358.herokuapp.com/${user.profile_picture}`}
+                            src={`https://medixlineapi-c657ee2ad358.herokuapp.com${user.profile_picture}`}
                             className="avatar avatar-md-md rounded-pill shadow mx-auto d-block"
                             alt=""
                         />
