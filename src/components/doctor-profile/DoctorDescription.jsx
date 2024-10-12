@@ -45,7 +45,7 @@ const DoctorDescription = () => {
             position: 'relative',
           }}>
             <img
-              src={`https://medixlineapi-c657ee2ad358.herokuapp.com${user.profile_picture}`}
+              src={user.profile_picture}
               className="img-fluid rounded-circle mt-5"
               style={{
                 width: '150px',
