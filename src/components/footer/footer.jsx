@@ -22,6 +22,17 @@ const Footer = () => {
     }, 0);
 };
 
+const handleClickSpecialization = (e, id, title) => {
+  e.preventDefault();
+  navigate("/doctorcard", { state: { id, title } });
+  setTimeout(() => {
+      const element = document.getElementById("card-holder");
+      if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+      }
+  }, 0);
+};
+
     useEffect(() => {
         axios.get("https://medixlineapi-c657ee2ad358.herokuapp.com/api/doctor/specializations/")
         .then(response => {
@@ -74,14 +85,16 @@ const Footer = () => {
             <div className="links ">
               {
             specializations.map(specialization => (
-                <Link to={{
-                  pathname: "/doctorcard"
-                }} 
-                state={{ id: specialization.id, title: specialization.title }} 
-                key={specialization.id} >
-                    {specialization.title}
-      
-                </Link>
+              <Link 
+              to={{
+                pathname: "/doctorcard"
+              }} 
+              state={{ id: specialization.id, title: specialization.title }} 
+              key={specialization.id}
+              onClick={(e) => handleClickSpecialization(e, specialization.id, specialization.title)}
+            >
+                {specialization.title}
+            </Link>
             ))
           }
             </div>

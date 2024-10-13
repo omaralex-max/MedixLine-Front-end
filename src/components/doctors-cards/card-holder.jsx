@@ -25,7 +25,7 @@ const CardHolder = () => {
     <>
       <div className="root">
         <section className="card-bg-half-150 bg-light d-table w-100">
-        <div className="container">
+        <div className="container" id="card-holder">
             <div className="row mt-5 justify-content-center">
               <div className="col-12 text-center">
                 <h1 className="display-4 mb-4 font-weight-bold text-primary">

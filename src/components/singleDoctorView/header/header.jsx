@@ -42,7 +42,7 @@ export default function HeaderDocPat({doctor}){
     return(
         <>
     
-    <div className="container-fluid headContainerDocPat">
+    <div className="container-fluid headContainerDocPat" id='doctor-overview'>
             <div className="row align-items-center">
                 <div className="col-md-4 col-12 text-center d-flex justify-content-center">
                     <img src={doctor.profile_picture} className="img-fluid docPatImage" alt="Doctor" />

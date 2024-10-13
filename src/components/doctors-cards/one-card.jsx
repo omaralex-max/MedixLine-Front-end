@@ -1,13 +1,25 @@
 import "./card.css";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const OneCard = ({ doctor }) => {
   const [days, setDays] = useState([]);
   const token = localStorage.getItem('token');
   const [workingDays, setWorkingDays] = useState([]);
+  const navigate = useNavigate()
 
+
+  const handleClickCard = (e, doctor) => {
+    e.preventDefault();
+    navigate(`/doctordetails/${doctor.id}`, { state: { doctor } });
+    setTimeout(() => {
+        const element = document.getElementById("doctor-overview");
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 1);
+  };
 
 
 
@@ -45,7 +57,9 @@ const OneCard = ({ doctor }) => {
       <div className="card team border-0 rounded overflow-hidden customCardEachDoctor">
         <div className="row align-items-center cardpad customCardEachDoctor">
           <div className="col-md-6 d-flex justify-content-center">
-            <Link to={{ pathname: `/doctordetails/${doctor.id}`, state: { doctor } }}>
+            <Link to={{ pathname: `/doctordetails/${doctor.id}`, state: { doctor } }}
+            onClick={(e) => handleClickCard(e, doctor)}
+            >
               <div className="team-person position-relative overflow-hidden">
                 <img src={doctor.profile_picture} className="img-fluid rounded-circle" alt="" />
               </div>
