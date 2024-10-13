@@ -11,6 +11,7 @@ function Search() {
     // function Search({ searchResults, setSearchResults }) {
         const location = useLocation();
         const searchResults = location.state?.searchResults || [];
+        console.log(searchResults)
     return(
         <>
          <Header/>

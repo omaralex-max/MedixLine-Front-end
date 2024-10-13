@@ -4,7 +4,7 @@ import logo from "../../assets/icons/logo1.png";
 import male from "../../assets/images/patient-male.png";
 import female from "../../assets/images/girl.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,33 @@ const Navbar = () => {
   const [doctorsDropdown, setDoctorsDropdown] = useState(false);
   const [patientsDropdown, setPatientsDropdown] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate=useNavigate()
+
+
+
+  const handleClickAbout = (e) => {
+    e.preventDefault()
+    navigate("/");
+    setTimeout(() => {
+        const element = document.getElementById("searchContainerId");
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 0);
+};
+
+const handleClickDepartment = (e) => {
+  e.preventDefault()
+  
+  navigate("/");
+  setTimeout(() => {
+      const element = document.getElementById("categoryHomeId");
+      if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+      }
+  }, 0);
+};
+
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -87,7 +114,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
+        <Link to="/">
           <img src={logo} alt="Logo" />
+        </Link>
           <span className="navbar-title d-none">Doctris</span>
         </div>
 
@@ -101,17 +130,35 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setHomeDropdown)}
             onMouseLeave={() => handleMouseLeave(setHomeDropdown)}
           >
-            <a href="/" className="nav-links">
+            <Link to="/" className={isOpen? "navnav" : "nav-links"}>
               HOME{" "}
-            </a>
+            </Link>
           </li>
+
+          <li
+            className={isOpen? "nav-item" : "d-none"}
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <Link to={
+                  user?.user?.role === "patient"
+                    ? "/patient-profile"
+                    : user?.user?.role === "doctor"
+                    ? "/doctorpage/*"
+                    : "/"
+                }
+                className={isOpen? "navnav" : "nav-links"}>
+              PROFILE{" "}
+            </Link>
+          </li>
+
 
           <li
             className="nav-item"
             onMouseEnter={() => handleMouseEnter(setDoctorsDropdown)}
             onMouseLeave={() => handleMouseLeave(setDoctorsDropdown)}
           >
-            <a href="/#aboutId" className="nav-links">
+            <a href="#" className={isOpen? "navnav" : "nav-links"} onClick={handleClickDepartment}>
               DEPARTMENTS
             </a>
           </li>
@@ -121,16 +168,17 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <a href="/#searchContainerId" className="nav-links">
+            <a href="#" className={isOpen? "navnav" : "nav-links"} onClick={handleClickAbout}>
               ABOUT{" "}
             </a>
           </li>
+
           <li
             className="nav-item"
             onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
             onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
           >
-            <Link to="/inbox" className="nav-links">
+            <Link to="/inbox" className={isOpen? "navnav" : "nav-links"}>
               INBOX{" "}
             </Link>
           </li>
@@ -138,7 +186,7 @@ const Navbar = () => {
           {user === null ? (
             <>
               <li className="nav-item navhid">
-                <a href="/signin" className="nav-links signInButtonNav">
+                <a href="/signin" className={isOpen? "navnav signInButtonNav" : "nav-links signInButtonNav"}>
                   SIGN IN
                 </a>
               </li>
@@ -148,7 +196,7 @@ const Navbar = () => {
               <li className="nav-item navhid">
                 <a
                   href="/signup"
-                  className="nav-links signInButtonNav"
+                  className={isOpen? "navnav signInButtonNav" : "nav-links signInButtonNav"}
                   onClick={handelLogout}
                 >
                   LOG OUT
@@ -159,7 +207,8 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-icons navpushing">
-          <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
+          <ul className={isOpen ? "d-none" : "nav-menu"}>
+
             {user === null ? (
               <>
                 <li className="nav-item">

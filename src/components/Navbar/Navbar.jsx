@@ -31,7 +31,7 @@ const handleClickDepartment = (e) => {
   
   navigate("/");
   setTimeout(() => {
-      const element = document.getElementById("aboutId");
+      const element = document.getElementById("categoryHomeId");
       if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
       }
@@ -112,7 +112,9 @@ const handleClickDepartment = (e) => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <img src={logo} alt="Logo" />
+          <Link to="/">
+            <img src={logo} alt="Logo" />
+          </Link>
           <span className="navbar-title d-none">Doctris</span>
         </div>
 
@@ -130,6 +132,24 @@ const handleClickDepartment = (e) => {
               HOME{" "}
             </Link>
           </li>
+
+          <li
+            className={isOpen? "nav-item" : "d-none"}
+            onMouseEnter={() => handleMouseEnter(setPatientsDropdown)}
+            onMouseLeave={() => handleMouseLeave(setPatientsDropdown)}
+          >
+            <Link to={
+                  user?.user?.role === "patient"
+                    ? "/patient-profile"
+                    : user?.user?.role === "doctor"
+                    ? "/doctorpage/*"
+                    : "/"
+                }
+                className="navnav">
+              PROFILE{" "}
+            </Link>
+          </li>
+
 
           <li
             className="nav-item"
@@ -185,7 +205,7 @@ const handleClickDepartment = (e) => {
         </ul>
 
         <div className="nav-icons navpushing">
-          <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
+          <ul className={isOpen ? "d-none" : "nav-menu"}>
             {user === null ? (
               <>
                 <li className="nav-item">
