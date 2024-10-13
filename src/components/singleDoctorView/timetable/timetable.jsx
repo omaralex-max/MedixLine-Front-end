@@ -102,12 +102,20 @@ const TimeTable = () => {
         }
     
         if (day && time && patientId) {
-            const today = moment();
-            const dayIndex = moment().day(day).isoWeekday();
-            let appointmentDate = moment().day(day).startOf('day');
-            if (today.isoWeekday() > dayIndex) {
-                appointmentDate.add(1, 'weeks');
-            }
+            // const today = moment();
+            // console.log(today)
+            // const dayIndex = moment().day(day).isoWeekday();
+            // console.log(dayIndex)
+            // console.log(today.isoWeekday())
+            let appointmentDate = getNextDateForDay(day);
+            // if (today.isoWeekday() < dayIndex) {
+            //     console.log("object")
+            //     appointmentDate.add(1, 'weeks');
+            // }
+
+
+
+            // console.log(appointmentDate)
             const appointmentTime = moment(time, "hh:mm A").format('HH:mm:ss');
             const appointmentData = {
                 date: appointmentDate.format('YYYY-MM-DD'),
@@ -151,6 +159,9 @@ const TimeTable = () => {
 
     const isSlotBooked = (day, slot, doctorId) => {
         const dayDate = getNextDateForDay(day).format('YYYY-MM-DD'); // Convert day to a date
+        // console.log("slot",slot)
+        // console.log(dayDate)
+        // console.log("ahmodyyyyy",bookedSlots.some(bookedSlot => bookedSlot.day === day && bookedSlot.time === slot && bookedSlot.doctor_id == id))
         return bookedSlots.some(bookedSlot => 
             bookedSlot.day === dayDate && 
             bookedSlot.time === slot && 
@@ -184,6 +195,7 @@ const TimeTable = () => {
                                             >
                                             {slot}
                                         </div>
+                                        
                                             ) : (
                                         <div
                                             className="slot p-2 text-center border eachSlotAppt bg-secondary text-muted"
