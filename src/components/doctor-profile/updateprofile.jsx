@@ -197,7 +197,7 @@ const UpdateProfile = () => {
             </div>
             <div className="p-4 border-bottom">
                 <div className="row align-items-center">
-                    <div className="col-lg-2 col-md-4">
+                    {/* <div className="col-lg-2 col-md-4">
                         <img
                             src={`https://medixlineapi-c657ee2ad358.herokuapp.com${user.profile_picture}`}
                             className="avatar avatar-md-md rounded-pill shadow mx-auto d-block"
@@ -210,7 +210,7 @@ const UpdateProfile = () => {
                             For best results, use an image at least 256px by 256px in either
                             .jpg or .png format
                         </p>
-                    </div>
+                    </div> */}
 
                     
                     <div className="col-lg-5 col-md-12 text-lg-end text-center mt-4 mt-lg-0">
