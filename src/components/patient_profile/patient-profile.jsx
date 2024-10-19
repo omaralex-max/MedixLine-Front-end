@@ -78,7 +78,7 @@ const PatientProfile = () => {
                 </div>
               </div>
           
-              <h5 className="mb-0 mt-4 pt-2">Contact us</h5>
+              {/* <h5 className="mb-0 mt-4 pt-2">Contact us</h5>
               <div className="row">
                 <div className="col-md-12 col-lg-6 mt-4">
                   <div className="card features feature-primary text-center border-0 p-4 rounded shadow">
@@ -162,7 +162,7 @@ const PatientProfile = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
     </>
